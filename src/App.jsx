@@ -1,11 +1,11 @@
-import { DefaultTemplate } from "./components/DefaultTemplate"
+import { RoutesMain } from "./routes/RoutesMain"
 import "./style/index.scss"
 
 function App() {
  
   return (
     <>
-    <DefaultTemplate/>
+    <RoutesMain/>
     </>
   )
 }

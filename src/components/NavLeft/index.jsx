@@ -20,6 +20,9 @@ export const NavLeft = () => {
        <Link className={style.link}>
        <span>Cirugias</span>
        </Link>
+       <Link to="/paciente" className={style.link}>
+       <span>Pacientes</span>
+       </Link>
        <Link className={style.link}>
        <span>Criar Agenda</span>
        </Link>
