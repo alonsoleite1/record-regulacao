@@ -5,7 +5,7 @@ export const Pacietes = () => {
   return (
     <DefaultTemplate>
       <form className={style.container}>
-        Nome:
+      
       </form>
     </DefaultTemplate>
   )

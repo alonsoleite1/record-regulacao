@@ -5,8 +5,8 @@ export const NavLeft = () => {
 
     return (
         <nav className={style.container}>
-       <Link className={style.link}>
-       <span>Usuario</span>
+       <Link to="/usuario" className={style.link}>
+       <span>Usuarios</span>
        </Link>
        <Link className={style.link}>
        <span>Profissionais</span>

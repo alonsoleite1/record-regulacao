@@ -1,0 +1,20 @@
+.container{
+    margin-top: .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    flex-grow: 1;
+    background-color: var(--color-pages);
+    padding: .5rem 1rem;
+}
+.div_inputs{
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+}
+.input_100{
+    width:100% ;
+}
+.input_50{ 
+    width:20% ;
+}
