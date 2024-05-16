@@ -1,6 +1,8 @@
 import { DefaultTemplate } from "../../DefaultTemplate";
 import { Input } from "../../Imputs";
+import { RiSave3Fill } from "react-icons/ri";
 import style from "./style.module.scss";
+import { Select } from "../../Selects";
 
 export const Usuarios = () => {
   return (
@@ -8,32 +10,34 @@ export const Usuarios = () => {
       <form className={style.container}>
         <div className={style.div_inputs}>
           <span className={style.input_100}>
-            <Input label="Nome:"/>
+            <Input label="Nome:" />
           </span>
           <span className={style.input_100}>
-            <Input label="CPF:"/>
+            <Input label="CPF:" />
           </span>
           <span className={style.input_100}>
-            <Input label="Login"/>
+            <Input label="Login" />
           </span>
         </div>
         <div className={style.div_inputs}>
           <span className={style.input_100}>
-            <Input label="Senha:"/>
+            <Input label="Senha:" />
           </span>
           <span className={style.input_100}>
-            <Input label="Repetir senha:"/>
+            <Input label="Repetir senha:" />
           </span>
           <span className={style.input_100}>
-            <Input label="Unidade:"/>
+            <Input label="Unidade:" />
           </span>
         </div>
         <div className={style.div_inputs}>
           <span className={style.input_50}>
-            <Input label="Perfil:"/>
+            <Select label="Perfil:"/>
           </span>
         </div>
-        <button type="submit">Cadastrar</button>
+        <div>
+          <button className={style.button} type="submit"><RiSave3Fill /> Salvar usuário</button>
+        </div>
       </form>
     </DefaultTemplate>
   )

@@ -1,4 +1,4 @@
-.container {
+.select {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -9,23 +9,24 @@
     font-size: .9rem;
     font-weight: 500;
 }
-.box_input{
-    display: flex;
+
+.paragraph {
+    color: var(--color-grey-0)
 }
 
-.input_default{
+.input_select {
     width: 100%;
+    align-items: center;
     padding: .5rem;
     border-radius: .25rem;
-    border: .0625rem solid var(--color-border);
-    border-radius: .35rem;
-    color: rgb(59, 59, 59);
+    border: .0761rem solid var(--color-border);
+   background-color: white; 
+    font-size: .875rem;
+    line-height: 1.6496rem;
+    cursor: pointer;
 }
-.input_default:focus-visible{
+.input_select:focus-visible{
     box-shadow: 0 0 0 .0625rem var(--color-hover);
     outline: none;
     border: none;
-}
-.paragraph {
-    color: var(--color-grey-0)
 }

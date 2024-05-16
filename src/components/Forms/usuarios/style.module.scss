@@ -2,6 +2,7 @@
     margin-top: .5rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: .6rem;
     flex-grow: 1;
     background-color: var(--color-pages);
@@ -17,4 +18,23 @@
 }
 .input_50{ 
     width:20% ;
+}
+.button{
+    margin-top: 4rem;
+   padding: .5rem;
+   border-radius: .25rem;
+   border: none;
+   background-color: var(--color-button-save);
+   color: white;
+   font-size: .875rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: .2rem;
+   font-weight: 600;
+   cursor: pointer;
+}
+
+.button:hover{
+background-color: var(--color-button-hover-save);
 }
