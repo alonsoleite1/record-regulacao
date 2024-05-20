@@ -33,7 +33,6 @@ export const CadastroUsuario = () => {
         <div className={style.box_input}>
           <label className={style.label}>Nome:</label>
           <input className={style.input}
-            id="nome"
             {...register('nome', { required: 'Nome é obrigatório' })}
           />
           {errors.nome && <span className={style.aviso}>{errors.nome.message}</span>}
@@ -59,7 +58,6 @@ export const CadastroUsuario = () => {
         <div className={style.box_input}>
           <label className={style.label}>Login:</label>
           <input  className={style.input}
-            id="login"
             {...register('login', { required: 'Login é obrigatório' })}
           />
           {errors.login && <span className={style.aviso}>{errors.login.message}</span>}
@@ -68,7 +66,6 @@ export const CadastroUsuario = () => {
           <label className={style.label}>Senha:</label>
           <input className={style.input}
             type="password"
-            id="senha"
             {...register('senha', { required: 'Senha é obrigatória' })}
           />
           {errors.senha && <span className={style.aviso}>{errors.senha.message}</span>}
@@ -77,7 +74,6 @@ export const CadastroUsuario = () => {
           <label className={style.label}>Confirmação de Senha:</label>
           <input className={style.input}
             type="password"
-            id="confirmacaoSenha"
             {...register('confirmacaoSenha', {
               required: 'Confirmação de Senha é obrigatória',
               validate: (value) =>

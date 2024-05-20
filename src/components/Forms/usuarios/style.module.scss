@@ -56,7 +56,9 @@
    font-weight: 600;
    cursor: pointer;
 }
-
+.input:focus-visible{
+   border: .125rem solid var(--color-hover);
+}
 .button:hover{
 background-color: var(--color-button-hover-save);
 }
