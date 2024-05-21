@@ -8,6 +8,7 @@ import style from "./style.module.scss";
 
 export const CadastroUsuario = () => {
   const { register, handleSubmit, control, watch, formState: { errors } } = useForm();
+
   const onSubmit = (data) => {
     console.log(data);
   };

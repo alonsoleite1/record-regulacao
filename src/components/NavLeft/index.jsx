@@ -8,13 +8,11 @@ export const NavLeft = () => {
        <Link to="/usuario" className={style.link}>
        <span>Usuários</span>
        </Link>
-       <Link className={style.link}>
+       <Link to="/profissional" className={style.link}>
        <span>Profissionais</span>
        </Link>
        <Link className={style.link}>
-       <span>Unidades
-        
-       </span>
+       <span>Unidades </span>
        </Link>
        <Link className={style.link}>
        <span>Consulta especializada</span>
