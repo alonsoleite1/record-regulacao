@@ -90,7 +90,7 @@ export const Profissionais = () => {
                     <div className={style.box_especialidade}>
                         <div className={style.box_input}>
                             <label className={style.label}>Especialidade:</label>
-                            <select className={style.input_form} {...register("selectedSpecialty",{required: 'Especialidade e obrigatória'})}>
+                            <select className={style.input_form} {...register("selectedSpecialty")}>
                                 <option value="">Selecione uma especialidade</option>
                                 <option value="Cardiologia">Cardiologia</option>
                                 <option value="Dermatologia">Dermatologia</option>
@@ -104,17 +104,15 @@ export const Profissionais = () => {
                             </button>
                             {errors.selectedSpecialty && <span className={style.aviso}>{errors.selectedSpecialty.message}</span>}
                         </div>
-
-                        <div className={style.div_ul}>
-                            <ul>
+                        
+                            <ul className={style.ul_especialidade}>
                                 {fields.map((item, index) => (
-                                    <li key={item.id}>
+                                    <li className={style.card} key={item.id}>
                                         {item.name}
                                         <button type="button" onClick={() => remove(index)}>Remover</button>
                                     </li>
                                 ))}
-                            </ul>
-                        </div>
+                            </ul>                   
 
                     </div>
                     <button className={style.button_salvar} type="submit"><RiSave3Fill /> Salvar profissional</button>

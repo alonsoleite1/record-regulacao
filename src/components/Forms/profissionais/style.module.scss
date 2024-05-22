@@ -170,8 +170,17 @@
     align-items: center;
     margin-top: .5rem;
 }
-.ul{
+.ul_especialidade{
+    width: 50%;
+    margin-top: .8rem;
+    border: 2px solid var(--color-hover);
+    border-radius: .25rem;
     display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-block: 1rem;
+
+
 }
 
 .button_salvar {
