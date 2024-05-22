@@ -11,10 +11,10 @@ export const NavLeft = () => {
        <Link to="/profissional" className={style.link}>
        <span>Profissionais</span>
        </Link>
-       <Link className={style.link}>
+       <Link to="/unidade" className={style.link}>
        <span>Unidades </span>
        </Link>
-       <Link className={style.link}>
+       <Link to="/especialidade" className={style.link}>
        <span>Consulta especializada</span>
        </Link>
        <Link className={style.link}>

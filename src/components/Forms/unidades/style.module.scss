@@ -122,14 +122,13 @@
 .box_cadastro {
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
 }
 
 .box_input {
     margin: auto;
-    width: 50%;
+    width: 40%;
     padding-inline: 2rem;
     display: flex;
     flex-direction: column;
@@ -137,14 +136,12 @@
     align-items: flex-start;
     gap: .2rem;
 }
-
 .label {
     font-size: .9rem;
     font-weight: 500;
 }
-
 .input_form {
-    width: 100%;
+   width: 100%;
     display: flex;
     min-height: 2.375rem;
     background-color: hsl(0, 0%, 100%);
@@ -158,20 +155,12 @@
     font-size: 1rem;
 }
 
-.input:focus,
-.input_form:focus {
+.input:focus, .input_form:focus {
     border: .125rem solid var(--color-hover);
 }
 
-.box_especialidade {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: .5rem;
-}
-.ul{
-    display: flex;
+.button:hover {
+    background-color: var(--color-button-hover-save);
 }
 
 .button_salvar {
@@ -188,11 +177,9 @@
     font-weight: 600;
     cursor: pointer;
 }
-
 .button_salvar:hover {
     background-color: var(--color-button-hover-save);
 }
-
 .aviso {
     color: red;
     font-size: .75rem;
