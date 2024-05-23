@@ -86,14 +86,15 @@
 
 .card {
     background-color: white;
-    width: 50%;
+    width: 80%;
     margin: auto;
-    border: .0625rem solid;
+    border: .0625rem solid var(--color-border);
     border-radius: .25rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: .5rem;
+    padding: .25rem;
+    font-weight: 500;
 }
 
 .button_atualizar {
@@ -164,16 +165,28 @@
 }
 
 .box_especialidade {
-    width: 100%;
+    width: 80%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 1rem;
+    border: .0938rem solid var(--color-border);
+    border-radius: .625rem;
+}
+.box_select{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: .5rem;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    gap: .2rem;
+}
+.select{
+    display: flex;
+    flex-direction: column;
 }
 .ul_especialidade{
-    width: 50%;
-    margin-top: .8rem;
-    border: 2px solid var(--color-hover);
+    width: 100%;
     border-radius: .25rem;
     display: flex;
     flex-direction: column;
@@ -181,6 +194,20 @@
     padding-block: 1rem;
 
 
+}
+
+.button_deletar {
+    padding: .4rem;
+    border: none;
+    border-radius: .25rem;
+    background-color: var(--color-button-hover-exit);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.button_deletar:hover{
+    background-color: var(--color-button-exit);
 }
 
 .button_salvar {

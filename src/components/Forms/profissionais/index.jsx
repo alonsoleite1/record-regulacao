@@ -2,8 +2,9 @@ import { DefaultTemplate } from "../../DefaultTemplate";
 import { useForm, useFieldArray } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 import { RiSave3Fill } from "react-icons/ri";
-import style from "./style.module.scss";
 import { useState } from "react";
+import { FaRegTrashAlt } from "react-icons/fa";
+import style from "./style.module.scss";
 
 
 export const Profissionais = () => {
@@ -25,14 +26,9 @@ export const Profissionais = () => {
         const selectedSpecialty = getValues("selectedSpecialty");
         if (selectedSpecialty && !fields.some(field => field.name === selectedSpecialty)) {
             append({ name: selectedSpecialty });
-            setValue("selectedSpecialty", "");
+            
         }
     };
-
-    const especialidade = [
-        { value: 'admin', label: 'Admin' },
-        { value: 'user', label: 'User' }
-      ];
 
     const onSubmit = (data) => {
         console.log(data);
@@ -88,28 +84,30 @@ export const Profissionais = () => {
                         </div>
                     </div>
                     <div className={style.box_especialidade}>
-                        <div className={style.box_input}>
-                            <label className={style.label}>Especialidade:</label>
-                            <select className={style.input_form} {...register("selectedSpecialty")}>
-                                <option value="">Selecione uma especialidade</option>
-                                <option value="Cardiologia">Cardiologia</option>
-                                <option value="Dermatologia">Dermatologia</option>
-                                <option value="Neurologia">Neurologia</option>
-                                <option value="Ortopedia">Ortopedia</option>
-                                <option value="Pediatria">Pediatria</option>
-                                {/* Adicione mais opções conforme necessário */}
-                            </select>
+                        <div className={style.box_select}>
+                            <div className={style.box_select}>
+                                <label className={style.label}>Especialidade:</label>
+                                <select className={style.input_form} {...register("selectedSpecialty")}>
+                                    <option value="">Selecione uma especialidade</option>
+                                    <option value="Cardiologia">Cardiologia</option>
+                                    <option value="Dermatologia">Dermatologia</option>
+                                    <option value="Neurologia">Neurologia</option>
+                                    <option value="Ortopedia">Ortopedia</option>
+                                    <option value="Pediatria">Pediatria</option>
+                                    {/* Adicione mais opções conforme necessário */}
+                                </select>
+                            </div>
                             <button className={style.button_cadastrar} type="button" onClick={addSpecialty}>
                             Adicionar
                             </button>
-                            {errors.selectedSpecialty && <span className={style.aviso}>{errors.selectedSpecialty.message}</span>}
+                          
                         </div>
                         
                             <ul className={style.ul_especialidade}>
                                 {fields.map((item, index) => (
                                     <li className={style.card} key={item.id}>
                                         {item.name}
-                                        <button type="button" onClick={() => remove(index)}>Remover</button>
+                                        <button className={style.button_deletar} type="button" onClick={() => remove(index)}><FaRegTrashAlt /></button>
                                     </li>
                                 ))}
                             </ul>                   
