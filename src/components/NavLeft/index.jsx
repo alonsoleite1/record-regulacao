@@ -5,20 +5,26 @@ export const NavLeft = () => {
 
     return (
         <nav className={style.container}>
-       <Link className={style.link}>
-       <span>Usuario</span>
+       <Link to="/usuario" className={style.link}>
+       <span>Usuários</span>
        </Link>
-       <Link className={style.link}>
+       <Link to="/profissional" className={style.link}>
        <span>Profissionais</span>
        </Link>
-       <Link className={style.link}>
-       <span>Especialidades</span>
+       <Link to="/unidade" className={style.link}>
+       <span>Unidades </span>
        </Link>
-       <Link className={style.link}>
-       <span>Procedimentos</span>
+       <Link to="/especialidade" className={style.link}>
+       <span>Consulta especializada</span>
        </Link>
-       <Link className={style.link}>
+       <Link to="/exame" className={style.link}>
+       <span>Exames</span>
+       </Link>
+       <Link to="/cirugia" className={style.link}>
        <span>Cirugias</span>
+       </Link>
+       <Link to="/paciente" className={style.link}>
+       <span>Pacientes</span>
        </Link>
        <Link className={style.link}>
        <span>Criar Agenda</span>

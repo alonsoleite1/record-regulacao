@@ -1,9 +1,12 @@
-
+.main{
+    max-width: 112.5rem;
+    margin: auto;
+}
 .container{
     width: 98%;
     margin: auto;
     display: flex; 
-    justify-content: space-between;
+    gap: .5rem;
 }
 .naviagate{
     width: 20%;
