@@ -28,6 +28,7 @@
     justify-content: flex-end;
     width: 50%;
     margin-right: .5rem;
+    gap: 1rem;
 }
 
 .button_cadastrar {
@@ -86,17 +87,15 @@
 
 .card {
     background-color: white;
-    width: 80%;
+    width: 50%;
     margin: auto;
-    border: .0625rem solid var(--color-border);
+    border: .0625rem solid;
     border-radius: .25rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: .25rem;
-    font-weight: 500;
+    padding: .5rem;
 }
-
 .button_atualizar {
     padding: .4rem;
     border: none;
@@ -110,6 +109,21 @@
 .button_atualizar:hover {
     background-color: var(--color-button-hover-save);
 }
+
+.button_deletar {
+    padding: .4rem;
+    border: none;
+    border-radius: .25rem;
+    background-color: var(--color-button-hover-exit);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.button_deletar:hover{
+    background-color: var(--color-button-exit);
+}
+
 
 .form_cadastro {
     width: 100%;

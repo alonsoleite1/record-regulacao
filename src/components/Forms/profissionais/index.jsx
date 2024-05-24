@@ -26,7 +26,7 @@ export const Profissionais = () => {
         const selectedSpecialty = getValues("selectedSpecialty");
         if (selectedSpecialty && !fields.some(field => field.name === selectedSpecialty)) {
             append({ name: selectedSpecialty });
-            
+
         }
     };
 
@@ -59,7 +59,10 @@ export const Profissionais = () => {
                 {buscarCadastro ? <ul className={style.ul}>
                     <li className={style.card}>
                         <p>Alonso Araujo Leite</p>
-                        <button className={style.button_atualizar} onClick={() => cadastrar()}>Atualizar</button>
+                        <div className={style.div_button}>
+                            <button className={style.button_atualizar} onClick={() => cadastrar()}>Atualizar</button>
+                            <button className={style.button_deletar}><FaRegTrashAlt /></button>
+                        </div>
                     </li>
                 </ul> : null}
 
@@ -98,19 +101,19 @@ export const Profissionais = () => {
                                 </select>
                             </div>
                             <button className={style.button_cadastrar} type="button" onClick={addSpecialty}>
-                            Adicionar
+                                Adicionar
                             </button>
-                          
+
                         </div>
-                        
-                            <ul className={style.ul_especialidade}>
-                                {fields.map((item, index) => (
-                                    <li className={style.card} key={item.id}>
-                                        {item.name}
-                                        <button className={style.button_deletar} type="button" onClick={() => remove(index)}><FaRegTrashAlt /></button>
-                                    </li>
-                                ))}
-                            </ul>                   
+
+                        <ul className={style.ul_especialidade}>
+                            {fields.map((item, index) => (
+                                <li className={style.card} key={item.id}>
+                                    {item.name}
+                                    <button className={style.button_deletar} type="button" onClick={() => remove(index)}><FaRegTrashAlt /></button>
+                                </li>
+                            ))}
+                        </ul>
 
                     </div>
                     <button className={style.button_salvar} type="submit"><RiSave3Fill /> Salvar profissional</button>

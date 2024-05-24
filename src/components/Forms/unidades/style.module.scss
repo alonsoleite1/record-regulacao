@@ -28,6 +28,7 @@
     justify-content: flex-end;
     width: 50%;
     margin-right: .5rem;
+    gap: 1rem;
 }
 
 .button_cadastrar {
@@ -108,6 +109,19 @@
 
 .button_atualizar:hover {
     background-color: var(--color-button-hover-save);
+}
+.button_deletar {
+    padding: .4rem;
+    border: none;
+    border-radius: .25rem;
+    background-color: var(--color-button-hover-exit);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.button_deletar:hover{
+    background-color: var(--color-button-exit);
 }
 
 .form_cadastro {

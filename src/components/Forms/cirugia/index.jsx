@@ -6,7 +6,7 @@ import style from "./style.module.scss";
 import { useState } from "react";
 
 
-export const Especialidades = () => {
+export const Cirugias = () => {
     const [abrirCadastro, setAbrirCadastro] = useState(false);
     const [buscarCadastro, setBuscarCadastro] = useState(false);
 
@@ -28,7 +28,7 @@ export const Especialidades = () => {
         <DefaultTemplate>
             <section className={style.container}>
                 <div className={style.header}>
-                    <h1 className={style.title}>Especialidades</h1>
+                    <h1 className={style.title}>Cirugias</h1>
                     <div className={style.div_button}>
                         <button className={style.button_cadastrar} onClick={() => cadastrar()}>+ Cadastrar</button>
                     </div>
@@ -40,7 +40,7 @@ export const Especialidades = () => {
 
                 {buscarCadastro ? <ul className={style.ul}>
                     <li className={style.card}>
-                        <p>Cirurgião Geral</p>
+                        <p>Oftalmológica</p>
                         <div className={style.div_button}>
                             <button className={style.button_atualizar} onClick={() => cadastrar()}>Atualizar</button>
                             <button className={style.button_deletar}><FaRegTrashAlt /></button>
@@ -51,11 +51,11 @@ export const Especialidades = () => {
                 {abrirCadastro ? <form className={style.form_cadastro} onSubmit={handleSubmit(onSubmit)}>
                     <div className={style.box_cadastro}>
                         <div className={style.box_input}>
-                            <label className={style.label}>Especialidade:</label>
+                            <label className={style.label}>Cirugia:</label>
                             <input className={style.input_form}
-                                {...register('especialidade', { required: 'Especialidade e obrigatória' })}
+                                {...register('cirugia', { required: 'Cirugia e obrigatória' })}
                             />
-                            {errors.especialidade && <span className={style.aviso}>{errors.especialidade.message}</span>}
+                            {errors.cirugia && <span className={style.aviso}>{errors.cirugia.message}</span>}
                         </div>
                     </div>
 
