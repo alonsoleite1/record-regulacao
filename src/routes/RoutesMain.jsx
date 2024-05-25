@@ -7,6 +7,12 @@ import { Unidades } from "../components/Forms/unidades";
 import { Especialidades } from "../components/Forms/especialidades";
 import { Exames } from "../components/Forms/exames";
 import { Cirugias } from "../components/Forms/cirugia";
+import { CriarAgenda } from "../components/Forms/criarAgenda";
+import { Agendar } from "../components/Forms/agenda";
+import { ConsultarAgenda } from "../components/Forms/consultarAgenda";
+import { ListaDeEspera } from "../components/Forms/listaDeEspera";
+import { ConsultarListaDeEspera } from "../components/Forms/consultarListaDeEspera";
+import { GerarListaDeEspera } from "../components/Forms/geraListaDeEspera";
 
 
 export const RoutesMain = () => {
@@ -20,6 +26,12 @@ export const RoutesMain = () => {
             <Route path="/exame" element={<Exames />} />
             <Route path="/cirugia" element={<Cirugias />} />
             <Route path="/paciente" element={<Pacientes />} />
+            <Route path="/criarAgenda" element={<CriarAgenda />} />
+            <Route path="/agenda" element={<Agendar />} />
+            <Route path="/consultarAgenda" element={<ConsultarAgenda />} />
+            <Route path="/listaDeEspera" element={<ListaDeEspera/>} />
+            <Route path="/consultarListaDeEspera" element={<ConsultarListaDeEspera/>} />
+            <Route path="/gerarListaDeEspera" element={<GerarListaDeEspera/>} />
         </Routes>
     )
 };
