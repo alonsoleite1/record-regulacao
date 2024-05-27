@@ -53,7 +53,7 @@ export const Especialidades = () => {
                         <div className={style.box_input}>
                             <label className={style.label}>Especialidade:</label>
                             <input className={style.input_form}
-                                {...register('especialidade', { required: 'Especialidade e obrigatória' })}
+                                {...register('especialidade', { required: 'Especialidade é obrigatória' })}
                             />
                             {errors.especialidade && <span className={style.aviso}>{errors.especialidade.message}</span>}
                         </div>

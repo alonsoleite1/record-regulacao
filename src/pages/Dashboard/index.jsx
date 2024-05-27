@@ -5,6 +5,7 @@ export const Dashboard = () => {
   return (
     <DefaultTemplate>
       <section className={style.container}>
+        <h1 className={style.header}>Fila de Espera</h1>
         <section className={style.especialidade}>
           <h1 className={style.title}>Especialidade</h1>
           <div className={style.card}>

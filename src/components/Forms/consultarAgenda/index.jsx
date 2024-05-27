@@ -37,13 +37,17 @@ export const ConsultarAgenda = () => {
                             <span className={style.label}>Profissional:</span>
                             <p>Alonso Araujo Leite</p>
                         </div>
-                        <div className={style.box_input}>
+                        <div className={style.box_posicao}>
                             <span className={style.label}>Data:</span>
                             <p>01/06/2024</p>
                         </div>
-                        <div className={style.box_input}>
+                        <div className={style.box_posicao}>
                             <span className={style.label}>Hora:</span>
                             <p>09:00</p>
+                        </div>
+                        <div className={style.box_input}>
+                            <span className={style.label}>Agendado por:</span>
+                            <p>Alonso Araújo Leite</p>
                         </div>
                         <div className={style.div_button}>
                             <button className={style.button_deletar}><FaRegTrashAlt /></button>
@@ -63,13 +67,17 @@ export const ConsultarAgenda = () => {
                             <span className={style.label}>Profissional:</span>
                             <p>Alonso Araujo Leite</p>
                         </div>
-                        <div className={style.box_input}>
+                        <div className={style.box_posicao}>
                             <span className={style.label}>Data:</span>
                             <p>10/06/2024</p>
                         </div>
-                        <div className={style.box_input}>
+                        <div className={style.box_posicao}>
                             <span className={style.label}>Hora:</span>
                             <p>08:00</p>
+                        </div>
+                        <div className={style.box_input}>
+                            <span className={style.label}>Agendado por:</span>
+                            <p>Alonso Araújo Leite</p>
                         </div>
                         <div className={style.div_button}>
                             <button className={style.button_deletar}><FaRegTrashAlt /></button>
