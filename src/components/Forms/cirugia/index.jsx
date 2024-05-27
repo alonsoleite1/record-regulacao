@@ -53,7 +53,7 @@ export const Cirugias = () => {
                         <div className={style.box_input}>
                             <label className={style.label}>Cirugia:</label>
                             <input className={style.input_form}
-                                {...register('cirugia', { required: 'Cirugia e obrigatória' })}
+                                {...register('cirugia', { required: 'Cirugia é obrigatória' })}
                             />
                             {errors.cirugia && <span className={style.aviso}>{errors.cirugia.message}</span>}
                         </div>

@@ -40,7 +40,7 @@ export const GerarListaDeEspera = () => {
                             <label className={style.label}>Especialidade:</label>
                             <select className={style.input} {...register('especialidade', { required: 'Especialidade é obrigatória' })}>
                                 <option value="">Selecione uma especialidade</option>
-                                <option value="especialidade1">Especialidade 1</option>
+                                <option value="especialidade1">cardiologia</option>
                                 <option value="especialidade2">Especialidade 2</option>
                             </select>
                             {errors.especialidade && <span className={style.aviso}>{errors.especialidade.message}</span>}

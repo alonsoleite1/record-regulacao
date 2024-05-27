@@ -6,6 +6,15 @@
     flex-grow: 1;
     background-color: var(--color-pages);
 }
+.header{
+    width: 100%;
+    background-color: var(--color-button-register);
+    color: white;
+    text-align: center;
+    padding-block: .6rem;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
 .especialidade{
     width: 100%;
     display: flex;

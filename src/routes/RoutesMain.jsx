@@ -13,6 +13,7 @@ import { ConsultarAgenda } from "../components/Forms/consultarAgenda";
 import { ListaDeEspera } from "../components/Forms/listaDeEspera";
 import { ConsultarListaDeEspera } from "../components/Forms/consultarListaDeEspera";
 import { GerarListaDeEspera } from "../components/Forms/geraListaDeEspera";
+import { DashboardRealizadas } from "../components/Forms/dashboardRealizadas";
 
 
 export const RoutesMain = () => {
@@ -32,6 +33,7 @@ export const RoutesMain = () => {
             <Route path="/listaDeEspera" element={<ListaDeEspera/>} />
             <Route path="/consultarListaDeEspera" element={<ConsultarListaDeEspera/>} />
             <Route path="/gerarListaDeEspera" element={<GerarListaDeEspera/>} />
+            <Route path="/dashboardRealizada" element={<DashboardRealizadas/>} />
         </Routes>
     )
 };

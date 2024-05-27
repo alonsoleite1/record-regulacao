@@ -45,7 +45,10 @@ export const NavLeft = () => {
        <span>Gerar Lista de Espera</span>
        </Link>
        <Link to="/" className={style.link}>
-       <span>Dashboard</span>
+       <span>Dashboard Lista de Espera</span>
+       </Link>
+       <Link to="/dashboardRealizada" className={style.link}>
+       <span>Dashboard Realizadas</span>
        </Link>
         </nav>
         

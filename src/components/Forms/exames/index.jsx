@@ -53,7 +53,7 @@ export const Exames = () => {
                         <div className={style.box_input}>
                             <label className={style.label}>Exame/Procedimento:</label>
                             <input className={style.input_form}
-                                {...register('exame', { required: 'Exame ou procedimento e obrigatório' })}
+                                {...register('exame', { required: 'Exame ou procedimento é obrigatório' })}
                             />
                             {errors.exame && <span className={style.aviso}>{errors.exame.message}</span>}
                         </div>
