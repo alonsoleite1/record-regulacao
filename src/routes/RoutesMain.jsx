@@ -14,12 +14,15 @@ import { ListaDeEspera } from "../components/Forms/listaDeEspera";
 import { ConsultarListaDeEspera } from "../components/Forms/consultarListaDeEspera";
 import { GerarListaDeEspera } from "../components/Forms/geraListaDeEspera";
 import { DashboardRealizadas } from "../components/Forms/dashboardRealizadas";
+import { AgendaProfissionais } from "../components/Forms/agendaProfissionais";
+import { Login } from "../pages/Login/login";
 
 
 export const RoutesMain = () => {
     return (
         <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/usuario" element={<CadastroUsuario />} />
             <Route path="/profissional" element={<Profissionais />} />
             <Route path="/unidade" element={<Unidades />} />
@@ -34,6 +37,7 @@ export const RoutesMain = () => {
             <Route path="/consultarListaDeEspera" element={<ConsultarListaDeEspera/>} />
             <Route path="/gerarListaDeEspera" element={<GerarListaDeEspera/>} />
             <Route path="/dashboardRealizada" element={<DashboardRealizadas/>} />
+            <Route path="/agendaProfissional" element={<AgendaProfissionais/>} />
         </Routes>
     )
 };

@@ -29,6 +29,9 @@ export const NavLeft = () => {
        <Link to="/criarAgenda" className={style.link}>
        <span>Criar Agenda</span>
        </Link>
+       <Link to="/agendaProfissional" className={style.link}>
+       <span>Agenda dos profissionais</span>
+       </Link>
        <Link to="/agenda" className={style.link}>
        <span>Agendar</span>
        </Link>

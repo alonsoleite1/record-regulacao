@@ -1,11 +1,25 @@
 import { DefaultTemplate } from "../../DefaultTemplate";
 import { FaRegTrashAlt } from "react-icons/fa";
-import style from "./style.module.scss";
+import { BsChatLeftText } from "react-icons/bs";
 import { useState } from "react";
+import { ObservacaoModal } from "../../Modal";
+import { useKeydown } from "../../../services/useKeydown";
+import { useOutclick } from "../../../services/hooks/useOutclick";
+import style from "./style.module.scss";
 
 
 export const ConsultarListaDeEspera = () => {
     const [buscarCadastro, setBuscarCadastro] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
+
+    const modalRef = useOutclick(() => {
+        setOpenModal(false);
+     });
+  
+     const escRef = useKeydown("Escape", (element) => {
+        element.click();
+     });
+
 
     const atualizar = () => {
         event.preventDefault()
@@ -46,6 +60,7 @@ export const ConsultarListaDeEspera = () => {
                             <p>10</p>
                         </div>
                         <div className={style.div_button}>
+                        <button onClick={()=> setOpenModal(true)} className={style.button_observacao}><BsChatLeftText /></button>
                             <button className={style.button_deletar}><FaRegTrashAlt /></button>
                         </div>
                     </li>
@@ -72,12 +87,15 @@ export const ConsultarListaDeEspera = () => {
                             <p>50</p>
                         </div>
                         <div className={style.div_button}>
+                            <button onClick={()=> setOpenModal(true)} className={style.button_observacao}><BsChatLeftText /></button>
                             <button className={style.button_deletar}><FaRegTrashAlt /></button>
                         </div>
                     </li>
                 </ul> : null}
 
             </section>
+
+            {openModal ? <ObservacaoModal setOpenModal={setOpenModal} modalRef={modalRef} escRef={escRef}/> : null}
         </DefaultTemplate>
     )
 };
