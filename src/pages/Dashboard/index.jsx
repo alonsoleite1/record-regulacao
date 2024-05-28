@@ -25,7 +25,7 @@ export const Dashboard = () => {
           </div>
           <div className={style.card}>
             <h3 className={style.label}>Dermatologia</h3>
-            <p>50</p>
+            <p>20</p>
             <span className={style.span1}></span>
           </div>
           <div className={style.card}>
