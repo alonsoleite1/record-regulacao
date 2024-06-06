@@ -1,19 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import logo from "../../assets/logo.png"
 import style from "./style.module.scss";
-import { useNavigate } from 'react-router-dom';
+import { UsuarioContext } from '../../provider/UsuarioContext';
 
 export const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-  
-  
-  const Navigate = useNavigate();
-  
-  const onSubmit = data => {
-    console.log(data);
-    Navigate("/dashboard")
-    // Aqui você pode adicionar a lógica para lidar com o login, como chamar uma API
+
+  const { login } = useContext(UsuarioContext);
+
+  const onSubmit = (formData) => {
+    console.log(formData);
+    login(formData)
   };
 
 
@@ -32,9 +30,9 @@ export const Login = () => {
           <label className={style.label}>Senha</label>
           <input className={style.input}
             type="password"
-            {...register('password', { required: 'Senha é obrigatória' })}
+            {...register('senha', { required: 'Senha é obrigatória' })}
           />
-          {errors.password && <span className={style.aviso}>{errors.password.message}</span>}
+          {errors.senha && <span className={style.aviso}>{errors.senha.message}</span>}
         </div>
         <button className={style.button} type="submit">Entrar</button>
         <span className={style.version}>Versão do sistema: 1.0.0</span>

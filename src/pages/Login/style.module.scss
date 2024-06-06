@@ -10,23 +10,23 @@
     width: 21.875rem;
     background: white;
     padding: 1.25rem;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: .5rem;
+    box-shadow: 0 0 .625rem rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
 .title {
 
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: .5rem;
+    box-shadow: 0 0 .625rem rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 
 .box_input {
     background: white;
     padding: 1.25rem;
-    border-radius: 8px;
+    border-radius: .5rem;
     box-shadow: 0 0 .625rem rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -40,10 +40,11 @@
 }
 
 .input {
-    width: 100%;
-    padding: .8rem .5rem;
+    width: 90%;
+    margin: auto;
+    padding: .6rem .5rem;
     border: .0625rem solid var(--color-border);
-    border-radius: .25rem;
+    border-radius: .6rem;
     box-sizing: border-box;
     font-size: 1rem;
     text-align: center;
@@ -58,7 +59,7 @@
 }
 
 .button {
-    width: 50%;
+    width: 40%;
     padding: .625rem;
     background-color: #007bff;
     color: white;
@@ -74,7 +75,7 @@
 
 .version {
     display: block;
-    margin-top: 15px;
+    margin-top: .9375rem;
     color: #888;
     font-size: .875rem;
 }
