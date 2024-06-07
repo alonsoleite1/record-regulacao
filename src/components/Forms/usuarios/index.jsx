@@ -12,13 +12,19 @@ export const CadastroUsuario = () => {
 
   const [abrirCadastro, setAbrirCadastro] = useState(false);
   const [buscarCadastro, setBuscarCadastro] = useState(false);
+  const [deletarDB, setDeletarDB] = useState(false);
 
   const cadastrar = () => {
     return setAbrirCadastro(true);
   };
-  const atualizar = () => {
-    event.preventDefault()
-    return setBuscarCadastro(true);
+
+  const buscarUsuario = (data) => {
+    console.log(data.cpf);
+    setDeletarDB(data.cpf)
+  };
+
+  const deletarUsuario = (data) => {
+    console.log(data);
   };
 
   const onSubmit = (data) => {
@@ -48,9 +54,10 @@ export const CadastroUsuario = () => {
             <button className={style.button_cadastrar} onClick={() => cadastrar()}>+ Cadastrar</button>
           </div>
         </div>
-        <form className={style.form_buscar}>
-          <input className={style.input_buscar} type="text" />
-          <button className={style.button_buscar} type="submit" onClick={() => atualizar()}>Buscar</button>
+        <form onSubmit={handleSubmit(buscarUsuario)} className={style.form_buscar}>
+          <input className={style.input_buscar} type="text"
+            {...register('cpf')} />
+          <button className={style.button_buscar} type="submit" >Buscar</button>
         </form>
 
         {buscarCadastro ? <ul className={style.ul}>

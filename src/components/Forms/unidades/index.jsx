@@ -1,6 +1,5 @@
 import { DefaultTemplate } from "../../DefaultTemplate";
 import { useForm } from 'react-hook-form';
-import InputMask from 'react-input-mask';
 import { RiSave3Fill } from "react-icons/ri";
 import { FaRegTrashAlt } from "react-icons/fa";
 import style from "./style.module.scss";
@@ -51,48 +50,51 @@ export const Unidades = () => {
 
         {abrirCadastro ? <form className={style.form_cadastro} onSubmit={handleSubmit(onSubmit)}>
           <div className={style.box_cadastro}>
+          <div className={style.box_input}>
+              <label className={style.label}>Nome:</label>
+              <input className={style.input_form}
+                {...register('nome', { required: 'Nome é obrigatório' })}
+              />
+              {errors.nome && <span className={style.aviso}>{errors.nome.message}</span>}
+            </div>
             <div className={style.box_input}>
               <label className={style.label}>Rua:</label>
               <input className={style.input_form}
-                {...register('street', { required: 'Rua é obrigatória' })}
+                {...register('rua', { required: 'Rua é obrigatória' })}
               />
-              {errors.street && <span className={style.aviso}>{errors.street.message}</span>}
+              {errors.rua && <span className={style.aviso}>{errors.rua.message}</span>}
             </div>
             <div className={style.box_input}>
               <label className={style.label}>Número:</label>
               <input className={style.input_form}
                 type="number"
-                {...register('number', { required: 'Número é obrigatório' })}
+                {...register('numero', { required: 'Número é obrigatório' })}
               />
-              {errors.number && <span className={style.aviso}>{errors.number.message}</span>}
+              {errors.numero && <span className={style.aviso}>{errors.numero.message}</span>}
+            </div>
+            <div className={style.box_input}>
+              <label className={style.label}>Bairro:</label>
+              <input className={style.input_form}
+                type="number"
+                {...register('bairro', { required: 'Bairro é obrigatório' })}
+              />
+              {errors.bairro && <span className={style.aviso}>{errors.bairro.message}</span>}
             </div>
             <div className={style.box_input}>
               <label className={style.label}>Cidade:</label>
               <input className={style.input_form}
-                {...register('city', { required: 'Cidade é obrigatória' })}
+                {...register('cidade', { required: 'Cidade é obrigatória' })}
               />
-              {errors.city && <span className={style.aviso}>{errors.city.message}</span>}
+              {errors.cidade && <span className={style.aviso}>{errors.cidade.message}</span>}
             </div>
             <div className={style.box_input}>
               <label className={style.label}>Estado:</label>
               <input className={style.input_form}
-                {...register('state', { required: 'Estado é obrigatório' })}
+                {...register('estado', { required: 'Estado é obrigatório' })}
               />
-              {errors.state && <span className={style.aviso}>{errors.state.message}</span>}
+              {errors.estado && <span className={style.aviso}>{errors.estado.message}</span>}
             </div>
-            <div className={style.box_input}>
-              <label className={style.label}>CEP:</label>
-              <InputMask className={style.input_form}
-                mask="99999-999"
-                {...register('zipCode', {
-                  required: 'CEP é obrigatório',
-                  validate: value => /^[0-9]{5}-[0-9]{3}$/.test(value) || 'CEP inválido'
-                })}
-              >
-                {(inputProps) => <input {...inputProps} />}
-              </InputMask>
-              {errors.zipCode && <span className={style.aviso}>{errors.zipCode.message}</span>}
-            </div>
+       
           </div>
 
           <button className={style.button_salvar} type="submit"><RiSave3Fill /> Cadastrar</button>
