@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { Dashboard } from "../pages/Dashboard";
-import { CadastroUsuario } from "../components/Forms/usuarios";
+import { CadastroUsuario } from "../components/Forms/usuarios/formCadastro";
 import { Pacientes } from "../components/Forms/pacietes";
 import { Profissionais } from "../components/Forms/profissionais";
 import { Unidades } from "../components/Forms/unidades";

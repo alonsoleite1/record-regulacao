@@ -2,30 +2,24 @@ import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 import Select from 'react-select';
-import { DefaultTemplate } from '../../DefaultTemplate';
+import { DefaultTemplate } from '../../../DefaultTemplate';
 import { RiSave3Fill } from "react-icons/ri";
 import { FaRegTrashAlt } from "react-icons/fa";
 import style from "./style.module.scss";
+import { api } from '../../../../services/api';
+import { FormPesquisaUsuario } from '../formBusca';
 
 export const CadastroUsuario = () => {
   const { register, handleSubmit, control, watch, formState: { errors } } = useForm();
 
   const [abrirCadastro, setAbrirCadastro] = useState(false);
   const [buscarCadastro, setBuscarCadastro] = useState(false);
-  const [deletarDB, setDeletarDB] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
   const cadastrar = () => {
     return setAbrirCadastro(true);
   };
 
-  const buscarUsuario = (data) => {
-    console.log(data.cpf);
-    setDeletarDB(data.cpf)
-  };
-
-  const deletarUsuario = (data) => {
-    console.log(data);
-  };
 
   const onSubmit = (data) => {
     console.log(data);
@@ -54,21 +48,7 @@ export const CadastroUsuario = () => {
             <button className={style.button_cadastrar} onClick={() => cadastrar()}>+ Cadastrar</button>
           </div>
         </div>
-        <form onSubmit={handleSubmit(buscarUsuario)} className={style.form_buscar}>
-          <input className={style.input_buscar} type="text"
-            {...register('cpf')} />
-          <button className={style.button_buscar} type="submit" >Buscar</button>
-        </form>
-
-        {buscarCadastro ? <ul className={style.ul}>
-          <li className={style.card}>
-            <p>Alonso Araujo Leite</p>
-            <div className={style.div_button}>
-              <button className={style.button_atualizar} onClick={() => cadastrar()}>Atualizar</button>
-              <button className={style.button_deletar}><FaRegTrashAlt /></button>
-            </div>
-          </li>
-        </ul> : null}
+      <FormPesquisaUsuario/>
 
         {abrirCadastro ? <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={style.container}>

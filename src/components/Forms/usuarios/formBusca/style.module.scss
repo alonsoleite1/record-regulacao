@@ -1,0 +1,99 @@
+.form_buscar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-block: .5rem;
+    border-bottom: .0625rem solid var(--color-border);
+}
+
+.input_buscar{
+    width: 50%;
+    display: flex;
+    min-height: 2.375rem;
+    background-color: hsl(0, 0%, 100%);
+    border-color: var(--color-border);
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    border-style: solid;
+    border-width: .0625rem;
+    box-sizing: border-box;
+    padding-left: .5rem;
+    outline: none;
+    font-size: 1rem;
+}
+
+.input_user{
+    border: none;
+    outline: none;
+    appearance: none;
+}
+.input_user:focus{
+    caret-color: transparent;
+    outline: none;
+}
+
+.button_buscar {
+    background-color: white;
+    border: 1px solid var(--color-border);
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.button_buscar:hover {
+    background-color: var(--color-hover);
+    color: white;
+}
+
+.ul {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.card {
+    background-color: white;
+    width: 50%;
+    margin: auto;
+    border: .0625rem solid;
+    border-radius: .25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem;
+}
+
+.div_button {
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+    margin-right: .5rem;
+    gap: 1rem;
+}
+
+.button_deletar {
+    padding: .4rem;
+    border: none;
+    border-radius: .25rem;
+    background-color: var(--color-button-hover-exit);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.button_deletar:hover{
+    background-color: var(--color-button-exit);
+}
+.button_atualizar {
+    padding: .4rem;
+    border: none;
+    border-radius: .25rem;
+    background-color: var(--color-button-save);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.button_atualizar:hover {
+    background-color: var(--color-button-hover-save);
+}
