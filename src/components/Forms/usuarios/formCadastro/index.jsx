@@ -1,40 +1,44 @@
 import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import InputMask from 'react-input-mask';
-import Select from 'react-select';
 import { DefaultTemplate } from '../../../DefaultTemplate';
 import { RiSave3Fill } from "react-icons/ri";
-import { FaRegTrashAlt } from "react-icons/fa";
 import style from "./style.module.scss";
 import { api } from '../../../../services/api';
 import { FormPesquisaUsuario } from '../formBusca';
+import { toast } from 'react-toastify';
 
 export const CadastroUsuario = () => {
+  const [unidades, setUnidades] = useState([]);
   const { register, handleSubmit, control, watch, formState: { errors } } = useForm();
 
   const [abrirCadastro, setAbrirCadastro] = useState(false);
-  const [buscarCadastro, setBuscarCadastro] = useState(false);
-  const [inputValue, setInputValue] = useState("");
 
-  const cadastrar = () => {
-    return setAbrirCadastro(true);
+  const cadastrar = async () => {
+    setAbrirCadastro(true);
+
+    const { data } = await api.get('/unidade');
+
+    setUnidades(data);
+
   };
+ 
 
+  const onSubmit = async (formData) => {
+    const token = JSON.parse(localStorage.getItem("@token"));
 
-  const onSubmit = (data) => {
-    console.log(data);
+    try {
+      const { data } = await api.post("/usuario", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      toast.success("Usuário criado com sucesso!")
+      setAbrirCadastro(false);
+    } catch (error) {
+      toast.error("Não foi possivel criar seu usuário")
+    }
   };
-
-  const unidadesOptions = [
-    { value: 'unidade1', label: 'Unidade 1' },
-    { value: 'unidade2', label: 'Unidade 2' },
-    { value: 'unidade3', label: 'Unidade 3' }
-  ];
-
-  const perfilOptions = [
-    { value: 'admin', label: 'Admin' },
-    { value: 'user', label: 'User' }
-  ];
 
   const senha = watch('senha', '');
 
@@ -48,7 +52,7 @@ export const CadastroUsuario = () => {
             <button className={style.button_cadastrar} onClick={() => cadastrar()}>+ Cadastrar</button>
           </div>
         </div>
-      <FormPesquisaUsuario/>
+        <FormPesquisaUsuario />
 
         {abrirCadastro ? <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={style.container}>
@@ -67,7 +71,7 @@ export const CadastroUsuario = () => {
                 rules={{ required: 'CPF é obrigatório' }}
                 render={({ field }) => (
                   <InputMask
-                    mask="999.999.999-99"
+                    mask="99999999999"
                     value={field.value}
                     onChange={field.onChange}
                   >
@@ -106,34 +110,23 @@ export const CadastroUsuario = () => {
             </div>
             <div className={style.box_input}>
               <label className={style.label}>Unidade:</label>
-              <Controller
-                name="unidade"
-                control={control}
-                rules={{ required: 'Unidade é obrigatória' }}
-                render={({ field }) => (
-                  <Select
-                    {...field}
-                    options={unidadesOptions}
-                    placeholder="Selecione a unidade"
-                  />
-                )}
-              />
+              <select className={style.input}  {...register('unidade', { required: 'Unidade é obrigatório' })}
+              ><option value="">Selecione unidade</option>
+                {unidades.map((option, i) => (
+                  <option key={i} value={option.nome}>
+                    {option.nome}
+                  </option>
+                ))}
+              </select>
               {errors.unidade && <span className={style.aviso}>{errors.unidade.message}</span>}
             </div>
             <div className={style.box_input}>
               <label className={style.label}>Perfil:</label>
-              <Controller
-                name="perfil"
-                control={control}
-                rules={{ required: 'Perfil é obrigatório' }}
-                render={({ field }) => (
-                  <Select
-                    {...field}
-                    options={perfilOptions}
-                    placeholder="Selecione o perfil"
-                  />
-                )}
-              />
+              <select className={style.input}  {...register('perfil', { required: 'Perfil é obrigatório' })}>
+                <option value="">Selecione o perfil</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+              </select>
               {errors.perfil && <span className={style.aviso}>{errors.perfil.message}</span>}
             </div>
           </div>
