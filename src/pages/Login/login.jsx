@@ -10,7 +10,6 @@ export const Login = () => {
   const { login } = useContext(UsuarioContext);
 
   const onSubmit = (formData) => {
-    console.log(formData);
     login(formData)
   };
 

@@ -59,7 +59,7 @@ export const UsuarioContextProvider = ({ children }) => {
             toast.success("Bem vindo!");
             navigate("/dashboard");
         } catch (error) {
-            toast.error("Email ou senha invalido!");
+            toast.error("Login ou senha invalido!");
         }
     };
 
