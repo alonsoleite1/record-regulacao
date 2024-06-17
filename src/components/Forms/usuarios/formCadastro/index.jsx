@@ -7,6 +7,7 @@ import style from "./style.module.scss";
 import { api } from '../../../../services/api';
 import { FormPesquisaUsuario } from '../formBusca';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export const CadastroUsuario = () => {
   const [unidades, setUnidades] = useState([]);
@@ -14,6 +15,8 @@ export const CadastroUsuario = () => {
 
   const [abrirCadastro, setAbrirCadastro] = useState(false);
 
+  const navigate = useNavigate(); 
+  
   const cadastrar = async () => {
     setAbrirCadastro(true);
 
@@ -33,10 +36,11 @@ export const CadastroUsuario = () => {
           Authorization: `Bearer ${token}`
         }
       });
-      toast.success("Usuário criado com sucesso!")
+      toast.success("Usuário criado com sucesso!");
       setAbrirCadastro(false);
+      navigate("/dashboard");
     } catch (error) {
-      toast.error("Não foi possivel criar seu usuário")
+      toast.error("Não foi possivel criar seu usuário");
     }
   };
 
