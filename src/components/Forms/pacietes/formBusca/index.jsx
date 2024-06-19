@@ -7,10 +7,10 @@ import style from "./style.module.scss";
 import { AtualizarCadastro } from '../formAtualizar';
 
 
-export const FormPesquisaUsuario = ({ buscarCadastro, setBuscarCadastro }) => {
+export const FormPesquisaPaciente = ({ buscarCadastro, setBuscarCadastro }) => {
   const [atualizar, setAtualizar] = useState(false);
-  const [usuario, setUsuario] = useState("");
-  const [unidades, setUnidades] = useState([]);
+  const [paciente, setPaciente] = useState("");
+
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -19,14 +19,14 @@ export const FormPesquisaUsuario = ({ buscarCadastro, setBuscarCadastro }) => {
 
     const token = JSON.parse(localStorage.getItem("@token"));
     try {
-      const response = await api.get(`/usuario/${payloand.cpf}`, {
+      const response = await api.get(`/paciente/${payloand.cpf}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
 
       setBuscarCadastro(true);
-      setUsuario(response.data);
+      setPaciente(response.data);
 
     } catch (error) {
       toast.error(error.response.data.message);
@@ -37,29 +37,26 @@ export const FormPesquisaUsuario = ({ buscarCadastro, setBuscarCadastro }) => {
 
   };
 
-  const deletarUsuario = async () => {
+  const deletarPaciente = async () => {
     const token = JSON.parse(localStorage.getItem("@token"));
 
     try {
-      await api.delete(`/usuario/${usuario.cpf}`, {
+      await api.delete(`/paciente/${usuario.cpf}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
 
     } catch (error) {
-      toast.error("Usuario não deletado");
+      toast.error("Paciente não deletado");
     }
 
     setBuscarCadastro(false);
   };
 
-  const updateUsuario = async () => {
+  const updatePaciente = async () => {
     setAtualizar(true);
     setBuscarCadastro(false)
-    const { data } = await api.get('/unidade');
-
-    setUnidades(data)
   };
 
 
@@ -74,14 +71,14 @@ export const FormPesquisaUsuario = ({ buscarCadastro, setBuscarCadastro }) => {
       {buscarCadastro ? <ul className={style.ul}>
         <li className={style.card}>
           <input className={style.input_user} type="text"
-            value={usuario.nome} />
+            value={paciente.nome} />
           <div className={style.div_button}>
-            <button className={style.button_atualizar} onClick={() => updateUsuario()}>Atualizar</button>
-            <button className={style.button_deletar} onClick={() => deletarUsuario()}><FaRegTrashAlt /></button>
+            <button className={style.button_atualizar} onClick={() => updatePaciente()}>Atualizar</button>
+            <button className={style.button_deletar} onClick={() => deletarPaciente()}><FaRegTrashAlt /></button>
           </div>
         </li>
       </ul> : null}
-      {atualizar ? <AtualizarCadastro unidades={unidades} usuario={usuario} /> : null}
+      {atualizar ? <AtualizarCadastro paciente={paciente} /> : null}
     </>
   )
 };

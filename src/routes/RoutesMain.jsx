@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import { Dashboard } from "../pages/Dashboard";
 import { CadastroUsuario } from "../components/Forms/usuarios/formCadastro";
-import { Pacientes } from "../components/Forms/pacietes";
+import { Pacientes } from "../components/Forms/pacietes/formCadastro";
 import { Profissionais } from "../components/Forms/profissionais";
-import { Unidades } from "../components/Forms/unidades";
-import { Especialidades } from "../components/Forms/especialidades";
-import { Exames } from "../components/Forms/exames";
-import { Cirugias } from "../components/Forms/cirugia";
+import { CadastroUnidade } from "../components/Forms/unidades/formCadastro";
+import { Especialidades } from "../components/Forms/especialidades/formCadastrar";
+import { Exames } from "../components/Forms/exames/formCadastrar";
+import { Cirugias } from "../components/Forms/cirugia/formCadastrar";
 import { CriarAgenda } from "../components/Forms/criarAgenda";
 import { Agendar } from "../components/Forms/agenda";
 import { ConsultarAgenda } from "../components/Forms/consultarAgenda";
@@ -25,7 +25,7 @@ export const RoutesMain = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/usuario" element={<CadastroUsuario />} />
             <Route path="/profissional" element={<Profissionais />} />
-            <Route path="/unidade" element={<Unidades />} />
+            <Route path="/unidade" element={<CadastroUnidade />} />
             <Route path="/especialidade" element={<Especialidades />} />
             <Route path="/exame" element={<Exames />} />
             <Route path="/cirugia" element={<Cirugias />} />

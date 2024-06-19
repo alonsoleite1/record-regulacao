@@ -1,106 +1,114 @@
-import { DefaultTemplate } from "../../DefaultTemplate";
-import { useForm } from 'react-hook-form';
+import React, { useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import InputMask from 'react-input-mask';
+import { DefaultTemplate } from '../../../DefaultTemplate';
 import { RiSave3Fill } from "react-icons/ri";
-import { FaRegTrashAlt } from "react-icons/fa";
 import style from "./style.module.scss";
-import { useState } from "react";
+import { api } from '../../../../services/api';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { FormPesquisaUnidade } from '../formBusca';
 
+export const CadastroUnidade = () => {
+  const { register, handleSubmit, control, watch, formState: { errors } } = useForm();
 
-export const Unidades = () => {
   const [abrirCadastro, setAbrirCadastro] = useState(false);
   const [buscarCadastro, setBuscarCadastro] = useState(false);
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const cadastrar = async () => {
+    setBuscarCadastro(false);
+    setAbrirCadastro(true);
   };
 
-  const cadastrar = () => {
-    return setAbrirCadastro(true);
+
+  const onSubmit = async (formData) => {
+    const token = JSON.parse(localStorage.getItem("@token"));
+
+    try {
+      const { data } = await api.post("/unidade", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      toast.success("Unidade criada com sucesso!");
+      setAbrirCadastro(false);
+      navigate("/dashboard");
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
   };
-  const atualizar = () => {
-    event.preventDefault()
-    return setBuscarCadastro(true);
-  };
+
+
 
   return (
     <DefaultTemplate>
-      <section className={style.container}>
+      <section className={style.section}>
+
         <div className={style.header}>
-          <h1 className={style.title}>Unidades</h1>
+          <h1 className={style.title}>Unidade</h1>
           <div className={style.div_button}>
             <button className={style.button_cadastrar} onClick={() => cadastrar()}>+ Cadastrar</button>
           </div>
         </div>
-        <form className={style.form_buscar}>
-          <input className={style.input} type="text" />
-          <button className={style.button_buscar} type="submit" onClick={() => atualizar()}>Buscar</button>
-        </form>
 
-        {buscarCadastro ? <ul className={style.ul}>
-          <li className={style.card}>
-            <p>UBS Parque Aratanha</p>
-            <div className={style.div_button}>
-              <button className={style.button_atualizar} onClick={() => cadastrar()}>Atualizar</button>
-              <button className={style.button_deletar}><FaRegTrashAlt /></button>
-            </div>
-          </li>
-        </ul> : null}
+        <FormPesquisaUnidade buscarCadastro={buscarCadastro} setBuscarCadastro={setBuscarCadastro} />
 
-        {abrirCadastro ? <form className={style.form_cadastro} onSubmit={handleSubmit(onSubmit)}>
-          <div className={style.box_cadastro}>
-          <div className={style.box_input}>
+        {abrirCadastro ? <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+          <div className={style.container}>
+            <div className={style.box_input}>
               <label className={style.label}>Nome:</label>
-              <input className={style.input_form}
+              <input className={style.input}
                 {...register('nome', { required: 'Nome é obrigatório' })}
               />
               {errors.nome && <span className={style.aviso}>{errors.nome.message}</span>}
             </div>
+
             <div className={style.box_input}>
               <label className={style.label}>Rua:</label>
-              <input className={style.input_form}
-                {...register('rua', { required: 'Rua é obrigatória' })}
+              <input className={style.input}
+                {...register('rua', { required: 'Rua é obrigatório' })}
               />
               {errors.rua && <span className={style.aviso}>{errors.rua.message}</span>}
             </div>
+
             <div className={style.box_input}>
               <label className={style.label}>Número:</label>
-              <input className={style.input_form}
-                type="number"
+              <input className={style.input}
                 {...register('numero', { required: 'Número é obrigatório' })}
               />
               {errors.numero && <span className={style.aviso}>{errors.numero.message}</span>}
             </div>
+
             <div className={style.box_input}>
               <label className={style.label}>Bairro:</label>
-              <input className={style.input_form}
-                type="number"
+              <input className={style.input}
                 {...register('bairro', { required: 'Bairro é obrigatório' })}
               />
               {errors.bairro && <span className={style.aviso}>{errors.bairro.message}</span>}
             </div>
+
             <div className={style.box_input}>
               <label className={style.label}>Cidade:</label>
-              <input className={style.input_form}
-                {...register('cidade', { required: 'Cidade é obrigatória' })}
+              <input className={style.input}
+                {...register('cidade', { required: 'Cidade é obrigatório' })}
               />
               {errors.cidade && <span className={style.aviso}>{errors.cidade.message}</span>}
             </div>
+
             <div className={style.box_input}>
               <label className={style.label}>Estado:</label>
-              <input className={style.input_form}
+              <input className={style.input}
                 {...register('estado', { required: 'Estado é obrigatório' })}
               />
               {errors.estado && <span className={style.aviso}>{errors.estado.message}</span>}
             </div>
-       
+
           </div>
-
-          <button className={style.button_salvar} type="submit"><RiSave3Fill /> Cadastrar</button>
+          <button className={style.button} type="submit"><RiSave3Fill /> Salvar unidade</button>
         </form> : null}
-
       </section>
     </DefaultTemplate>
-  )
+  );
 };

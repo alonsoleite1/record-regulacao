@@ -14,11 +14,13 @@ export const CadastroUsuario = () => {
   const { register, handleSubmit, control, watch, formState: { errors } } = useForm();
 
   const [abrirCadastro, setAbrirCadastro] = useState(false);
+  const [buscarCadastro, setBuscarCadastro] = useState(false);
 
   const navigate = useNavigate(); 
   
   const cadastrar = async () => {
     setAbrirCadastro(true);
+    setBuscarCadastro(false);
 
     const { data } = await api.get('/unidade');
 
@@ -40,7 +42,7 @@ export const CadastroUsuario = () => {
       setAbrirCadastro(false);
       navigate("/dashboard");
     } catch (error) {
-      toast.error("Não foi possivel criar seu usuário");
+      toast.error(error.response.data.message);
     }
   };
 
@@ -56,7 +58,7 @@ export const CadastroUsuario = () => {
             <button className={style.button_cadastrar} onClick={() => cadastrar()}>+ Cadastrar</button>
           </div>
         </div>
-        <FormPesquisaUsuario />
+        <FormPesquisaUsuario buscarCadastro={buscarCadastro} setBuscarCadastro={setBuscarCadastro}/>
 
         {abrirCadastro ? <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={style.container}>

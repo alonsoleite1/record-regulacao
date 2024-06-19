@@ -4,13 +4,12 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { api } from '../../../../services/api';
 import style from "./style.module.scss";
-import { AtualizarCadastro } from '../formAtualizar';
+import { AtualizarUnidade } from '../formAtualizar';
 
 
-export const FormPesquisaUsuario = ({ buscarCadastro, setBuscarCadastro }) => {
+export const FormPesquisaUnidade = ({ buscarCadastro, setBuscarCadastro }) => {
   const [atualizar, setAtualizar] = useState(false);
-  const [usuario, setUsuario] = useState("");
-  const [unidades, setUnidades] = useState([]);
+  const [unidade, setUnidades] = useState("");
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -19,14 +18,14 @@ export const FormPesquisaUsuario = ({ buscarCadastro, setBuscarCadastro }) => {
 
     const token = JSON.parse(localStorage.getItem("@token"));
     try {
-      const response = await api.get(`/usuario/${payloand.cpf}`, {
+      const response = await api.get(`/unidade/${payloand.nome}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
 
       setBuscarCadastro(true);
-      setUsuario(response.data);
+      setUnidades(response.data);
 
     } catch (error) {
       toast.error(error.response.data.message);
@@ -37,29 +36,26 @@ export const FormPesquisaUsuario = ({ buscarCadastro, setBuscarCadastro }) => {
 
   };
 
-  const deletarUsuario = async () => {
+  const deletarUnidade = async () => {
     const token = JSON.parse(localStorage.getItem("@token"));
 
     try {
-      await api.delete(`/usuario/${usuario.cpf}`, {
+      await api.delete(`/unidade/${unidade.nome}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
 
     } catch (error) {
-      toast.error("Usuario não deletado");
+      toast.error("Unidade não deletada");
     }
 
     setBuscarCadastro(false);
   };
 
-  const updateUsuario = async () => {
+  const updateUnidade = async () => {
     setAtualizar(true);
     setBuscarCadastro(false)
-    const { data } = await api.get('/unidade');
-
-    setUnidades(data)
   };
 
 
@@ -67,21 +63,21 @@ export const FormPesquisaUsuario = ({ buscarCadastro, setBuscarCadastro }) => {
     <>
       <form onSubmit={handleSubmit(onSubmit)} className={style.form_buscar}>
         <input className={style.input_buscar} type="text"
-          {...register("cpf", { required: 'Digite o cpf' })} />
+          {...register("nome", { required: 'Digite o nome da unidade' })} />
         <button className={style.button_buscar} type="submit" >Buscar</button>
       </form>
 
       {buscarCadastro ? <ul className={style.ul}>
         <li className={style.card}>
           <input className={style.input_user} type="text"
-            value={usuario.nome} />
+            value={unidade.nome} />
           <div className={style.div_button}>
-            <button className={style.button_atualizar} onClick={() => updateUsuario()}>Atualizar</button>
-            <button className={style.button_deletar} onClick={() => deletarUsuario()}><FaRegTrashAlt /></button>
+            <button className={style.button_atualizar} onClick={() => updateUnidade()}>Atualizar</button>
+            <button className={style.button_deletar} onClick={() => deletarUnidade()}><FaRegTrashAlt /></button>
           </div>
         </li>
       </ul> : null}
-      {atualizar ? <AtualizarCadastro unidades={unidades} usuario={usuario} /> : null}
+      {atualizar ? <AtualizarUnidade unidade={unidade} /> : null}
     </>
   )
 };
