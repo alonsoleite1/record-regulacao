@@ -7,10 +7,9 @@ import style from "./style.module.scss";
 import { AtualizarCadastro } from '../formAtualizar';
 
 
-export const FormPesquisaPaciente = ({ buscarCadastro, setBuscarCadastro }) => {
-  const [atualizar, setAtualizar] = useState(false);
-  const [paciente, setPaciente] = useState("");
+export const FormPesquisaPaciente = ({ buscarCadastro,atualizar, setAtualizar, setBuscarCadastro, setAbrirCadastro }) => {
 
+  const [paciente, setPaciente] = useState("");
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
@@ -27,6 +26,8 @@ export const FormPesquisaPaciente = ({ buscarCadastro, setBuscarCadastro }) => {
 
       setBuscarCadastro(true);
       setPaciente(response.data);
+      setAbrirCadastro(false);
+      setAtualizar(false);
 
     } catch (error) {
       toast.error(error.response.data.message);
@@ -56,7 +57,8 @@ export const FormPesquisaPaciente = ({ buscarCadastro, setBuscarCadastro }) => {
 
   const updatePaciente = async () => {
     setAtualizar(true);
-    setBuscarCadastro(false)
+    setBuscarCadastro(false);
+    setAbrirCadastro(false);
   };
 
 

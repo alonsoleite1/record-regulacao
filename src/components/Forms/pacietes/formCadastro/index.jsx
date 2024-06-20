@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const Pacientes = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-
+  const [atualizar, setAtualizar] = useState(false);
   const [abrirCadastro, setAbrirCadastro] = useState(false);
   const [buscarCadastro, setBuscarCadastro] = useState(false);
 
@@ -20,12 +20,13 @@ export const Pacientes = () => {
   const cadastrar = async () => {
     setAbrirCadastro(true);
     setBuscarCadastro(false);
+    setAtualizar(false);
 
   };
 
   const onSubmit = async (formData) => {
     const token = JSON.parse(localStorage.getItem("@token"));
-console.log(formData);
+
     try {
       const { data } = await api.post("/paciente", formData, {
         headers: {
@@ -51,7 +52,7 @@ console.log(formData);
             <button className={style.button_cadastrar} onClick={() => cadastrar()}>+ Cadastrar</button>
           </div>
         </div>
-        <FormPesquisaPaciente buscarCadastro={buscarCadastro} setBuscarCadastro={setBuscarCadastro} />
+        <FormPesquisaPaciente buscarCadastro={buscarCadastro} atualizar={atualizar} setAtualizar={setAtualizar} setBuscarCadastro={setBuscarCadastro} setAbrirCadastro={setAbrirCadastro} />
 
         {abrirCadastro ? <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={style.container}>

@@ -30,8 +30,8 @@ export const Profissionais = () => {
         }
     };
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = (payloand) => {
+        console.log(payloand);
     };
 
     const cadastrar = () => {

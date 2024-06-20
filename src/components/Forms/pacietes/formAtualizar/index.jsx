@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { RiSave3Fill } from "react-icons/ri";
 import InputMask from 'react-input-mask';
@@ -10,55 +10,76 @@ import style from "./style.module.scss";
 
 export const AtualizarCadastro = ({ paciente }) => {
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, setValue, formState: { errors } } = useForm();
 
+useEffect(()=>{
 
+ const carregaDados = ()=>{
+  setValue('nome', paciente.nome);
+  setValue('dataDeNascimento', paciente.dataDeNascimento);
+  setValue('nomeDaMae', paciente.nomeDaMae);
+  setValue('cns', paciente.cns);
+  setValue('rua', paciente.rua);
+  setValue('numero', paciente.numero);
+  setValue('bairro', paciente.bairro);
+  setValue('cidade', paciente.cidade);
+  setValue('estado', paciente.estado);
+  setValue('cep', paciente.cep);
+  setValue('ubs', paciente.ubs);
+  setValue('acs', paciente.acs);
+  setValue('contatoUm', paciente.contatoUm);
+  setValue('contatoDois', paciente.contatoDois);
+ };
 
-    const onSubmit = async (payload) => {
-        const token = JSON.parse(localStorage.getItem("@token"));
+ carregaDados();;
 
-        try {
-            const { data } = await api.patch(`paciente/${payload.cpf}`, payload, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            navigate("/dashboard");
-            toast.success("Cadastro atualizado!");
-        } catch (error) {
-            toast.error("Não foi possivel atualizar!");
+},[setValue]);
+
+  const onSubmit = async (payload) => {
+    const token = JSON.parse(localStorage.getItem("@token"));
+
+    try {
+      const { data } = await api.patch(`paciente/${payload.cpf}`, payload, {
+        headers: {
+          Authorization: `Bearer ${token}`
         }
-    };
+      });
+      navigate("/dashboard");
+      toast.success("Cadastro atualizado!");
+    } catch (error) {
+      toast.error("Não foi possivel atualizar!");
+    }
+  };
 
 
-    return (
+  return (
 
-        <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+    <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={style.container}>
             <div className={style.box_input}>
               <label className={style.label}>Nome</label>
-              <input className={style.input} {...register('nome', { required: 'Nome é obrigatório' })} 
-              />
+              <input className={style.input} {...register('nome', { required: 'Nome é obrigatório' })} />
               {errors.nome && <span className={style.aviso}>{errors.nome.message}</span>}
             </div>
             <div className={style.box_input}>
               <label className={style.label}>Data de Nascimento</label>
               <InputMask className={style.input}
                 mask="99/99/9999"
-                {...register('dataNascimento', { required: 'Data de Nascimento é obrigatória' })}
+                {...register('dataDeNascimento', { required: 'Data de Nascimento é obrigatória' })}
               />
-              {errors.dataNascimento && <span className={style.aviso}>{errors.dataNascimento.message}</span>}
+              {errors.dataDeNascimento && <span className={style.aviso}>{errors.dataDeNascimento.message}</span>}
             </div>
             <div className={style.box_input}>
               <label className={style.label}>Nome da Mãe</label>
-              <input className={style.input} {...register('nomeMae', { required: 'Nome da Mãe é obrigatório' })} />
-              {errors.nomeMae && <span className={style.aviso}>{errors.nomeMae.message}</span>}
+              <input className={style.input} {...register('nomeDaMae', { required: 'Nome da Mãe é obrigatório' })} />
+              {errors.nomeDaMae && <span className={style.aviso}>{errors.nomeDaMae.message}</span>}
             </div>
             <div className={style.box_input}>
               <label className={style.label}>CPF</label>
-              <InputMask className={style.input}
+              <InputMask className={style.input_cpf}
+              value={paciente.cpf}
                 mask="99999999999"
                 {...register('cpf', { required: 'CPF é obrigatório' })}
               />
@@ -123,8 +144,8 @@ export const AtualizarCadastro = ({ paciente }) => {
             </div>
             <div className={style.box_input}>
               <label className={style.label}>Posto de Saúde:</label>
-              <input className={style.input} {...register('postoSaude', { required: 'Posto de Saúde é obrigatório' })} />
-              {errors.postoSaude && <span className={style.aviso}>{errors.postoSaude.message}</span>}
+              <input className={style.input} {...register('ubs', { required: 'Posto de Saúde é obrigatório' })} />
+              {errors.ubs && <span className={style.aviso}>{errors.ubs.message}</span>}
             </div>
             <div className={style.box_input}>
               <label className={style.label}>ACS:</label>
@@ -135,21 +156,21 @@ export const AtualizarCadastro = ({ paciente }) => {
               <label className={style.label}>Contato 1</label>
               <InputMask className={style.input}
                 mask="(99) 99999-9999"
-                {...register('contato1', { required: 'Contato 1 é obrigatório' })}
+                {...register('contatoUm', { required: 'Contato 1 é obrigatório' })}
               />
-              {errors.contato1 && <span className={style.aviso}>{errors.contato1.message}</span>}
+              {errors.contatoUm && <span className={style.aviso}>{errors.contatoUm.message}</span>}
             </div>
             <div className={style.box_input}>
               <label className={style.label}>Contato 2</label>
               <InputMask className={style.input}
                 mask="(99) 99999-9999"
-                {...register('contato2', { required: 'Contato 2 é obrigatório' })}
+                {...register('contatoDois', { required: 'Contato 2 é obrigatório' })}
               />
-              {errors.contato2 && <span className={style.aviso}>{errors.contato2.message}</span>}
+              {errors.contatoDois && <span className={style.aviso}>{errors.contatoDois.message}</span>}
             </div>
           </div>
 
-          <button className={style.button} type="submit"><RiSave3Fill /> Salvar paciente</button>
+          <button className={style.button} type="submit"><RiSave3Fill /> Atualizar paciente</button>
         </form>
-    );
+  );
 };

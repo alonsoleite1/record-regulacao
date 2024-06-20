@@ -14,12 +14,14 @@ export const CadastroUnidade = () => {
 
   const [abrirCadastro, setAbrirCadastro] = useState(false);
   const [buscarCadastro, setBuscarCadastro] = useState(false);
+  const [atualizar, setAtualizar] = useState(false);
 
   const navigate = useNavigate();
 
   const cadastrar = async () => {
     setBuscarCadastro(false);
     setAbrirCadastro(true);
+    setAtualizar(false);
   };
 
 
@@ -53,7 +55,7 @@ export const CadastroUnidade = () => {
           </div>
         </div>
 
-        <FormPesquisaUnidade buscarCadastro={buscarCadastro} setBuscarCadastro={setBuscarCadastro} />
+        <FormPesquisaUnidade buscarCadastro={buscarCadastro} atualizar={atualizar} setAtualizar={setAtualizar} setBuscarCadastro={setBuscarCadastro} setAbrirCadastro={setAbrirCadastro} />
 
         {abrirCadastro ? <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={style.container}>

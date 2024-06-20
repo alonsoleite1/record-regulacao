@@ -15,12 +15,14 @@ export const CadastroUsuario = () => {
 
   const [abrirCadastro, setAbrirCadastro] = useState(false);
   const [buscarCadastro, setBuscarCadastro] = useState(false);
+  const [atualizar, setAtualizar] = useState(false);
 
   const navigate = useNavigate(); 
   
   const cadastrar = async () => {
     setAbrirCadastro(true);
     setBuscarCadastro(false);
+    setAtualizar(false);
 
     const { data } = await api.get('/unidade');
 
@@ -58,7 +60,7 @@ export const CadastroUsuario = () => {
             <button className={style.button_cadastrar} onClick={() => cadastrar()}>+ Cadastrar</button>
           </div>
         </div>
-        <FormPesquisaUsuario buscarCadastro={buscarCadastro} setBuscarCadastro={setBuscarCadastro}/>
+        <FormPesquisaUsuario buscarCadastro={buscarCadastro} atualizar={atualizar} setAtualizar={setAtualizar} setBuscarCadastro={setBuscarCadastro} setAbrirCadastro={setAbrirCadastro}/>
 
         {abrirCadastro ? <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={style.container}>

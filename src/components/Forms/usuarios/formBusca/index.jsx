@@ -7,8 +7,7 @@ import style from "./style.module.scss";
 import { AtualizarCadastro } from '../formAtualizar';
 
 
-export const FormPesquisaUsuario = ({ buscarCadastro, setBuscarCadastro }) => {
-  const [atualizar, setAtualizar] = useState(false);
+export const FormPesquisaUsuario = ({ buscarCadastro, atualizar, setAtualizar, setBuscarCadastro, setAbrirCadastro }) => {
   const [usuario, setUsuario] = useState("");
   const [unidades, setUnidades] = useState([]);
 
@@ -27,6 +26,8 @@ export const FormPesquisaUsuario = ({ buscarCadastro, setBuscarCadastro }) => {
 
       setBuscarCadastro(true);
       setUsuario(response.data);
+      setAtualizar(false);
+      setAbrirCadastro(false);
 
     } catch (error) {
       toast.error(error.response.data.message);

@@ -1,5 +1,5 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useEffect } from 'react';
+import { useForm, } from 'react-hook-form';
 import { RiSave3Fill } from "react-icons/ri";
 import style from "./style.module.scss";
 import { api } from '../../../../services/api';
@@ -7,17 +7,31 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 
-export const AtualizarCadastro = ({ unidades ,usuario}) => {
+export const AtualizarCadastro = ({ unidades, usuario }) => {
 
     const navigate = useNavigate();
-    
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+
+    const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm();
+
+    useEffect(()=>{
+
+        const carregaDados = ()=>{
+         setValue('nome', usuario.nome);
+         setValue('login', usuario.login);
+         setValue('unidade', usuario.unidade);
+         setValue('perfil', usuario.perfil);
+        
+        };
+       
+        carregaDados();;
+       
+       },[setValue]);
 
     const onSubmit = async (payload) => {
         const token = JSON.parse(localStorage.getItem("@token"));
 
         try {
-            const { data } = await api.patch(`usuario/${payload.cpf}`,payload, {
+            const { data } = await api.patch(`usuario/${payload.cpf}`, payload, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -38,7 +52,6 @@ export const AtualizarCadastro = ({ unidades ,usuario}) => {
                 <div className={style.box_input}>
                     <label className={style.label}>Nome:</label>
                     <input className={style.input}
-                    value={usuario.nome}
                         {...register('nome', { required: 'Nome é obrigatório' })}
                     />
                     {errors.nome && <span className={style.aviso}>{errors.nome.message}</span>}
@@ -46,14 +59,13 @@ export const AtualizarCadastro = ({ unidades ,usuario}) => {
                 <div className={style.box_input}>
                     <label className={style.label}>CPF:</label>
                     <input type="text" className={style.input_cpf}
-                    {...register('cpf', { required: 'CPF é obrigatório' })}
-                    value={usuario.cpf} />           
+                        {...register('cpf', { required: 'CPF é obrigatório' })}
+                        value={usuario.cpf} />
                 </div>
                 <div className={style.box_input}>
                     <label className={style.label}>Login:</label>
                     <input className={style.input}
                         {...register('login', { required: 'Login é obrigatório' })}
-                        value={usuario.login}
                     />
                     {errors.login && <span className={style.aviso}>{errors.login.message}</span>}
                 </div>
@@ -92,7 +104,6 @@ export const AtualizarCadastro = ({ unidades ,usuario}) => {
                 <div className={style.box_input}>
                     <label className={style.label}>Perfil:</label>
                     <select className={style.input}  {...register('perfil', { required: 'Perfil é obrigatório' })}>
-                        <option value={usuario.perfil}>{usuario.perfil}</option>
                         <option value="admin">Admin</option>
                         <option value="user">User</option>
                     </select>
