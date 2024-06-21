@@ -14,6 +14,11 @@ export const AtualizarCadastro = ({ paciente }) => {
 
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
 
+  const handleChange = (e) => {
+    const valor = e.target.value.replace(/[.-]/g, '');
+    setValue('cpf', valor);
+  };
+  
 useEffect(()=>{
 
  const carregaDados = ()=>{
@@ -39,7 +44,7 @@ useEffect(()=>{
 
   const onSubmit = async (payload) => {
     const token = JSON.parse(localStorage.getItem("@token"));
-
+console.log(payload.cpf);
     try {
       const { data } = await api.patch(`paciente/${payload.cpf}`, payload, {
         headers: {
@@ -79,8 +84,8 @@ useEffect(()=>{
             <div className={style.box_input}>
               <label className={style.label}>CPF</label>
               <InputMask className={style.input_cpf}
-              value={paciente.cpf}
                 mask="99999999999"
+                value={paciente.cpf}
                 {...register('cpf', { required: 'CPF é obrigatório' })}
               />
               {errors.cpf && <span className={style.aviso}>{errors.cpf.message}</span>}

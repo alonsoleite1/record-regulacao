@@ -15,13 +15,13 @@ export const NavLeft = () => {
        <span>Unidades </span>
        </Link>
        <Link to="/especialidade" className={style.link}>
-       <span>Consulta especializada</span>
+       <span>Especialista</span>
        </Link>
        <Link to="/exame" className={style.link}>
        <span>Exames e Procedimentos</span>
        </Link>
        <Link to="/cirugia" className={style.link}>
-       <span>Cirugias</span>
+       <span>Cirurgias</span>
        </Link>
        <Link to="/paciente" className={style.link}>
        <span>Pacientes</span>

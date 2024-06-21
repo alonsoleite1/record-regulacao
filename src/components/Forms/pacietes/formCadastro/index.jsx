@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 export const Pacientes = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit,setValue, formState: { errors } } = useForm();
   const [atualizar, setAtualizar] = useState(false);
   const [abrirCadastro, setAbrirCadastro] = useState(false);
   const [buscarCadastro, setBuscarCadastro] = useState(false);
@@ -22,6 +22,11 @@ export const Pacientes = () => {
     setBuscarCadastro(false);
     setAtualizar(false);
 
+  };
+
+  const handleChange = (e) => {
+    const valor = e.target.value.replace(/[.-]/g, '');
+    setValue('cpf', valor);
   };
 
   const onSubmit = async (formData) => {
@@ -77,8 +82,9 @@ export const Pacientes = () => {
             <div className={style.box_input}>
               <label className={style.label}>CPF</label>
               <InputMask className={style.input}
-                mask="99999999999"
+                mask="999.999.999-99"
                 {...register('cpf', { required: 'CPF é obrigatório' })}
+                onChange={handleChange}
               />
               {errors.cpf && <span className={style.aviso}>{errors.cpf.message}</span>}
             </div>

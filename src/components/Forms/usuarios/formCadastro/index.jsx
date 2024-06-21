@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const CadastroUsuario = () => {
   const [unidades, setUnidades] = useState([]);
-  const { register, handleSubmit, control, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit,setValue, control, watch, formState: { errors } } = useForm();
 
   const [abrirCadastro, setAbrirCadastro] = useState(false);
   const [buscarCadastro, setBuscarCadastro] = useState(false);
@@ -30,6 +30,10 @@ export const CadastroUsuario = () => {
 
   };
  
+  const handleChange = (e) => {
+    const valor = e.target.value.replace(/[.-]/g, '');
+    setValue('cpf', valor);
+  };
 
   const onSubmit = async (formData) => {
     const token = JSON.parse(localStorage.getItem("@token"));
@@ -79,9 +83,9 @@ export const CadastroUsuario = () => {
                 rules={{ required: 'CPF é obrigatório' }}
                 render={({ field }) => (
                   <InputMask
-                    mask="99999999999"
+                    mask="999.999.999-99"
                     value={field.value}
-                    onChange={field.onChange}
+                    onChange={handleChange}
                   >
                     {(inputProps) => <input className={style.input} {...inputProps} type="text" />}
                   </InputMask>
