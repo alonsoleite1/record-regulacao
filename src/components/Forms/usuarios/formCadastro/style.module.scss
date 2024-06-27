@@ -1,4 +1,4 @@
-.container {
+.section{
     flex-grow: 1;
     margin-top: .5rem;
     background-color: var(--color-pages);
@@ -49,10 +49,40 @@
     border-bottom: .0625rem solid var(--color-border);
 }
 
+.input_buscar{
+    width: 50%;
+    display: flex;
+    min-height: 2.375rem;
+    background-color: hsl(0, 0%, 100%);
+    border-color: var(--color-border);
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    border-style: solid;
+    border-width: .0625rem;
+    box-sizing: border-box;
+    padding-left: .5rem;
+    outline: none;
+    font-size: 1rem;
+}
+
 .button_cadastrar:hover,
 .button_buscar:hover {
     background-color: var(--color-hover);
     color: white;
+}
+
+.button_deletar {
+    padding: .4rem;
+    border: none;
+    border-radius: .25rem;
+    background-color: var(--color-button-hover-exit);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.button_deletar:hover{
+    background-color: var(--color-button-exit);
 }
 
 .input {
@@ -110,52 +140,31 @@
 .button_atualizar:hover {
     background-color: var(--color-button-hover-save);
 }
-.button_deletar {
-    padding: .4rem;
-    border: none;
-    border-radius: .25rem;
-    background-color: var(--color-button-hover-exit);
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.button_deletar:hover{
-    background-color: var(--color-button-exit);
-}
-
-.form_cadastro {
-    width: 100%;
-    margin-top: 1rem;
+.form {
+    margin-top: .5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
 }
 
-.box_cadastro {
+.container {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    justify-content: center;
+    gap: 2rem;
 }
 
 .box_input {
-    margin: auto;
     width: 40%;
-    padding-inline: 2rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
     gap: .2rem;
 }
-.label {
-    font-size: .9rem;
-    font-weight: 500;
-}
-.input_form {
-   width: 100%;
+
+.input {
+    width: 100%;
     display: flex;
     min-height: 2.375rem;
     background-color: hsl(0, 0%, 100%);
@@ -166,18 +175,20 @@
     box-sizing: border-box;
     padding-left: .5rem;
     outline: none;
-    font-size: 1rem;
 }
 
-.input:focus, .input_form:focus {
-    border: .125rem solid var(--color-hover);
+.label {
+    font-size: .9rem;
+    font-weight: 500;
 }
 
-.button:hover {
-    background-color: var(--color-button-hover-save);
+.aviso {
+    color: red;
+    font-size: .75rem;
 }
 
-.button_salvar {
+.button {
+    margin: 2rem;
     padding: .6rem;
     border-radius: .25rem;
     border: none;
@@ -191,10 +202,11 @@
     font-weight: 600;
     cursor: pointer;
 }
-.button_salvar:hover {
-    background-color: var(--color-button-hover-save);
+
+.input:focus {
+    border: .125rem solid var(--color-hover);
 }
-.aviso {
-    color: red;
-    font-size: .75rem;
+
+.button:hover {
+    background-color: var(--color-button-hover-save);
 }

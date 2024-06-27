@@ -75,7 +75,7 @@ export const AgendaProfissionais = () => {
                         <div className={style.div_button}>
                             <button className={style.button_realizado} title="Realizado"><FaCheck /></button>
                         
-                            <button className={style.button_not} title="Não realizado">X</button>
+                            <button className={style.button_not} title="Não realizado">Obs</button>
                         </div>
                     </li>
 
@@ -103,7 +103,7 @@ export const AgendaProfissionais = () => {
                         <div className={style.div_button}>
                             <button className={style.button_realizado} title="Realizado"><FaCheck /></button>
                         
-                            <button className={style.button_not} title="Não realizado">X</button>
+                            <button className={style.button_not} title="Não realizado">Obs</button>
                         </div>
                     </li>
                 </ul>

@@ -15,13 +15,13 @@ export const NavLeft = () => {
        <span>Unidades </span>
        </Link>
        <Link to="/especialidade" className={style.link}>
-       <span>Consulta especializada</span>
+       <span>Especialista</span>
        </Link>
        <Link to="/exame" className={style.link}>
        <span>Exames e Procedimentos</span>
        </Link>
        <Link to="/cirugia" className={style.link}>
-       <span>Cirugias</span>
+       <span>Cirurgias</span>
        </Link>
        <Link to="/paciente" className={style.link}>
        <span>Pacientes</span>
@@ -32,12 +32,7 @@ export const NavLeft = () => {
        <Link to="/agendaProfissional" className={style.link}>
        <span>Agenda dos profissionais</span>
        </Link>
-       <Link to="/agenda" className={style.link}>
-       <span>Agendar</span>
-       </Link>
-       <Link to="/consultarAgenda" className={style.link}>
-       <span>Consultar Agenda</span>
-       </Link>
+       
        <Link to="/listaDeEspera" className={style.link}>
        <span>Lista de Espera</span>
        </Link>

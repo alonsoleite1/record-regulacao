@@ -1,9 +1,9 @@
-import { MdClose } from "react-icons/md";
 import { useForm } from "react-hook-form";
+import { MdClose } from "react-icons/md";
 import { RiSave3Fill } from "react-icons/ri";
 import style from "./style.module.scss";
 
-export const ObservacaoModal = ({ setOpenModal,modalRef, escRef}) => {
+export const Agendar = ({ setOpenModal,modalRef, escRef}) => {
    const { register, handleSubmit, formState: { errors } } = useForm();
 
    const onSubmit = (data) => {

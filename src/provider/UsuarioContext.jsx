@@ -8,7 +8,6 @@ export const UsuarioContext = createContext({});
 
 export const UsuarioContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(false);
     const [nome, setNome] = useState("");
     const [unidade, setUnidade] = useState("");
 
@@ -21,26 +20,22 @@ export const UsuarioContextProvider = ({ children }) => {
 
         const loadUser = async () => {
             try {
-                setLoading(true);
 
                 const { data } = await api.get('/usuario/autentificacao', {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
-                console.log(data);
                 setUser(data);
                 setNome(data.user.nome);
                 setUnidade(data.user.unidade);
-
-                navigate("/dashboard")
+                
+                navigate("/dashboard");
 
             } catch (error) {
 
-                localStorage.removeItem("@token")
-            } finally {
-                setLoading(false)
-            }
+                //localStorage.removeItem("@token")
+            };
         }
         if (token) {
             loadUser();
@@ -64,7 +59,7 @@ export const UsuarioContextProvider = ({ children }) => {
             toast.success("Bem vindo!");
             navigate("/dashboard");
         } catch (error) {
-            toast.error("Email ou senha invalido!");
+            toast.error("Login ou senha invalido!");
         }
     };
 
@@ -78,7 +73,7 @@ export const UsuarioContextProvider = ({ children }) => {
 
 
     return (
-        <UsuarioContext.Provider value={{ loading, user, nome, unidade, login, logout, }}>
+        <UsuarioContext.Provider value={{ user, nome, unidade, login, logout, }}>
             {children}
         </UsuarioContext.Provider>
     )
