@@ -1,17 +1,49 @@
+import { useEffect, useState } from "react";
 import { DefaultTemplate } from "../../DefaultTemplate";
 import { useForm } from 'react-hook-form';
 import { RiSave3Fill } from "react-icons/ri";
+import { toast } from "react-toastify";
+import { api } from "../../../services/api";
 import style from "./style.module.scss";
 
 
 
 export const CriarAgenda = () => {
+    const [unidades, setUnidades] = useState([]);
+    const [profissionais, setProfissionais] = useState([]);
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
-    const onSubmit = (data) => {
-        console.log(data);
-        // Aqui você pode enviar os dados para um servidor, por exemplo
+    useEffect(() => {
+        const buscaAPI = async () => {
+            const { data } = await api.get('/unidade');
+            setUnidades(data);
+
+            const response = await api.get('/profissional');
+
+            setProfissionais(response.data);
+        };
+
+        buscaAPI();
+
+    }, []);
+
+    const onSubmit = async (formData) => {
+
+        console.log(formData);
+        const token = JSON.parse(localStorage.getItem("@token"));
+
+        try {
+            const { data } = await api.post("/agenda", formData, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            toast.success("Agenda criada com sucesso!");
+            navigate("/dashboard");
+        } catch (error) {
+            toast.error(error.response.data.message);
+        }
     };
 
     return (
@@ -27,19 +59,23 @@ export const CriarAgenda = () => {
                             <label className={style.label}>Unidade:</label>
                             <select className={style.input} {...register("unidade", { required: "Selecione uma unidade" })}>
                                 <option value="">Selecione...</option>
-                                <option value="ubs_parque_aratanha">UBS Parque Aratanha</option>
-                                <option value="nasf">NASF</option>
-                                <option value="Policlinica">Policlinica</option>
+                                {unidades.map((option, i) => (
+                                    <option key={i} value={option.nome}>
+                                        {option.nome}
+                                    </option>
+                                ))}
                             </select>
                             {errors.unidade && <span className={style.aviso}>{errors.unidade.message}</span>}
                         </div>
                         <div className={style.box_input}>
                             <label className={style.label}>Profissional:</label>
-                            <select className={style.input} {...register("profissional", { required: "Selecione um profissional" })}>
+                            <select className={style.input} {...register("nomeProfissional", { required: "Selecione um profissional" })}>
                                 <option value="">Selecione...</option>
-                                <option value="profissional1">Alonso Araujo Leite</option>
-                                <option value="profissional2">Profissional 2</option>
-                                <option value="profissional3">Profissional 3</option>
+                                {profissionais.map((option, i) => (
+                                    <option key={i} value={option.nome}>
+                                        {option.nome}
+                                    </option>
+                                ))}
                             </select>
                             {errors.profissional && <span className={style.aviso}>{errors.profissional.message}</span>}
                         </div>
@@ -75,3 +111,4 @@ export const CriarAgenda = () => {
         </DefaultTemplate>
     )
 };
+

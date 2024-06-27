@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import InputMask from 'react-input-mask';
+import { useForm } from 'react-hook-form';
 import { DefaultTemplate } from '../../../DefaultTemplate';
 import { RiSave3Fill } from "react-icons/ri";
-import style from "./style.module.scss";
 import { api } from '../../../../services/api';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { FormPesquisaUnidade } from '../formBusca';
+import style from "./style.module.scss";
 
 export const CadastroUnidade = () => {
   const { register, handleSubmit, control, watch, formState: { errors } } = useForm();

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm ,Controller} from 'react-hook-form';
 import InputMask from 'react-input-mask';
 import { DefaultTemplate } from '../../../DefaultTemplate';
 import { RiSave3Fill } from "react-icons/ri";
@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 export const Pacientes = () => {
-  const { register, handleSubmit,setValue, formState: { errors } } = useForm();
+  const { register, handleSubmit,setValue,control, formState: { errors } } = useForm();
   const [atualizar, setAtualizar] = useState(false);
   const [abrirCadastro, setAbrirCadastro] = useState(false);
   const [buscarCadastro, setBuscarCadastro] = useState(false);
@@ -80,11 +80,20 @@ export const Pacientes = () => {
               {errors.nomeDaMae && <span className={style.aviso}>{errors.nomeDaMae.message}</span>}
             </div>
             <div className={style.box_input}>
-              <label className={style.label}>CPF</label>
-              <InputMask className={style.input}
-                mask="999.999.999-99"
-                {...register('cpf', { required: 'CPF é obrigatório' })}
-                onChange={handleChange}
+              <label className={style.label}>CPF:</label>
+              <Controller
+                name="cpf"
+                control={control}
+                rules={{ required: 'CPF é obrigatório' }}
+                render={({ field }) => (
+                  <InputMask
+                    mask="999.999.999-99"
+                    value={field.value}
+                    onChange={handleChange}
+                  >
+                    {(inputProps) => <input className={style.input} {...inputProps} type="text" />}
+                  </InputMask>
+                )}
               />
               {errors.cpf && <span className={style.aviso}>{errors.cpf.message}</span>}
             </div>

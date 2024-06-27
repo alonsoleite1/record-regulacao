@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { Dashboard } from "../pages/Dashboard";
 import { CadastroUsuario } from "../components/Forms/usuarios/formCadastro";
 import { Pacientes } from "../components/Forms/pacietes/formCadastro";
-import { Profissionais } from "../components/Forms/profissionais";
+import { Profissionais } from "../components/Forms/profissionais/formCadastro";
 import { CadastroUnidade } from "../components/Forms/unidades/formCadastro";
 import { Especialidades } from "../components/Forms/especialidades/formCadastrar";
 import { Exames } from "../components/Forms/exames/formCadastrar";
