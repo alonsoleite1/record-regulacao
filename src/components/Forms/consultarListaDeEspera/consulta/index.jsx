@@ -1,14 +1,15 @@
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { DefaultTemplate } from "../../DefaultTemplate";
+import { DefaultTemplate } from "../../../DefaultTemplate";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { BsChatLeftText } from "react-icons/bs";
 import { useState } from "react";
-import { ObservacaoModal } from "./modal/obsevacao";
-import { useKeydown } from "../../../services/useKeydown";
-import { useOutclick } from "../../../services/hooks/useOutclick";
-import { api } from "../../../services/api";
+import { ObservacaoModal } from "../modal/obsevacao";
+import { useKeydown } from "../../../../services/useKeydown";
+import { useOutclick } from "../../../../services/hooks/useOutclick";
+import { api } from "../../../../services/api";
 import style from "./style.module.scss";
+import { AgendarModal } from "../modal/agendar";
 
 
 export const ConsultarListaDeEspera = () => {
@@ -17,6 +18,9 @@ export const ConsultarListaDeEspera = () => {
     const [paciente, setPaciente] = useState([]);
     const [buscarCadastro, setBuscarCadastro] = useState(false);
     const [modalObservacao, setModalObservacao] = useState(false);
+    const [modalAgendar, setModalAgendar] = useState(false);
+    const [especialidade, setEspecialidade] = useState('');
+    const [inputId, setInputId] = useState(null);
 
     const modalRef = useOutclick(() => {
         setModalObservacao(false);
@@ -25,6 +29,15 @@ export const ConsultarListaDeEspera = () => {
     const escRef = useKeydown("Escape", (element) => {
         element.click();
     });
+
+    // Função para capturar o valor da input e o id ao clicar no botão
+    const handleButtonClick = (id, especialidade) => {
+        setInputId(id);
+        setEspecialidade(especialidade);
+        setModalAgendar(true);
+        console.log('Input Value:', especialidade);
+        console.log('Selected ID:', id);
+    };
 
     const onSubmit = async (payloand) => {
         const token = JSON.parse(localStorage.getItem("@token"));
@@ -96,7 +109,7 @@ export const ConsultarListaDeEspera = () => {
 
                                 {lista.agendaId ? <button className={style.button_agendar} title="Agendar">Info.</button> :
 
-                                    <button className={style.button_agendar} title="Agendar">Agendar</button>}
+                                    <button onClick={() => handleButtonClick(lista.id, lista.especialidade)} className={style.button_agendar} title="Agendar">Agendar</button>}
 
 
                                 <button onClick={() => setModalObservacao(true)} className={style.button_observacao} title="Observação"><BsChatLeftText /></button>
@@ -113,6 +126,7 @@ export const ConsultarListaDeEspera = () => {
             </section>
 
             {modalObservacao ? <ObservacaoModal setModalObservacao={setModalObservacao} modalRef={modalRef} escRef={escRef} /> : null}
+            {modalAgendar ? <AgendarModal setModalAgendar={setModalAgendar} modalRef={modalRef} escRef={escRef} /> : null}
         </DefaultTemplate>
     )
 };
