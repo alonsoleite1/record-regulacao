@@ -11,7 +11,7 @@ import { CriarAgenda } from "../components/Forms/criarAgenda";
 import { Agendar } from "../components/Forms/agenda";
 import { ConsultarAgenda } from "../components/Forms/consultarAgenda";
 import { ListaDeEspera } from "../components/Forms/listaDeEspera";
-import { ConsultarListaDeEspera } from "../components/Forms/consultarListaDeEspera";
+import { ConsultarListaDeEspera } from "../components/Forms/consultarListaDeEspera/consulta";
 import { GerarListaDeEspera } from "../components/Forms/geraListaDeEspera";
 import { DashboardRealizadas } from "../components/Forms/dashboardRealizadas";
 import { AgendaProfissionais } from "../components/Forms/agendaProfissionais";
