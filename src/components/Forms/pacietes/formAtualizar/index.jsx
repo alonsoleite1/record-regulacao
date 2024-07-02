@@ -99,6 +99,15 @@ console.log(payload.cpf);
               {errors.cns && <span className={style.aviso}>{errors.cns.message}</span>}
             </div>
             <div className={style.box_input}>
+              <label className={style.label}>Regulação:</label>
+              <select className={style.input}  {...register('perfil', { required: 'Perfil é obrigatório' })}>
+                <option value="">Selecione o perfil</option>
+                <option value="sede">Sede</option>
+                <option value="nasf">Nasf</option>
+              </select>
+              {errors.regulacao && <span className={style.aviso}>{errors.regulacao.message}</span>}
+            </div>
+            <div className={style.box_input}>
               <label className={style.label}>Rua:</label>
               <input className={style.input}
                 {...register('rua', { required: 'Rua é obrigatória' })}
