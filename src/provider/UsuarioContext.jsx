@@ -10,6 +10,7 @@ export const UsuarioContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [nome, setNome] = useState("");
     const [unidade, setUnidade] = useState("");
+    const [perfil, setPerfil] = useState(null);
 
     const navigate = useNavigate();
 
@@ -17,6 +18,7 @@ export const UsuarioContextProvider = ({ children }) => {
         const token = JSON.parse(localStorage.getItem("@token"));
         setNome(JSON.parse(localStorage.getItem("@nome")));
         setUnidade(JSON.parse(localStorage.getItem("@unidade")));
+        setPerfil(JSON.parse(localStorage.getItem("@perfil")));
 
         const loadUser = async () => {
             try {
@@ -27,9 +29,7 @@ export const UsuarioContextProvider = ({ children }) => {
                     }
                 });
                 setUser(data);
-                setNome(data.user.nome);
-                setUnidade(data.user.unidade);
-                
+                         
                 navigate("/dashboard");
 
             } catch (error) {
@@ -51,10 +51,14 @@ export const UsuarioContextProvider = ({ children }) => {
             setUser(data.user);
             setNome(data.user.nome);
             setUnidade(data.user.unidade);
+            setPerfil(data.user.perfil);
+            
 
             localStorage.setItem("@token", JSON.stringify(token));
             localStorage.setItem("@nome", JSON.stringify(data.user.nome));
             localStorage.setItem("@unidade", JSON.stringify(data.user.unidade));
+            localStorage.setItem("@perfil", JSON.stringify(data.user.perfil));
+            
 
             toast.success("Bem vindo!");
             navigate("/dashboard");
@@ -69,11 +73,12 @@ export const UsuarioContextProvider = ({ children }) => {
         localStorage.removeItem("@token");
         localStorage.removeItem("@nome");
         localStorage.removeItem("@unidade");
+        localStorage.removeItem("@perfil");
     };
 
 
     return (
-        <UsuarioContext.Provider value={{ user, nome, unidade, login, logout, }}>
+        <UsuarioContext.Provider value={{ user, nome, unidade,perfil, login, logout, }}>
             {children}
         </UsuarioContext.Provider>
     )

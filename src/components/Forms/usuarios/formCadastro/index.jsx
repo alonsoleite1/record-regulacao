@@ -137,7 +137,8 @@ export const CadastroUsuario = () => {
               <select className={style.input}  {...register('perfil', { required: 'Perfil é obrigatório' })}>
                 <option value="">Selecione o perfil</option>
                 <option value="admin">Admin</option>
-                <option value="user">User</option>
+                <option value="operador">Operador</option>
+                <option value="gerencia">Gerencia</option>
               </select>
               {errors.perfil && <span className={style.aviso}>{errors.perfil.message}</span>}
             </div>

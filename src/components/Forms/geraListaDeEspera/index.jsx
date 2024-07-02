@@ -45,6 +45,15 @@ export const GerarListaDeEspera = () => {
                             </select>
                             {errors.especialidade && <span className={style.aviso}>{errors.especialidade.message}</span>}
                         </div>
+                        <div className={style.box_input}>
+                            <label className={style.label}>Regulaçao:</label>
+                            <select className={style.input} {...register('especialidade', { required: 'Especialidade é obrigatória' })}>
+                                <option value="">Selecione uma regulação</option>
+                                <option value="sede">Sede</option>
+                                <option value="nasf">Nasf</option>
+                            </select>
+                            {errors.regulacao && <span className={style.aviso}>{errors.regulacao.message}</span>}
+                        </div>
 
                         <div className={style.box_input}>
                             <label className={style.label}>Quantidade:</label>

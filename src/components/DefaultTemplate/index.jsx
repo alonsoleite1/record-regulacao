@@ -1,5 +1,5 @@
 import { Header } from "../Header";
-import { NavLeft } from "../NavLeft";
+import { NavLeft } from "../NavLeft/template";
 import style from "./style.module.scss";
 
 export const DefaultTemplate = ({ children }) => {
