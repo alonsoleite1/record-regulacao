@@ -14,7 +14,9 @@ export const ListaDeEspera = () => {
 
     const { register, handleSubmit, setValue, control, formState: { errors } } = useForm();
 
-    const [lista, setLista] = useState([]);
+    const [especialidade, setEspecialidade] = useState([]);
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const valor = e.target.value.replace(/[.-]/g, '');
@@ -48,7 +50,7 @@ export const ListaDeEspera = () => {
                 }
             });
 
-            setLista(data);
+            setEspecialidade(data);
 
         } catch (error) {
             console.error('Erro ao buscar dados da API:', error);
@@ -99,7 +101,7 @@ export const ListaDeEspera = () => {
                             <label className={style.label}>Especialidade:</label>
                             <select className={style.input} {...register('especialidade', { required: 'Especialidade é obrigatória' })}>
                                 <option value="">Selecione uma especialidade</option>
-                                {lista.map((option, i) => (
+                                {especialidade.map((option, i) => (
                                     <option key={i} value={option.nome}>
                                         {option.nome}
                                     </option>
@@ -117,6 +119,16 @@ export const ListaDeEspera = () => {
                             </select>
                             {errors.classificacao && <span className={style.aviso}>{errors.classificacao.message}</span>}
                         </div>
+
+                        <div className={style.box_input}>
+              <label className={style.label}>Regulação:</label>
+              <select className={style.input}  {...register('regulacao', { required: 'Regulação é obrigatório' })}>
+                <option value="">Selecione a regulação</option>
+                <option value="sede">Sede</option>
+                <option value="nasf">Nasf</option>
+              </select>
+              {errors.regulacao && <span className={style.aviso}>{errors.regulacao.message}</span>}
+            </div>
 
                     </div>
 

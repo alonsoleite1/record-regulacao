@@ -4,6 +4,7 @@
     background-color: var(--color-pages);
     display: flex;
     flex-direction: column;
+    padding-bottom: 10vh;
 }
 
 .header {
@@ -114,7 +115,7 @@
     padding-top: .4rem;
 }
 
-.button_agendar {
+.button_realizado {
     padding: .4rem;
     border: none;
     border-radius: .25rem;
@@ -124,7 +125,7 @@
     cursor: pointer;
 }
 
-.button_agendar:hover {
+.button_realizado:hover {
     background-color: var(--color-hover);
 }
 

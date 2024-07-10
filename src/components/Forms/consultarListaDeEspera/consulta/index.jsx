@@ -7,20 +7,20 @@ import { useState } from "react";
 import { ObservacaoModal } from "../modal/obsevacao";
 import { useKeydown } from "../../../../services/useKeydown";
 import { useOutclick } from "../../../../services/hooks/useOutclick";
+import { RealizadoModal } from "../modal/realizado";
 import { api } from "../../../../services/api";
 import style from "./style.module.scss";
-import { AgendarModal } from "../modal/agendar";
 
 
 export const ConsultarListaDeEspera = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const [paciente, setPaciente] = useState([]);
+    const [profissionais, setProfissionais] = useState([]);
     const [buscarCadastro, setBuscarCadastro] = useState(false);
     const [modalObservacao, setModalObservacao] = useState(false);
-    const [modalAgendar, setModalAgendar] = useState(false);
-    const [especialidade, setEspecialidade] = useState('');
-    const [inputId, setInputId] = useState(null);
+    const [modalRealizado, setModalRealizado] = useState(false);
+    const [listaId, setListaId] = useState(null);
 
     const modalRef = useOutclick(() => {
         setModalObservacao(false);
@@ -31,11 +31,13 @@ export const ConsultarListaDeEspera = () => {
     });
 
     // Função para capturar o valor da input e o id ao clicar no botão
-    const handleButtonClick = (id, especialidade) => {
-        setInputId(id);
-        setEspecialidade(especialidade);
-        setModalAgendar(true);
-        console.log('Input Value:', especialidade);
+    const handleButtonClick =async (id) => {
+        setListaId(id);
+        setModalRealizado(true);
+        const { data } = await api.get('/profissional');
+        
+        setProfissionais(data);
+
         console.log('Selected ID:', id);
     };
 
@@ -78,15 +80,15 @@ export const ConsultarListaDeEspera = () => {
                             <div className={style.box_card}>
                                 <div className={style.box_input}>
                                     <span className={style.label}>Nome:</span>
-                                    <p>{lista.nome}</p>
+                                    <p>{lista.paciente.nome}</p>
                                 </div>
                                 <div className={style.box_input}>
                                     <span className={style.label}>Espera:</span>
                                     <p>{lista.especialidade}</p>
                                 </div>
                                 <div className={style.box_input}>
-                                    <span className={style.label}>Agendado:</span>
-                                    <p>{lista.data ? lista.data : <p>Aguardando</p>}</p>
+                                    <span className={style.label}>Inserido:</span>
+                                    <p>{lista.createdAt}</p>
                                 </div>
                             </div>
 
@@ -96,26 +98,33 @@ export const ConsultarListaDeEspera = () => {
                                     <p>{lista.classificacao}</p>
                                 </div>
                                 <div className={style.box_input}>
-                                    <span className={style.label}>Inserido por:</span>
+                                    <span className={style.label}>Usuario:</span>
                                     <p>{lista.usuarioLista}</p>
                                 </div>
                                 <div className={style.box_input}>
-                                    <span className={style.label}>Posição:</span>
-                                    <p>0</p>
+                                    <span className={style.label}>Posição: </span>
+                                    <p>{lista.posicao}</p>
                                 </div>
                             </div>
 
-                            <div className={style.div_button}>
-
-                                {lista.agendaId ? <button className={style.button_agendar} title="Agendar">Info.</button> :
-
-                                    <button onClick={() => handleButtonClick(lista.id, lista.especialidade)} className={style.button_agendar} title="Agendar">Agendar</button>}
 
 
-                                <button onClick={() => setModalObservacao(true)} className={style.button_observacao} title="Observação"><BsChatLeftText /></button>
-
-                                <button title="Deletar" className={style.button_deletar}><FaRegTrashAlt /></button>
+                            {lista.realizado ? <> <div className={style.box_card}>
+                                <div className={style.box_input}>
+                                    <span className={style.label}>Realizado: </span>
+                                    <p>{lista.realizado}</p>
+                                </div>
+                                <div className={style.box_input}>
+                                    <span className={style.label}>Profissional: </span>
+                                    <p>{lista.nomeProfissional}</p>
+                                </div>
                             </div>
+                            </> :
+
+                                <>
+                                    <div className={style.div_button}> <button onClick={() => handleButtonClick(lista.id)} className={style.button_realizado} title="Realizado">Realizado</button> <button onClick={() => setModalObservacao(true)} className={style.button_observacao} title="Observação"><BsChatLeftText /></button>
+
+                                 <button title="Deletar" className={style.button_deletar}><FaRegTrashAlt /></button> </div> </>}
 
                         </li>
                     ))}
@@ -126,7 +135,7 @@ export const ConsultarListaDeEspera = () => {
             </section>
 
             {modalObservacao ? <ObservacaoModal setModalObservacao={setModalObservacao} modalRef={modalRef} escRef={escRef} /> : null}
-            {modalAgendar ? <AgendarModal setModalAgendar={setModalAgendar} modalRef={modalRef} escRef={escRef} /> : null}
+            {modalRealizado ? <RealizadoModal profissionais={profissionais} listaId={listaId} setModalRealizado={setModalRealizado} modalRef={modalRef} escRef={escRef} /> : null}
         </DefaultTemplate>
     )
 };
