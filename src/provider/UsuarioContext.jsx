@@ -23,18 +23,21 @@ export const UsuarioContextProvider = ({ children }) => {
         const loadUser = async () => {
             try {
 
-                const { data } = await api.get('/usuario/autentificacao', {
+                const { data } = await api.get('/usuario/autentificacao/login', {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 });
                 setUser(data);
-                         
-                navigate("/dashboard");
 
             } catch (error) {
 
-                //localStorage.removeItem("@token")
+                navigate("/");
+                setUser(null);
+                localStorage.removeItem("@token");
+                localStorage.removeItem("@nome");
+                localStorage.removeItem("@unidade");
+                localStorage.removeItem("@perfil");
             };
         }
         if (token) {

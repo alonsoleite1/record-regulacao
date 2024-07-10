@@ -42,7 +42,7 @@ export const Cirugias = () => {
         <DefaultTemplate>
             <section className={style.container}>
                 <div className={style.header}>
-                    <h1 className={style.title}>Cirugia</h1>
+                    <h1 className={style.title}>Cirurgia</h1>
                     <div className={style.div_button}>
                         <button className={style.button_cadastrar} onClick={() => cadastrar()}>+ Cadastrar</button>
                     </div>
