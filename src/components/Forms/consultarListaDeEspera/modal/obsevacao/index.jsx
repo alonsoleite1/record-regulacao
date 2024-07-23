@@ -1,13 +1,25 @@
 import { MdClose } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import { RiSave3Fill } from "react-icons/ri";
+import { toast } from 'react-toastify';
+import { api } from "../../../../../services/api";
 import style from "./style.module.scss";
 
-export const ObservacaoModal = ({ setModalObservacao,modalRef, escRef}) => {
+export const ObservacaoModal = ({ listaId, setModalObservacao, modalRef, escRef }) => {
    const { register, handleSubmit, formState: { errors } } = useForm();
 
-   const onSubmit = (data) => {
-      console.log(data);
+   const onSubmit = async (payload) => {
+      const token = JSON.parse(localStorage.getItem("@token"));
+      try {
+         const { data } = await api.patch(`/lista/${listaId}`, payload, {
+            headers: {
+               Authorization: `Bearer ${token}`
+            }
+         });
+         toast.success("Atualizado!");
+      } catch (error) {
+         toast.error("Não foi possivel atualizar!");
+      }
    };
 
    return (
