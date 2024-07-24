@@ -11,7 +11,7 @@ export const Dashboard = () => {
   const [listExame, setListExame] = useState([]);
 
   const [cirurgia, setCirurgia] = useState([]);
-   const [listCirurgia, setListCirurgia] = useState([]);
+  const [listCirurgia, setListCirurgia] = useState([]);
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("@token"));
@@ -55,61 +55,61 @@ export const Dashboard = () => {
     // Função que será executada automaticamente com os dados obtidos
     const processData = async () => {
       // Mapeia os dados para um novo array com os resultados do processamento
-      const processedData =await Promise.all ( especialidade.map(async item => {
+      const processedData = await Promise.all(especialidade.map(async item => {
 
-        const { data } =await api.get(`/lista/quantidade/${item.nome}`);
+        const { data } = await api.get(`/lista/quantidade/${item.nome}`);
 
         return {
-          nome:item.nome, quantidade: data,
+          nome: item.nome, quantidade: data,
         };
       }));
 
       setListEspecialidade(processedData);
-  
+
     };
     processData();
 
-  }, [especialidade]); 
+  }, [especialidade]);
 
   useEffect(() => {
     // Função que será executada automaticamente com os dados obtidos
     const processData = async () => {
       // Mapeia os dados para um novo array com os resultados do processamento
-      const processedData =await Promise.all ( exame.map(async item => {
-
-        const { data } =await api.get(`/lista/quantidade/${item.nome}`);
-
+      const processedData = await Promise.all(exame.map(async item => {
+       
+        const { data } = await api.get(`/lista/quantidade/${item.nome}`);
+        
         return {
-          nome:item.nome, quantidade: data,
+          nome: item.nome, quantidade: data,
         };
       }));
 
       setListExame(processedData);
-  
+
     };
     processData();
 
-  }, [exame]); 
+  }, [exame]);
 
   useEffect(() => {
     // Função que será executada automaticamente com os dados obtidos
     const processData = async () => {
       // Mapeia os dados para um novo array com os resultados do processamento
-      const processedData =await Promise.all ( cirurgia.map(async item => {
-console.log(item.nome);
-        const { data } =await api.get(`/lista/quantidade/${item.nome}`);
+      const processedData = await Promise.all(cirurgia.map(async item => {
 
+        const {data}  = await api.get(`/lista/quantidade/${item.nome}`);
+        console.log('teste');
         return {
-          nome:item.nome, quantidade: data,
+          nome: item.nome, quantidade: data,
         };
       }));
 
       setListCirurgia(processedData);
-  
+
     };
     processData();
 
-  }, [cirurgia]); 
+  }, [cirurgia]);
 
 
 
@@ -120,7 +120,7 @@ console.log(item.nome);
         <ul className={style.especialidade}>
           <h1 className={style.title}>Especialidade</h1>
 
-          {listEspecialidade.map( element => (
+          {listEspecialidade.map(element => (
             <li key={element.id} className={style.card}>
               <h3 className={style.label}>{element.nome}</h3>
               <p>{element.quantidade}</p>
