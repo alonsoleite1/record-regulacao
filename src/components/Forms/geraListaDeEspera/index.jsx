@@ -15,19 +15,17 @@ export const GerarListaDeEspera = () => {
 
     const onSubmit = async (payloand) => {
        
-
         const token = JSON.parse(localStorage.getItem("@token"));
 
         try {
-            const { data } = await api.get(`/gerar?especialidade=${payloand.especialidade}&regulacao=${payloand.regulacao}&classificacao=${payloand.classificacao}&quantidade=${payloand.quantidade}`, {
+            const { data } = await api.get(`/gerar?espera=${payloand.espera}&regulacao=${payloand.regulacao}&classificacao=${payloand.classificacao}&quantidade=${payloand.quantidade}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             });
-            toast.success("Adicionado a lista com sucesso!");
             console.log(data);
         } catch (error) {
-            toast.error(error.response.data.message);
+            toast.error(error);
         }
         // Aqui você pode enviar os dados para um servidor, por exemplo
     };
@@ -73,7 +71,7 @@ export const GerarListaDeEspera = () => {
 
                         <div className={style.box_input}>
                             <label className={style.label}>Especialidade:</label>
-                            <select className={style.input} {...register('especialidade', { required: 'Especialidade é obrigatória' })}>
+                            <select className={style.input} {...register('espera', { required: 'Especialidade é obrigatória' })}>
                                 <option value="">Selecione uma especialidade</option>
                                 {especialidade.map((option, i) => (
                                     <option key={i} value={option.nome}>
@@ -81,7 +79,7 @@ export const GerarListaDeEspera = () => {
                                     </option>
                                 ))}
                             </select>
-                            {errors.especialidade && <span className={style.aviso}>{errors.especialidade.message}</span>}
+                            {errors.espera && <span className={style.aviso}>{errors.espera.message}</span>}
                         </div>
                         <div className={style.box_input}>
                             <label className={style.label}>Regulaçao:</label>
@@ -95,8 +93,8 @@ export const GerarListaDeEspera = () => {
 
                         <div className={style.box_input}>
                             <label className={style.label}>Classificação:</label>
-                            <select className={style.input} {...register('classificacao', { required: 'Especialidade é obrigatória' })}>
-                                <option value="">Selecione uma regulação</option>
+                            <select className={style.input} {...register('classificacao', { required: 'Classificação é obrigatória' })}>
+                                <option value="">Selecione uma classificação</option>
                                 <option value="normal">Normal</option>
                                 <option value="urgente">Urgente</option>
                             </select>

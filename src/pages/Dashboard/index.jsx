@@ -98,7 +98,7 @@ export const Dashboard = () => {
       const processedData = await Promise.all(cirurgia.map(async item => {
 
         const {data}  = await api.get(`/lista/quantidade/${item.nome}`);
-        console.log('teste');
+        console.log(item.nome);
         return {
           nome: item.nome, quantidade: data,
         };
