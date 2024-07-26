@@ -12,7 +12,7 @@ export const Gerencia = () => {
             <Link to="/consultarListaDeEspera" className={style.link}>
                 <span>Consultar Lista de Espera</span>
             </Link>
-            <Link to="/" className={style.link}>
+            <Link to="/dashboard" className={style.link}>
                 <span>Dashboard Lista de Espera</span>
             </Link>
             <Link to="/dashboardRealizada" className={style.link}>

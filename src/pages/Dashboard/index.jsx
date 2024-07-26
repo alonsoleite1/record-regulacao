@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 import { DefaultTemplate } from "../../components/DefaultTemplate";
-import style from "./style.module.scss";
 import { api } from "../../services/api";
+import style from "./style.module.scss";
 
 export const Dashboard = () => {
   const [especialidade, setEspecialidade] = useState([]);
+  const [listEspecialidade, setListEspecialidade] = useState([]);
+
   const [exame, setExame] = useState([]);
+  const [listExame, setListExame] = useState([]);
+
   const [cirurgia, setCirurgia] = useState([]);
+  const [listCirurgia, setListCirurgia] = useState([]);
 
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("@token"));
@@ -35,7 +40,7 @@ export const Dashboard = () => {
         setCirurgia(cirurgia.data);
 
       } catch (error) {
-        
+
       }
 
     }
@@ -45,47 +50,110 @@ export const Dashboard = () => {
     }
   }, []);
 
+
+  useEffect(() => {
+    // Função que será executada automaticamente com os dados obtidos
+    const processData = async () => {
+      // Mapeia os dados para um novo array com os resultados do processamento
+      const processedData = await Promise.all(especialidade.map(async item => {
+
+        const { data } = await api.get(`/lista/quantidade/${item.nome}`);
+
+        return {
+          nome: item.nome, quantidade: data,
+        };
+      }));
+
+      setListEspecialidade(processedData);
+
+    };
+    processData();
+
+  }, [especialidade]);
+
+  useEffect(() => {
+    // Função que será executada automaticamente com os dados obtidos
+    const processData = async () => {
+      // Mapeia os dados para um novo array com os resultados do processamento
+      const processedData = await Promise.all(exame.map(async item => {
+       
+        const { data } = await api.get(`/lista/quantidade/${item.nome}`);
+        
+        return {
+          nome: item.nome, quantidade: data,
+        };
+      }));
+
+      setListExame(processedData);
+
+    };
+    processData();
+
+  }, [exame]);
+
+  useEffect(() => {
+    // Função que será executada automaticamente com os dados obtidos
+    const processData = async () => {
+      // Mapeia os dados para um novo array com os resultados do processamento
+      const processedData = await Promise.all(cirurgia.map(async item => {
+
+        const {data}  = await api.get(`/lista/quantidade/${item.nome}`);
+        console.log(item.nome);
+        return {
+          nome: item.nome, quantidade: data,
+        };
+      }));
+
+      setListCirurgia(processedData);
+
+    };
+    processData();
+
+  }, [cirurgia]);
+
+
+
   return (
     <DefaultTemplate>
       <section className={style.container}>
         <h1 className={style.header}>Fila de Espera</h1>
         <ul className={style.especialidade}>
           <h1 className={style.title}>Especialidade</h1>
-           
-         {especialidade.map(element => (
-          <li key={element.id} className={style.card}>
-          <h3 className={style.label}>{element.nome}</h3>
-          <p>50</p>
-          <span className={style.span3}></span>
-        </li>
-         ))}
+
+          {listEspecialidade.map(element => (
+            <li key={element.id} className={style.card}>
+              <h3 className={style.label}>{element.nome}</h3>
+              <p>{element.quantidade}</p>
+              <span className={style.span3}></span>
+            </li>
+          ))}
 
         </ul>
 
         <ul className={style.especialidade}>
           <h1 className={style.title}>Exames e Procedimentos</h1>
 
-          {exame.map(element => (
-          <li key={element.id} className={style.card}>
-         <h3 className={style.label}>{element.nome}</h3>
-            <p>20</p>
-            <span className={style.span1}></span>
-        </li>
-         ))}
-         
+          {listExame.map(element => (
+            <li key={element.id} className={style.card}>
+              <h3 className={style.label}>{element.nome}</h3>
+              <p>{element.quantidade}</p>
+              <span className={style.span1}></span>
+            </li>
+          ))}
+
         </ul>
 
         <ul className={style.especialidade}>
           <h1 className={style.title}>Cirurgias</h1>
-        
-          {cirurgia.map(element => (
-          <li key={element.id} className={style.card}>
-           <h3 className={style.label}>{element.nome}</h3>
-            <p>30</p>
-            <span className={style.span2}></span>
-        </li>
-         ))}      
-         
+
+          {listCirurgia.map(element => (
+            <li key={element.id} className={style.card}>
+              <h3 className={style.label}>{element.nome}</h3>
+              <p>{element.quantidade}</p>
+              <span className={style.span2}></span>
+            </li>
+          ))}
+
         </ul>
       </section>
     </DefaultTemplate>

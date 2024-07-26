@@ -24,6 +24,7 @@ export const ConsultarListaDeEspera = () => {
 
     const modalRef = useOutclick(() => {
         setModalObservacao(false);
+
     });
 
     const escRef = useKeydown("Escape", (element) => {
@@ -31,14 +32,19 @@ export const ConsultarListaDeEspera = () => {
     });
 
     // Função para capturar o valor da input e o id ao clicar no botão
-    const handleButtonClick =async (id) => {
+    const abrirRealizado = async (id) => {
         setListaId(id);
         setModalRealizado(true);
         const { data } = await api.get('/profissional');
-        
+
         setProfissionais(data);
 
-        console.log('Selected ID:', id);
+    };
+
+    const abrirObservacao = async (id) => {
+        console.log(id);
+        setListaId(id);
+        setModalObservacao(true);
     };
 
     const onSubmit = async (payloand) => {
@@ -106,6 +112,12 @@ export const ConsultarListaDeEspera = () => {
                                     <p>{lista.posicao}</p>
                                 </div>
                             </div>
+                            <div className={style.box_card}>
+                                <div className={style.box_input}>
+                                    <span className={style.label}>Observação: </span>
+                                    <p>{lista.observacao}</p>
+                                </div>
+                            </div>
 
 
 
@@ -118,13 +130,14 @@ export const ConsultarListaDeEspera = () => {
                                     <span className={style.label}>Profissional: </span>
                                     <p>{lista.nomeProfissional}</p>
                                 </div>
+
                             </div>
                             </> :
 
                                 <>
-                                    <div className={style.div_button}> <button onClick={() => handleButtonClick(lista.id)} className={style.button_realizado} title="Realizado">Realizado</button> <button onClick={() => setModalObservacao(true)} className={style.button_observacao} title="Observação"><BsChatLeftText /></button>
+                                    <div className={style.div_button}> <button onClick={() => abrirRealizado(lista.id)} className={style.button_realizado} title="Realizado">Realizado</button> <button onClick={() => abrirObservacao(lista.id)} className={style.button_observacao} title="Observação"><BsChatLeftText /></button>
 
-                                 <button title="Deletar" className={style.button_deletar}><FaRegTrashAlt /></button> </div> </>}
+                                        <button title="Deletar" className={style.button_deletar}><FaRegTrashAlt /></button> </div> </>}
 
                         </li>
                     ))}
@@ -134,7 +147,7 @@ export const ConsultarListaDeEspera = () => {
 
             </section>
 
-            {modalObservacao ? <ObservacaoModal setModalObservacao={setModalObservacao} modalRef={modalRef} escRef={escRef} /> : null}
+            {modalObservacao ? <ObservacaoModal listaId={listaId} setModalObservacao={setModalObservacao} modalRef={modalRef} escRef={escRef} /> : null}
             {modalRealizado ? <RealizadoModal profissionais={profissionais} listaId={listaId} setModalRealizado={setModalRealizado} modalRef={modalRef} escRef={escRef} /> : null}
         </DefaultTemplate>
     )

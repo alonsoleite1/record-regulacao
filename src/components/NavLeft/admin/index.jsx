@@ -44,7 +44,7 @@ export const Admin = () => {
             <Link to="/gerarListaDeEspera" className={style.link}>
                 <span>Gerar Lista de Espera</span>
             </Link>
-            <Link to="/" className={style.link}>
+            <Link to="/dashboard" className={style.link}>
                 <span>Dashboard Lista de Espera</span>
             </Link>
             <Link to="/dashboardRealizada" className={style.link}>
