@@ -96,7 +96,7 @@ export const Dashboard = () => {
     const processData = async () => {
       // Mapeia os dados para um novo array com os resultados do processamento
       const processedData = await Promise.all(cirurgia.map(async item => {
-
+       
         const {data}  = await api.get(`/lista/quantidade/${item.nome}`);
         console.log(item.nome);
         return {
@@ -124,7 +124,7 @@ export const Dashboard = () => {
             <li key={element.id} className={style.card}>
               <h3 className={style.label}>{element.nome}</h3>
               <p>{element.quantidade}</p>
-              <span className={style.span3}></span>
+              <span className={style.span1}></span>
             </li>
           ))}
 
@@ -150,7 +150,7 @@ export const Dashboard = () => {
             <li key={element.id} className={style.card}>
               <h3 className={style.label}>{element.nome}</h3>
               <p>{element.quantidade}</p>
-              <span className={style.span2}></span>
+              <span className={style.span1}></span>
             </li>
           ))}
 

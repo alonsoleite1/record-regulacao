@@ -1,18 +1,20 @@
 import { DefaultTemplate } from "../../DefaultTemplate";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputMask from 'react-input-mask';
 import { useForm, Controller } from 'react-hook-form';
 import { RiSave3Fill } from "react-icons/ri";
 import { api } from "../../../services/api";
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import jsPDF from "jspdf";
+import autoTable from 'jspdf-autotable';
 import style from "./style.module.scss";
 
 
 
 export const ListaDeEspera = () => {
 
-    const { register, handleSubmit, setValue, control, formState: { errors } } = useForm();
+    const { register, handleSubmit, setValue, control, reset, formState: { errors } } = useForm();
 
     const [especialidade, setEspecialidade] = useState([]);
 
@@ -21,10 +23,10 @@ export const ListaDeEspera = () => {
     const handleChange = (e) => {
         const valor = e.target.value.replace(/[.-]/g, '');
         setValue('cpf', valor);
-      };
+    };
 
     const onSubmit = async (payloand) => {
-        const token = JSON.parse(localStorage.getItem("@token"));     
+        const token = JSON.parse(localStorage.getItem("@token"));
 
         try {
             const { data } = await api.post("/lista", payloand, {
@@ -32,8 +34,10 @@ export const ListaDeEspera = () => {
                     Authorization: `Bearer ${token}`
                 }
             });
+            generatePDF(data)
+            //  reset();
             toast.success("Adicionado a lista com sucesso!");
-            navigate("/dashboard");
+
         } catch (error) {
             toast.error(error.response.data.message);
         }
@@ -57,6 +61,49 @@ export const ListaDeEspera = () => {
         }
     };
 
+    const generatePDF = (recibo) => {
+
+        const pdf = new jsPDF({
+            orientation: 'portrait',
+            unit: 'mm',
+            format: 'a4'
+        });
+
+        pdf.setFontSize(12);
+
+        const pageWidth = pdf.internal.pageSize.getWidth();
+        const title = `RECIBO DE INSERÇÃO A LISTA DE ESPERA `;
+
+        // Centralizar o título
+        const textWidth = pdf.getTextWidth(title);
+        const x = (pageWidth - textWidth) / 2.1;
+        pdf.text(title, x, 15);
+
+
+        autoTable(pdf, {
+            startY: 20,
+            head: [["CPF", "ESPERA", "POSIÇÃO", "INSERIDO"]],
+            body: [[recibo.cpf, recibo.especialidade, recibo.posicao, recibo.createdAt]],
+            foot: [["SECRETARIA DE SAUDE DE PACATUBA"]],
+            margin: { top: 10, left: 10, right: 10, bottom: 10 },
+            theme: 'grid', // Outras opções: 'striped', 'plain'
+            styles: {
+                fontSize: 10,
+                cellPadding: 5
+            },
+            headStyles: {
+                fillColor: [62, 188, 62]
+            },
+            footStyles: {
+                fillColor: [31, 145, 220]
+            }
+        })
+
+        pdf.save('Lista');
+    };
+
+
+
     return (
         <DefaultTemplate>
             <section className={style.container}>
@@ -75,9 +122,9 @@ export const ListaDeEspera = () => {
                                 rules={{ required: 'CPF é obrigatório' }}
                                 render={({ field }) => (
                                     <InputMask
-                                    mask="999.999.999-99"
-                                    value={field.value}
-                                    onChange={handleChange}
+                                        mask="999.999.999-99"
+                                        value={field.value}
+                                        onChange={handleChange}
                                     >
                                         {(inputProps) => <input className={style.input} {...inputProps} type="text" />}
                                     </InputMask>
@@ -121,14 +168,14 @@ export const ListaDeEspera = () => {
                         </div>
 
                         <div className={style.box_input}>
-              <label className={style.label}>Regulação:</label>
-              <select className={style.input}  {...register('regulacao', { required: 'Regulação é obrigatório' })}>
-                <option value="">Selecione a regulação</option>
-                <option value="sede">Sede</option>
-                <option value="nasf">Nasf</option>
-              </select>
-              {errors.regulacao && <span className={style.aviso}>{errors.regulacao.message}</span>}
-            </div>
+                            <label className={style.label}>Regulação:</label>
+                            <select className={style.input}  {...register('regulacao', { required: 'Regulação é obrigatório' })}>
+                                <option value="">Selecione a regulação</option>
+                                <option value="sede">Sede</option>
+                                <option value="nasf">Nasf</option>
+                            </select>
+                            {errors.regulacao && <span className={style.aviso}>{errors.regulacao.message}</span>}
+                        </div>
 
                     </div>
 
