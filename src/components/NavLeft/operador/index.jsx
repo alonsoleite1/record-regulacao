@@ -9,9 +9,6 @@ export const Operador = () => {
             <Link to="/paciente" className={style.link}>
                 <span>Pacientes</span>
             </Link>
-            <Link to="/agendaProfissional" className={style.link}>
-                <span>Agenda dos profissionais</span>
-            </Link>
 
             <Link to="/listaDeEspera" className={style.link}>
                 <span>Lista de Espera</span>

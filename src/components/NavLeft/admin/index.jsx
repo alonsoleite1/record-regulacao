@@ -28,12 +28,6 @@ export const Admin = () => {
             <Link to="/paciente" className={style.link}>
                 <span>Pacientes</span>
             </Link>
-            <Link to="/criarAgenda" className={style.link}>
-                <span>Criar Agenda</span>
-            </Link>
-            <Link to="/agendaProfissional" className={style.link}>
-                <span>Agenda dos profissionais</span>
-            </Link>
 
             <Link to="/listaDeEspera" className={style.link}>
                 <span>Lista de Espera</span>
@@ -47,9 +41,7 @@ export const Admin = () => {
             <Link to="/dashboard" className={style.link}>
                 <span>Dashboard Lista de Espera</span>
             </Link>
-            <Link to="/dashboardRealizada" className={style.link}>
-                <span>Dashboard Realizadas</span>
-            </Link>
+         
         </nav>
 
     )
