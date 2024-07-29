@@ -67,7 +67,7 @@ export const GerarListaDeEspera = () => {
                 }
             })
 
-            pdf.save('Lista');
+            pdf.save('Recibo');
 
         } catch (error) {
             toast.error('Não foi gerado a lista!');
