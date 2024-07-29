@@ -3,29 +3,74 @@ import { useForm } from 'react-hook-form';
 import { useState } from "react";
 import { api } from "../../../services/api";
 import { toast } from 'react-toastify';
+import jsPDF from "jspdf";
+import autoTable from 'jspdf-autotable';
 import style from "./style.module.scss";
 
 
 
 export const GerarListaDeEspera = () => {
 
-    const { register, handleSubmit, control, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     const [especialidade, setEspecialidade] = useState([]);
 
     const onSubmit = async (payloand) => {
-       
-        const token = JSON.parse(localStorage.getItem("@token"));
+
+
 
         try {
-            const { data } = await api.get(`/gerar?espera=${payloand.espera}&regulacao=${payloand.regulacao}&classificacao=${payloand.classificacao}&quantidade=${payloand.quantidade}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
+            const { data } = await api.get(`/gerar?espera=${payloand.espera}&regulacao=${payloand.regulacao}&classificacao=${payloand.classificacao}&quantidade=${payloand.quantidade}`);
+            
+
+            const pdf = new jsPDF({
+                orientation: 'portrait',
+                unit: 'mm',
+                format: 'a4'
             });
-            console.log(data);
+
+            pdf.setFontSize(12);
+
+            const pageWidth = pdf.internal.pageSize.getWidth();
+            const title = `LISTA DE ESPERA ${payloand.espera.toUpperCase()}`;
+        
+            // Centralizar o título
+            const textWidth = pdf.getTextWidth(title);
+            const x = (pageWidth - textWidth) / 2.1;
+            pdf.text(title, x, 15);
+
+
+            const tableColumn = ["CPF", "NOME", "CONTATO 1","CONTATO 2"];
+            const tableRows = [];
+
+            data.map(item => {
+                const rowData = [
+                    item.paciente.cpf,
+                    item.paciente.nome,
+                    item.paciente.contatoUm,
+                    item.paciente.contatoDois
+                ];
+                tableRows.push(rowData);
+            });
+
+            autoTable(pdf, {
+                startY: 20, head: [tableColumn],
+                body: tableRows,
+                margin: { top: 10, left: 10, right: 10, bottom: 10 },
+                theme: 'grid', // Outras opções: 'striped', 'plain'
+                styles: {
+                    fontSize: 10,
+                    cellPadding: 5
+                },
+                headStyles: {
+                    fillColor: [62, 188, 62]
+                }
+            })
+
+            pdf.save('Recibo');
+
         } catch (error) {
-            toast.error(error);
+            toast.error('Não foi gerado a lista!');
         }
         // Aqui você pode enviar os dados para um servidor, por exemplo
     };

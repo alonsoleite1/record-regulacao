@@ -50,15 +50,15 @@ export const Dashboard = () => {
     }
   }, []);
 
-
   useEffect(() => {
+
     // Função que será executada automaticamente com os dados obtidos
-    const processData = async () => {
+    const processEspecialista = async () => {
       // Mapeia os dados para um novo array com os resultados do processamento
       const processedData = await Promise.all(especialidade.map(async item => {
-
+       
         const { data } = await api.get(`/lista/quantidade/${item.nome}`);
-
+ 
         return {
           nome: item.nome, quantidade: data,
         };
@@ -67,13 +67,8 @@ export const Dashboard = () => {
       setListEspecialidade(processedData);
 
     };
-    processData();
 
-  }, [especialidade]);
-
-  useEffect(() => {
-    // Função que será executada automaticamente com os dados obtidos
-    const processData = async () => {
+    const processExame = async () => {
       // Mapeia os dados para um novo array com os resultados do processamento
       const processedData = await Promise.all(exame.map(async item => {
        
@@ -87,18 +82,13 @@ export const Dashboard = () => {
       setListExame(processedData);
 
     };
-    processData();
 
-  }, [exame]);
-
-  useEffect(() => {
-    // Função que será executada automaticamente com os dados obtidos
-    const processData = async () => {
+    const processCirurgia = async () => {
       // Mapeia os dados para um novo array com os resultados do processamento
       const processedData = await Promise.all(cirurgia.map(async item => {
-
+       
         const {data}  = await api.get(`/lista/quantidade/${item.nome}`);
-        console.log(item.nome);
+    
         return {
           nome: item.nome, quantidade: data,
         };
@@ -107,10 +97,12 @@ export const Dashboard = () => {
       setListCirurgia(processedData);
 
     };
-    processData();
+    
+    processEspecialista();
+    processExame();
+    processCirurgia();
 
-  }, [cirurgia]);
-
+  }, [especialidade,cirurgia,exame]);
 
 
   return (
@@ -124,7 +116,7 @@ export const Dashboard = () => {
             <li key={element.id} className={style.card}>
               <h3 className={style.label}>{element.nome}</h3>
               <p>{element.quantidade}</p>
-              <span className={style.span3}></span>
+              <span className={style.span1}></span>
             </li>
           ))}
 
@@ -150,7 +142,7 @@ export const Dashboard = () => {
             <li key={element.id} className={style.card}>
               <h3 className={style.label}>{element.nome}</h3>
               <p>{element.quantidade}</p>
-              <span className={style.span2}></span>
+              <span className={style.span1}></span>
             </li>
           ))}
 
