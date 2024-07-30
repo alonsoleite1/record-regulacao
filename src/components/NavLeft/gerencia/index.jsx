@@ -15,9 +15,7 @@ export const Gerencia = () => {
             <Link to="/dashboard" className={style.link}>
                 <span>Dashboard Lista de Espera</span>
             </Link>
-            <Link to="/dashboardRealizada" className={style.link}>
-                <span>Dashboard Realizadas</span>
-            </Link>
+            
         </nav>
 
     )

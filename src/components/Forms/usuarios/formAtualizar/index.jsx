@@ -11,7 +11,7 @@ export const AtualizarCadastro = ({ unidades, usuario }) => {
 
     const navigate = useNavigate();
 
-    const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, setValue,reset, watch, formState: { errors } } = useForm();
 
     useEffect(()=>{
 
@@ -36,7 +36,7 @@ export const AtualizarCadastro = ({ unidades, usuario }) => {
                     Authorization: `Bearer ${token}`
                 }
             });
-            navigate("/dashboard");
+            window.location.reload();
             toast.success("Cadastro atualizado!");
         } catch (error) {
             toast.error("Não foi possivel atualizar!");
