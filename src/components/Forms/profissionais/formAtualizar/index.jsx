@@ -54,7 +54,7 @@ export const AtualizarProfissional = ({ profissional, especialidades }) => {
           Authorization: `Bearer ${token}`
         }
       });
-      navigate("/dashboard");
+      window.location.reload();
       toast.success("Cadastro atualizado!");
     } catch (error) {
       toast.error("Não foi possivel atualizar!");

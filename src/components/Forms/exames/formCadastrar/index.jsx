@@ -12,7 +12,7 @@ export const Exames = () => {
     const [abrirCadastro, setAbrirCadastro] = useState(false);
     const [buscarCadastro, setBuscarCadastro] = useState(false);
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit,reset, formState: { errors } } = useForm();
 
     const onSubmit = async (formData) => {
 
@@ -26,7 +26,7 @@ export const Exames = () => {
             });
             toast.success("Exame/procedimento criado com sucesso!");
             setAbrirCadastro(false);
-            navigate("/dashboard");
+            reset();
         } catch (error) {
             toast.error(error.response.data.message);
         }

@@ -11,14 +11,14 @@ import { useNavigate } from 'react-router-dom';
 
 export const CadastroUsuario = () => {
   const [unidades, setUnidades] = useState([]);
-  const { register, handleSubmit,setValue, control, watch, formState: { errors } } = useForm();
+  const { register, handleSubmit, setValue, control, watch, formState: { errors } } = useForm();
 
   const [abrirCadastro, setAbrirCadastro] = useState(false);
   const [buscarCadastro, setBuscarCadastro] = useState(false);
   const [atualizar, setAtualizar] = useState(false);
 
-  const navigate = useNavigate(); 
-  
+  const navigate = useNavigate();
+
   const cadastrar = async () => {
     setAbrirCadastro(true);
     setBuscarCadastro(false);
@@ -29,7 +29,7 @@ export const CadastroUsuario = () => {
     setUnidades(data);
 
   };
- 
+
   const handleChange = (e) => {
     const valor = e.target.value.replace(/[.-]/g, '');
     setValue('cpf', valor);
@@ -46,7 +46,7 @@ export const CadastroUsuario = () => {
       });
       toast.success("Usuário criado com sucesso!");
       setAbrirCadastro(false);
-      navigate("/dashboard");
+      window.location.reload();
     } catch (error) {
       toast.error(error.response.data.message);
     }
@@ -64,7 +64,7 @@ export const CadastroUsuario = () => {
             <button className={style.button_cadastrar} onClick={() => cadastrar()}>+ Cadastrar</button>
           </div>
         </div>
-        <FormPesquisaUsuario buscarCadastro={buscarCadastro} atualizar={atualizar} setAtualizar={setAtualizar} setBuscarCadastro={setBuscarCadastro} setAbrirCadastro={setAbrirCadastro}/>
+        <FormPesquisaUsuario buscarCadastro={buscarCadastro} atualizar={atualizar} setAtualizar={setAtualizar} setBuscarCadastro={setBuscarCadastro} setAbrirCadastro={setAbrirCadastro} />
 
         {abrirCadastro ? <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={style.container}>

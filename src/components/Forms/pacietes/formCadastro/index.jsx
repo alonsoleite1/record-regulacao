@@ -40,7 +40,7 @@ export const Pacientes = () => {
       });
       toast.success("Paciente criado com sucesso!");
       setAbrirCadastro(false);
-      navigate("/dashboard");
+      window.location.reload();
     } catch (error) {
       toast.error(error.response.data.message);
     }

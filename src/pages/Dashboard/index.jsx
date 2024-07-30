@@ -56,9 +56,11 @@ export const Dashboard = () => {
     const processEspecialista = async () => {
       // Mapeia os dados para um novo array com os resultados do processamento
       const processedData = await Promise.all(especialidade.map(async item => {
-       
+        
+         
         const { data } = await api.get(`/lista/quantidade/${item.nome}`);
- 
+   
+        
         return {
           nome: item.nome, quantidade: data,
         };

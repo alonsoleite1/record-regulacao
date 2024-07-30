@@ -14,7 +14,7 @@ import style from "./style.module.scss";
 
 export const ListaDeEspera = () => {
 
-    const { register, handleSubmit, setValue, control, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, setValue, control,reset, formState: { errors } } = useForm();
 
     const [especialidade, setEspecialidade] = useState([]);
 
@@ -35,7 +35,7 @@ export const ListaDeEspera = () => {
                 }
             });
             generatePDF(data)
-            //  reset();
+            reset();
             toast.success("Adicionado a lista com sucesso!");
 
         } catch (error) {
