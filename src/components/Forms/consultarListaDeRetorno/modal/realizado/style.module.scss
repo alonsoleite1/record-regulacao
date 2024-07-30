@@ -1,0 +1,155 @@
+.overlayBox {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+
+    background-color: rgba(0, 0, 0, 0.25);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .modalBox {
+        position: relative;
+        background-color: white;
+        width: 100%;
+        max-width: 60rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;   
+        
+        border-radius: 4px;
+    }
+
+    .header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.2rem;
+        font-weight: 600;
+        background-color: rgb(231, 235, 236); 
+        border-top-left-radius: .25rem;
+    }
+
+    .title{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        padding-block: .6rem;
+    }
+
+    .button_header {
+        border: none;
+        background-color: var(--color-button-exit);
+        color: white;
+        cursor: pointer;
+        border-top-right-radius: .25rem;
+    }
+
+    .button_header:hover {
+        background-color: var(--color-button-hover-exit);
+    }
+
+    .form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 1rem;
+
+    }
+    .container{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    .box_input{
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+        gap: .2rem;
+    }
+    .label {
+        font-size: .9rem;
+        font-weight: 500;
+    }
+    .input_servico{
+        width: 98%;
+        height: 2.2rem;
+        border-radius: .25rem;
+        font-size: 1rem;
+        font-weight: 500;
+        outline: none;
+        border-color: var(--color-border);
+        border-style: solid;
+        border-width: .0625rem;
+        box-sizing: border-box;
+        padding-left: .5rem;
+
+    }
+    .input_servico:focus {
+        border: .125rem solid var(--color-hover);
+    }
+    .input{
+        width: 100%;
+        height: 2.2rem;
+        border-radius: .25rem;
+        font-size: 1rem;
+        font-weight: 500;
+        outline: none;
+        cursor: pointer;
+        border-color: var(--color-border);
+        border-style: solid;
+        border-width: .0625rem;
+        box-sizing: border-box;
+        padding-left: .5rem;
+    }
+    .input:focus {
+        border: .125rem solid var(--color-hover);
+    }
+
+    .aviso {
+        color: red;
+        font-size: .75rem;
+    }
+    
+    .button_salvar{
+        border: none;
+        border-radius: .25rem;
+        padding: .5rem;
+        background-color: var(--color-button-save);
+        color: white;
+        font-weight: 600;
+        display: flex;
+        gap: .2rem;
+        cursor: pointer;
+    }
+    .button_salvar:hover {
+        background-color: var(--color-button-hover-save);
+    }
+
+    .button {
+        margin: 2rem;
+        padding: .6rem;
+        border-radius: .25rem;
+        border: none;
+        background-color: var(--color-button-save);
+        color: white;
+        font-size: .875rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: .2rem;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .button:hover {
+        background-color: var(--color-button-hover-save);
+    }
+}
