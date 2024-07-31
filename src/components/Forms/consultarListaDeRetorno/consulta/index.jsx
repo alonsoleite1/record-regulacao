@@ -12,7 +12,7 @@ import { api } from "../../../../services/api";
 import style from "./style.module.scss";
 
 
-export const ConsultarListaDeEspera = () => {
+export const ConsultarListaDeRetorno = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const [paciente, setPaciente] = useState([]);
@@ -51,7 +51,7 @@ export const ConsultarListaDeEspera = () => {
         const token = JSON.parse(localStorage.getItem("@token"));
 
         try {
-            const { data } = await api.get(`/lista/${payloand.cpf}`, {
+            const { data } = await api.get(`/retorno/${payloand.cpf}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -73,7 +73,7 @@ export const ConsultarListaDeEspera = () => {
         <DefaultTemplate>
             <section className={style.container}>
                 <div className={style.header}>
-                    <h1 className={style.title}>Consultar Lista de Espera</h1>
+                    <h1 className={style.title}>Consultar Lista de Retorno</h1>
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)} className={style.form_buscar}>
                     <input className={style.input} type="text" {...register("cpf")} />
@@ -118,8 +118,6 @@ export const ConsultarListaDeEspera = () => {
                                     <p>{lista.observacao}</p>
                                 </div>
                             </div>
-
-
 
                             {lista.realizado ? <> <div className={style.box_card}>
                                 <div className={style.box_input}>

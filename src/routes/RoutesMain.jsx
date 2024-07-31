@@ -16,13 +16,17 @@ import { GerarListaDeEspera } from "../components/Forms/geraListaDeEspera";
 import { DashboardRealizadas } from "../components/Forms/dashboardRealizadas";
 import { AgendaProfissionais } from "../components/Forms/agendaProfissionais";
 import { Login } from "../pages/Login/login";
+import { Inicio } from "../pages/Inicio";
+import { ListaDeRetorno } from "../components/Forms/listaDeRetorno";
+import { ConsultarListaDeRetorno } from "../components/Forms/consultarListaDeRetorno/consulta";
+import { GerarListaDeRetorno } from "../components/Forms/geraListaDeRetorno";
 
 
 export const RoutesMain = () => {
     return (
         <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/inicio" element={<Inicio/>}/>
             <Route path="/usuario" element={<CadastroUsuario />} />
             <Route path="/profissional" element={<Profissionais />} />
             <Route path="/unidade" element={<CadastroUnidade />} />
@@ -33,9 +37,17 @@ export const RoutesMain = () => {
             <Route path="/criarAgenda" element={<CriarAgenda />} />
             <Route path="/agenda" element={<Agendar />} />
             <Route path="/consultarAgenda" element={<ConsultarAgenda />} />
+
             <Route path="/listaDeEspera" element={<ListaDeEspera/>} />
             <Route path="/consultarListaDeEspera" element={<ConsultarListaDeEspera/>} />
             <Route path="/gerarListaDeEspera" element={<GerarListaDeEspera/>} />
+            <Route path="/dashboardEspera" element={<Dashboard />} />
+            
+            <Route path="/listaDeRetorno" element={<ListaDeRetorno/>} />
+            <Route path="/consultarListaDeRetorno" element={<ConsultarListaDeRetorno/>} />
+            <Route path="/gerarListaDeRetorno" element={<GerarListaDeRetorno/>} />
+            <Route path="/dashboardRetorno" element={<Dashboard />} />
+
             <Route path="/dashboardRealizada" element={<DashboardRealizadas/>} />
             <Route path="/agendaProfissional" element={<AgendaProfissionais/>} />
         </Routes>

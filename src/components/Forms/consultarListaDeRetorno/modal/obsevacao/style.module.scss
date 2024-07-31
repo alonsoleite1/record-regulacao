@@ -1,0 +1,92 @@
+.overlayBox {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+
+    background-color: rgba(0, 0, 0, 0.25);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .modalBox {
+        position: relative;
+        background-color: white;
+        width: 100%;
+        max-width: 30.25rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;   
+        
+        border-radius: 4px;
+    }
+
+    .header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        font-size: 1.2rem;
+        font-weight: 600;
+        background-color: rgb(231, 235, 236); 
+        border-top-left-radius: .25rem;
+    }
+
+    .title{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+        padding-block: .6rem;
+    }
+
+    .button_header {
+        border: none;
+        background-color: var(--color-button-exit);
+        color: white;
+        cursor: pointer;
+        border-top-right-radius: .25rem;
+    }
+
+    .button_header:hover {
+        background-color: var(--color-button-hover-exit);
+    }
+
+    .form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding-bottom: 1rem;
+
+    }
+    .input{
+        width: 98.8%;
+        height: 5rem;
+        margin: auto;
+        
+        font-size: 1rem;
+        font-weight: 500;
+        outline: none;
+
+    }
+    .input:focus {
+        border: .125rem solid var(--color-hover);
+    }
+    
+    .button_salvar{
+        border: none;
+        border-radius: .25rem;
+        padding: .5rem;
+        background-color: var(--color-button-save);
+        color: white;
+        font-weight: 600;
+        display: flex;
+        gap: .2rem;
+        cursor: pointer;
+    }
+    .button_salvar:hover {
+        background-color: var(--color-button-hover-save);
+    }
+}

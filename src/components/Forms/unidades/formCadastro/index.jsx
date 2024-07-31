@@ -35,7 +35,7 @@ export const CadastroUnidade = () => {
       });
       toast.success("Unidade criada com sucesso!");
       setAbrirCadastro(false);
-      navigate("/dashboard");
+      navigate("/inicio");
     } catch (error) {
       toast.error(error.response.data.message);
     }

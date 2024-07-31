@@ -1,6 +1,6 @@
 import { DefaultTemplate } from "../../DefaultTemplate";
 import { useForm } from 'react-hook-form';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../../../services/api";
 import { toast } from 'react-toastify';
 import jsPDF from "jspdf";
@@ -9,19 +9,35 @@ import style from "./style.module.scss";
 
 
 
-export const GerarListaDeEspera = () => {
+export const GerarListaDeRetorno = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const [especialidade, setEspecialidade] = useState([]);
 
+    useEffect(() => {
+        const buscarEspecialidades = async () => {
+
+            const token = JSON.parse(localStorage.getItem("@token"));
+
+            const { data } = await api.get("/especialista", {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            setEspecialidade(data);
+
+        };
+
+buscarEspecialidades();
+
+    }, [])
     const onSubmit = async (payloand) => {
-
-
 
         try {
             const { data } = await api.get(`/gerar?espera=${payloand.espera}&regulacao=${payloand.regulacao}&classificacao=${payloand.classificacao}&quantidade=${payloand.quantidade}`);
-            
+
 
             const pdf = new jsPDF({
                 orientation: 'portrait',
@@ -33,14 +49,14 @@ export const GerarListaDeEspera = () => {
 
             const pageWidth = pdf.internal.pageSize.getWidth();
             const title = `LISTA DE ESPERA ${payloand.espera.toUpperCase()}`;
-        
+
             // Centralizar o título
             const textWidth = pdf.getTextWidth(title);
             const x = (pageWidth - textWidth) / 2.1;
             pdf.text(title, x, 15);
 
 
-            const tableColumn = ["CPF", "NOME", "CONTATO 1","CONTATO 2"];
+            const tableColumn = ["CPF", "NOME", "CONTATO 1", "CONTATO 2"];
             const tableRows = [];
 
             data.map(item => {
@@ -75,44 +91,17 @@ export const GerarListaDeEspera = () => {
         // Aqui você pode enviar os dados para um servidor, por exemplo
     };
 
-    const handleSelectChange = async (e) => {
-        const selectedValue = e.target.value;
 
-        const token = JSON.parse(localStorage.getItem("@token"));
-        try {
-            const { data } = await api.get(`/${selectedValue}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-
-            setEspecialidade(data);
-
-        } catch (error) {
-            console.error('Erro ao buscar dados da API:', error);
-        }
-    };
 
     return (
         <DefaultTemplate>
             <section className={style.container}>
                 <div className={style.header}>
-                    <h1 className={style.title}>Gerar lista de espera</h1>
+                    <h1 className={style.title}>Gerar lista de retorno</h1>
                 </div>
 
                 <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
                     <div className={style.box_cadastro}>
-
-                        <div className={style.box_input}>
-                            <label className={style.label}>Serviço:</label>
-                            <select className={style.input} {...register('servico', { required: 'Serviço é obrigatório' })} onChange={handleSelectChange} >
-                                <option value="">Selecione um serviço</option>
-                                <option value="especialista">Especialista</option>
-                                <option value="cirugia">Cirugia</option>
-                                <option value="exame">Exame/Procedimento</option>
-                            </select>
-                            {errors.servico && <span className={style.aviso}>{errors.servico.message}</span>}
-                        </div>
 
                         <div className={style.box_input}>
                             <label className={style.label}>Especialidade:</label>
@@ -130,8 +119,8 @@ export const GerarListaDeEspera = () => {
                             <label className={style.label}>Regulaçao:</label>
                             <select className={style.input} {...register('regulacao', { required: 'Regulação é obrigatória' })}>
                                 <option value="">Selecione uma regulação</option>
-                                <option value="sede">Sede</option>
-                                <option value="nasf">Nasf</option>
+                                <option value="Sede">Sede</option>
+                                <option value="Nasf">Nasf</option>
                             </select>
                             {errors.regulacao && <span className={style.aviso}>{errors.regulacao.message}</span>}
                         </div>

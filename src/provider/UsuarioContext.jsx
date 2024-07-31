@@ -64,7 +64,7 @@ export const UsuarioContextProvider = ({ children }) => {
             
 
             toast.success("Bem vindo!");
-            navigate("/dashboard");
+            navigate("/inicio");
         } catch (error) {
             toast.error("Login ou senha invalido!");
         }
