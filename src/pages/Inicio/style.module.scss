@@ -1,22 +1,12 @@
 .container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
     margin-top: .5rem;
     flex-grow: 1;
-    ;
-}
-
-.especialidade {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    padding-bottom: 1rem;
-}
-
-.logo {
-    margin: 0 auto;
-    width: 100%;
+    background-color: var(--color-pages);
+    color: rgb(9, 149, 204);
+    font-size: 4rem;
+    font-weight: 700;
 }
