@@ -58,7 +58,7 @@ export const Dashboard = () => {
       const processedData = await Promise.all(especialidade.map(async item => {
         
          
-        const { data } = await api.get(`/lista/quantidade/${item.nome}`);
+        const { data } = await api.get(`/lista/sede/${item.nome}`);
    
         
         return {
@@ -74,7 +74,7 @@ export const Dashboard = () => {
       // Mapeia os dados para um novo array com os resultados do processamento
       const processedData = await Promise.all(exame.map(async item => {
        
-        const { data } = await api.get(`/lista/quantidade/${item.nome}`);
+        const { data } = await api.get(`/lista/sede/${item.nome}`);
         
         return {
           nome: item.nome, quantidade: data,
@@ -89,7 +89,7 @@ export const Dashboard = () => {
       // Mapeia os dados para um novo array com os resultados do processamento
       const processedData = await Promise.all(cirurgia.map(async item => {
        
-        const {data}  = await api.get(`/lista/quantidade/${item.nome}`);
+        const {data}  = await api.get(`/lista/sede/${item.nome}`);
     
         return {
           nome: item.nome, quantidade: data,
@@ -110,7 +110,7 @@ export const Dashboard = () => {
   return (
     <DefaultTemplate>
       <section className={style.container}>
-        <h1 className={style.header}>Fila de Espera</h1>
+        <h1 className={style.header}>FILA DE ESPERA SEDE</h1>
         <ul className={style.especialidade}>
           <h1 className={style.title}>Especialidade</h1>
 
