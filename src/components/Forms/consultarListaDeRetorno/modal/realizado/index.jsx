@@ -14,6 +14,7 @@ export const RealizadoModal = ({ setModalRealizado, listaId, profissionais, moda
 
    const onSubmit = async (payload) => {
       const token = JSON.parse(localStorage.getItem("@token"));
+
       try {
          const { data } = await api.patch(`/lista/${listaId}`, payload, {
             headers: {

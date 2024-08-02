@@ -171,8 +171,8 @@ export const ListaDeEspera = () => {
                             <label className={style.label}>Regulação:</label>
                             <select className={style.input}  {...register('regulacao', { required: 'Regulação é obrigatório' })}>
                                 <option value="">Selecione a regulação</option>
-                                <option value="sede">Sede</option>
-                                <option value="nasf">Nasf</option>
+                                <option value="Sede">Sede</option>
+                                <option value="Nasf">Nasf</option>
                             </select>
                             {errors.regulacao && <span className={style.aviso}>{errors.regulacao.message}</span>}
                         </div>

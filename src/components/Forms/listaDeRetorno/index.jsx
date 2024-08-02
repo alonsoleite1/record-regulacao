@@ -42,8 +42,8 @@ export const ListaDeRetorno = () => {
     const onSubmit = async (formData) => {
         const token = JSON.parse(localStorage.getItem("@token"));
 
-        const payloand = { cpf: formData.cpf, especialidade: formData.especialidade, local: formData.local, retorno: parseInt(formData.retorno), regulação: formData.regulacao };
-
+        const payloand = { cpf: formData.cpf, especialidade: formData.especialidade, local: formData.local, dataRetorno: parseInt(formData.dataRetorno),classificacao:formData.classificacao, regulação: formData.regulacao };
+console.log(payloand);
         try {
             const { data } = await api.post("/retorno", payloand, {
                 headers: {
@@ -97,7 +97,7 @@ export const ListaDeRetorno = () => {
             }
         })
 
-        pdf.save('Lista');
+        pdf.save('Lista de retorno');
     };
 
 
@@ -156,7 +156,7 @@ export const ListaDeRetorno = () => {
 
                         <div className={style.box_input}>
                             <label className={style.label}>Data de retorno:</label>
-                            <select className={style.input}  {...register('retorno', { required: 'Data de retorno é obrigatório' })}>
+                            <select className={style.input}  {...register('dataRetorno', { required: 'Data de retorno é obrigatório' })}>
                                 <option value="">Selecione data de retorno</option>
                                 <option value="0">Sem data</option>
                                 <option value="7">7 Dias</option>
@@ -169,7 +169,17 @@ export const ListaDeRetorno = () => {
                                 <option value="180">6 Meses</option>
                                 <option value="360">1 Ano</option>
                             </select>
-                            {errors.retorno && <span className={style.aviso}>{errors.retorno.message}</span>}
+                            {errors.dataRetorno && <span className={style.aviso}>{errors.dataRetorno.message}</span>}
+                        </div>
+
+                        <div className={style.box_input}>
+                            <label className={style.label}>Classificação:</label>
+                            <select className={style.input} {...register('classificacao', { required: 'Classificação é obrigatória' })}>
+                                <option value="">Selecione a classificação</option>
+                                <option value="normal">Normal</option>
+                                <option value="urgente">Urgente</option>
+                            </select>
+                            {errors.classificacao && <span className={style.aviso}>{errors.classificacao.message}</span>}
                         </div>
 
                         <div className={style.box_input}>
