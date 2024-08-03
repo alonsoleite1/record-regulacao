@@ -22,9 +22,6 @@ export const Gerencia = () => {
         <Link to="/gerarListaDeEspera" className={style.link}>
             <span>Gerar Lista de Espera</span>
         </Link>
-        <Link to="/dashboardEspera" className={style.link}>
-            <span>Dashboard Lista de Espera</span>
-        </Link>
 
         <Link to="/listaDeRetorno" className={style.link}>
             <span>Lista de Retorno</span>
@@ -35,7 +32,10 @@ export const Gerencia = () => {
         <Link to="/gerarListaDeRetorno" className={style.link}>
             <span>Gerar Lista de Retorno</span>
         </Link>
-        <Link to="/dashboardRetorno" className={style.link}>
+        <Link to="/dashboardSede" className={style.link}>
+            <span>Dashboard Lista de Espera</span>
+        </Link>
+        <Link to="/dashboardNasf" className={style.link}>
             <span>Dashboard Lista de Retorno</span>
         </Link>
 

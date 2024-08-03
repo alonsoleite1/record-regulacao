@@ -99,7 +99,7 @@ export const ListaDeEspera = () => {
             }
         })
 
-        pdf.save('Lista');
+        pdf.save(`RECIBO ${recibo.cpf}`);
     };
 
 

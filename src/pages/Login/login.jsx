@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import logo from "../../assets/logo.png"
-import style from "./style.module.scss";
+import logo from "../../assets/logo.png";
 import { UsuarioContext } from '../../provider/UsuarioContext';
+import style from "./style.module.scss";
 
 export const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
