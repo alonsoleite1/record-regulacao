@@ -8,7 +8,7 @@
 }
 .header{
     width: 100%;
-    background-color: var(--color-button-register);
+    background-color: #01678f;
     color: white;
     text-align: center;
     padding-block: .6rem;
@@ -40,23 +40,14 @@
     padding: .8rem;
     border-radius: .5rem;
     gap: .5rem;
+    background-color: green;
+    color: white;
 }
 .label {
     font-size: .9rem;
-    font-weight: 500;
+    font-weight: 600;
 }
-.span1{
-    background-color: green;
-    padding: 1rem;
-    border-radius: 1.25rem;
-}
-.span2{
-    background-color: rgb(221, 221, 31);
-    padding: 1rem;
-    border-radius: 1.25rem;
-}
-.span3{
-    background-color: rgb(218, 23, 23);
-    padding: 1rem;
-    border-radius: 1.25rem;
+.quantidade{
+    font-weight: 700;
+    border-bottom: 1px solid;
 }

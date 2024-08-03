@@ -36,7 +36,7 @@ buscarEspecialidades();
     const onSubmit = async (payloand) => {
 
         try {
-            const { data } = await api.get(`/gerar?espera=${payloand.espera}&regulacao=${payloand.regulacao}&classificacao=${payloand.classificacao}&quantidade=${payloand.quantidade}`);
+            const { data } = await api.get(`/gerar/retorno?espera=${payloand.espera}&regulacao=${payloand.regulacao}&classificacao=${payloand.classificacao}&local=${payloand.local}&quantidade=${payloand.quantidade}`);
 
 
             const pdf = new jsPDF({
@@ -48,7 +48,7 @@ buscarEspecialidades();
             pdf.setFontSize(12);
 
             const pageWidth = pdf.internal.pageSize.getWidth();
-            const title = `LISTA DE ESPERA ${payloand.espera.toUpperCase()}`;
+            const title = `LISTA DE RETORNO ${payloand.espera.toUpperCase()}`;
 
             // Centralizar o título
             const textWidth = pdf.getTextWidth(title);
@@ -83,7 +83,7 @@ buscarEspecialidades();
                 }
             })
 
-            pdf.save('Lista');
+            pdf.save(`LISTA DE RETORNO ${payloand.espera}`.toUpperCase());
 
         } catch (error) {
             toast.error('Não foi gerado a lista!');
@@ -133,6 +133,16 @@ buscarEspecialidades();
                                 <option value="urgente">Urgente</option>
                             </select>
                             {errors.classificacao && <span className={style.aviso}>{errors.classificacao.message}</span>}
+                        </div>
+
+                        <div className={style.box_input}>
+                            <label className={style.label}>Local:</label>
+                            <select className={style.input} {...register('local', { required: 'Local é obrigatório' })}>
+                                <option value="">Selecione uma classificação</option>
+                                <option value="Municipio">Municipio</option>
+                                <option value="Policlinica">Policlinica</option>
+                            </select>
+                            {errors.local && <span className={style.aviso}>{errors.local.message}</span>}
                         </div>
 
                         <div className={style.box_input}>

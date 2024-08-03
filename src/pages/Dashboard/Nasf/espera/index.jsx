@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { DefaultTemplate } from "../../components/DefaultTemplate";
-import { api } from "../../services/api";
+import { DefaultTemplate } from "../../../../components/DefaultTemplate";
+import { api } from "../../../../services/api";
+import { DashboardNasfRetorno } from "../retorno";
 import style from "./style.module.scss";
 
-export const Dashboard = () => {
+export const DashboardNasf = () => {
   const [especialidade, setEspecialidade] = useState([]);
   const [listEspecialidade, setListEspecialidade] = useState([]);
 
@@ -58,7 +59,7 @@ export const Dashboard = () => {
       const processedData = await Promise.all(especialidade.map(async item => {
         
          
-        const { data } = await api.get(`/lista/sede/${item.nome}`);
+        const { data } = await api.get(`/lista/nasf/${item.nome}`);
    
         
         return {
@@ -74,7 +75,7 @@ export const Dashboard = () => {
       // Mapeia os dados para um novo array com os resultados do processamento
       const processedData = await Promise.all(exame.map(async item => {
        
-        const { data } = await api.get(`/lista/sede/${item.nome}`);
+        const { data } = await api.get(`/lista/nasf/${item.nome}`);
         
         return {
           nome: item.nome, quantidade: data,
@@ -89,7 +90,7 @@ export const Dashboard = () => {
       // Mapeia os dados para um novo array com os resultados do processamento
       const processedData = await Promise.all(cirurgia.map(async item => {
        
-        const {data}  = await api.get(`/lista/sede/${item.nome}`);
+        const {data}  = await api.get(`/lista/nasf/${item.nome}`);
     
         return {
           nome: item.nome, quantidade: data,
@@ -110,15 +111,14 @@ export const Dashboard = () => {
   return (
     <DefaultTemplate>
       <section className={style.container}>
-        <h1 className={style.header}>FILA DE ESPERA SEDE</h1>
+        <h1 className={style.header}>FILA DE ESPERA NASF</h1>
         <ul className={style.especialidade}>
           <h1 className={style.title}>Especialidade</h1>
 
           {listEspecialidade.map(element => (
             <li key={element.id} className={style.card}>
               <h3 className={style.label}>{element.nome}</h3>
-              <p>{element.quantidade}</p>
-              <span className={style.span1}></span>
+              <p className={style.quantidade}>{element.quantidade}</p>
             </li>
           ))}
 
@@ -130,8 +130,7 @@ export const Dashboard = () => {
           {listExame.map(element => (
             <li key={element.id} className={style.card}>
               <h3 className={style.label}>{element.nome}</h3>
-              <p>{element.quantidade}</p>
-              <span className={style.span1}></span>
+              <p className={style.quantidade}>{element.quantidade}</p>
             </li>
           ))}
 
@@ -142,14 +141,18 @@ export const Dashboard = () => {
 
           {listCirurgia.map(element => (
             <li key={element.id} className={style.card}>
-              <h3 className={style.label}>{element.nome}</h3>
-              <p>{element.quantidade}</p>
-              <span className={style.span1}></span>
+               <h3 className={style.label}>{element.nome}</h3>
+               <p className={style.quantidade}>{element.quantidade}</p>
             </li>
           ))}
 
         </ul>
       </section>
+ 
+      <section>
+        <DashboardNasfRetorno/>
+      </section>
+      
     </DefaultTemplate>
   );
 };

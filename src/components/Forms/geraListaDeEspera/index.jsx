@@ -67,7 +67,7 @@ export const GerarListaDeEspera = () => {
                 }
             })
 
-            pdf.save('Lista');
+            pdf.save(`LISTA DE ESPERA ${payloand.espera}`.toUpperCase());
 
         } catch (error) {
             toast.error('Não foi gerado a lista!');

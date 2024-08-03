@@ -37,9 +37,11 @@ export const ConsultarListaDeEspera = () => {
     });
 
     const verificaPosicao = async (id, cpf, especialidade, posicao, createdAt) => {
+
+        
         const token = JSON.parse(localStorage.getItem("@token"));
 
-        const { data } = await api.get(`/lista/posicao/${id}`, {
+        const { data } = await api.get(`/lista/posicao/atual?id=${id}&espera=${especialidade}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -54,7 +56,7 @@ export const ConsultarListaDeEspera = () => {
         pdf.setFontSize(12);
 
         const pageWidth = pdf.internal.pageSize.getWidth();
-        const title = `RECIBO DE INSERÇÃO A LISTA DE ESPERA `;
+        const title = `RECIBO DE ATUALIZAÇÃO A LISTA DE ESPERA `;
 
         // Centralizar o título
         const textWidth = pdf.getTextWidth(title);

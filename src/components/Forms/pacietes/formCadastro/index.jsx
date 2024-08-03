@@ -1,21 +1,43 @@
 import React, { useState } from 'react';
-import { useForm ,Controller} from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import InputMask from 'react-input-mask';
 import { DefaultTemplate } from '../../../DefaultTemplate';
 import { RiSave3Fill } from "react-icons/ri";
-import style from "./style.module.scss";
 import { api } from '../../../../services/api';
 import { FormPesquisaPaciente } from '../formBusca';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import style from "./style.module.scss";
 
 export const Pacientes = () => {
-  const { register, handleSubmit,setValue,control, formState: { errors } } = useForm();
+  const { register, handleSubmit, setValue, control, formState: { errors } } = useForm();
   const [atualizar, setAtualizar] = useState(false);
   const [abrirCadastro, setAbrirCadastro] = useState(false);
   const [buscarCadastro, setBuscarCadastro] = useState(false);
 
-  const navigate = useNavigate();
+  const fetchAddress = async (cep) => {
+    try {
+      const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+      if (!response.data.erro) {
+        setValue('rua', response.data.logradouro);
+        setValue('bairro', response.data.bairro);
+        setValue('cidade', response.data.localidade);
+        setValue('estado', response.data.uf);
+      } else {
+        alert('CEP não encontrado');
+      }
+    } catch (error) {
+      console.error('Erro ao buscar o CEP:', error);
+      alert('Erro ao buscar o CEP');
+    }
+  };
+
+  const handleCepBlur = (event) => {
+    const cep = event.target.value.replace(/\D/g, '');
+    if (cep.length === 8) {
+      fetchAddress(cep);
+    }
+  };
 
   const cadastrar = async () => {
     setAbrirCadastro(true);
@@ -31,6 +53,7 @@ export const Pacientes = () => {
 
   const onSubmit = async (formData) => {
     const token = JSON.parse(localStorage.getItem("@token"));
+
 
     try {
       const { data } = await api.post("/paciente", formData, {
@@ -105,12 +128,26 @@ export const Pacientes = () => {
               />
               {errors.cns && <span className={style.aviso}>{errors.cns.message}</span>}
             </div>
-        
+
+            <div className={style.box_input}>
+              <label className={style.label}>CEP:</label>
+              <InputMask
+                className={style.input}
+                mask="99999-999"
+                {...register('cep', {
+                  required: 'CEP é obrigatório',
+                  validate: value => /^[0-9]{5}-[0-9]{3}$/.test(value) || 'CEP inválido'
+                })}
+                onBlur={handleCepBlur}
+              >
+                {(inputProps) => <input {...inputProps} />}
+              </InputMask>
+              {errors.cep && <span className={style.aviso}>{errors.cep.message}</span>}
+            </div>
+
             <div className={style.box_input}>
               <label className={style.label}>Rua:</label>
-              <input className={style.input}
-                {...register('rua', { required: 'Rua é obrigatória' })}
-              />
+              <input className={style.input} {...register('rua', { required: 'Rua é obrigatória' })} />
               {errors.rua && <span className={style.aviso}>{errors.rua.message}</span>}
             </div>
             <div className={style.box_input}>
@@ -123,38 +160,21 @@ export const Pacientes = () => {
             </div>
             <div className={style.box_input}>
               <label className={style.label}>Bairro:</label>
-              <input className={style.input}
-                {...register('bairro', { required: 'Bairro é obrigatória' })}
-              />
+              <input className={style.input} {...register('bairro', { required: 'Bairro é obrigatório' })} />
               {errors.bairro && <span className={style.aviso}>{errors.bairro.message}</span>}
             </div>
             <div className={style.box_input}>
               <label className={style.label}>Cidade:</label>
-              <input className={style.input}
-                {...register('cidade', { required: 'Cidade é obrigatória' })}
-              />
+              <input className={style.input} {...register('cidade', { required: 'Cidade é obrigatória' })} />
               {errors.cidade && <span className={style.aviso}>{errors.cidade.message}</span>}
             </div>
             <div className={style.box_input}>
               <label className={style.label}>Estado:</label>
-              <input className={style.input}
-                {...register('estado', { required: 'Estado é obrigatório' })}
-              />
+              <input className={style.input} {...register('estado', { required: 'Estado é obrigatório' })} />
               {errors.estado && <span className={style.aviso}>{errors.estado.message}</span>}
             </div>
-            <div className={style.box_input}>
-              <label className={style.label}>CEP:</label>
-              <InputMask className={style.input}
-                mask="99999-999"
-                {...register('cep', {
-                  required: 'CEP é obrigatório',
-                  validate: value => /^[0-9]{5}-[0-9]{3}$/.test(value) || 'CEP inválido'
-                })}
-              >
-                {(inputProps) => <input {...inputProps} />}
-              </InputMask>
-              {errors.cep && <span className={style.aviso}>{errors.cep.message}</span>}
-            </div>
+
+
             <div className={style.box_input}>
               <label className={style.label}>Posto de Saúde:</label>
               <input className={style.input} {...register('ubs', { required: 'Posto de Saúde é obrigatório' })} />

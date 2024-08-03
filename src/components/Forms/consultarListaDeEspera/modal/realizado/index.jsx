@@ -20,7 +20,7 @@ export const RealizadoModal = ({ setModalRealizado, listaId, profissionais, moda
       const currentMinutes = currentTime.getMinutes();
       const dateTime = new Date(`${formData.realizado}T${String(currentHour).padStart(2, '0')}:${String(currentMinutes).padStart(2, '0')}`);
 
-      const payloand = {profissional:formData.nomeProfissional, realizado: dateTime}
+      const payloand = {nomeProfissional:formData.nomeProfissional, realizado: dateTime}
 
       console.log(dateTime);
 
@@ -30,7 +30,7 @@ export const RealizadoModal = ({ setModalRealizado, listaId, profissionais, moda
                Authorization: `Bearer ${token}`
             }
          });
-         navigate("/consultarListaDeEspera");
+         window.location.reload();
          toast.success("Atualizado!");
       } catch (error) {
          toast.error("Não foi possivel atualizar!");

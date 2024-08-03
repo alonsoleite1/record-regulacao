@@ -37,7 +37,7 @@ export const ConsultarListaDeRetorno = () => {
     const verificaPosicao = async (id, cpf, especialidade, posicao, createdAt) => {
         const token = JSON.parse(localStorage.getItem("@token"));
 
-        const { data } = await api.get(`/lista/posicao/${id}`, {
+        const { data } = await api.get(`/retorno/posicao/atual?id=${id}&espera=${especialidade}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -52,7 +52,7 @@ export const ConsultarListaDeRetorno = () => {
         pdf.setFontSize(12);
 
         const pageWidth = pdf.internal.pageSize.getWidth();
-        const title = `RECIBO DE INSERÇÃO A LISTA DE ESPERA `;
+        const title = `RECIBO DE ATUALIZAÇÂO A LISTA DE ESPERA `;
 
         // Centralizar o título
         const textWidth = pdf.getTextWidth(title);
@@ -169,6 +169,10 @@ export const ConsultarListaDeRetorno = () => {
                                 <div className={style.box_input}>
                                     <span className={style.label}>Observação: </span>
                                     <p>{lista.observacao}</p>
+                                </div>
+                                <div className={style.box_input}>
+                                    <span className={style.label}>Retorno: </span>
+                                    <p>{lista.dataRetorno} Dias</p>
                                 </div>
                             </div>
 

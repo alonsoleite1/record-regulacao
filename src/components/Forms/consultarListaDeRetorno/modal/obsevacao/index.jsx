@@ -11,12 +11,13 @@ export const ObservacaoModal = ({ listaId, setModalObservacao, modalRef, escRef 
    const onSubmit = async (payload) => {
       const token = JSON.parse(localStorage.getItem("@token"));
       try {
-         const { data } = await api.patch(`/lista/${listaId}`, payload, {
+         const { data } = await api.patch(`/retorno/${listaId}`, payload, {
             headers: {
                Authorization: `Bearer ${token}`
             }
          });
          toast.success("Atualizado!");
+         window.location.reload();
       } catch (error) {
          toast.error("Não foi possivel atualizar!");
       }

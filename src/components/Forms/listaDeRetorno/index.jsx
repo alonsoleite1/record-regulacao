@@ -42,8 +42,8 @@ export const ListaDeRetorno = () => {
     const onSubmit = async (formData) => {
         const token = JSON.parse(localStorage.getItem("@token"));
 
-        const payloand = { cpf: formData.cpf, especialidade: formData.especialidade, local: formData.local, dataRetorno: parseInt(formData.dataRetorno),classificacao:formData.classificacao, regulação: formData.regulacao };
-console.log(payloand);
+        const payloand = { cpf: formData.cpf, especialidade: formData.especialidade, local: formData.local, dataRetorno: Number(formData.dataRetorno),classificacao:formData.classificacao, regulacao: formData.regulacao };
+
         try {
             const { data } = await api.post("/retorno", payloand, {
                 headers: {
@@ -70,7 +70,7 @@ console.log(payloand);
         pdf.setFontSize(12);
 
         const pageWidth = pdf.internal.pageSize.getWidth();
-        const title = `RECIBO DE INSERÇÃO A LISTA DE ESPERA `;
+        const title = `RECIBO DE INSERÇÃO A LISTA DE RETORNO `;
 
         // Centralizar o título
         const textWidth = pdf.getTextWidth(title);
@@ -97,7 +97,7 @@ console.log(payloand);
             }
         })
 
-        pdf.save('Lista de retorno');
+        pdf.save(`RECIBO ${recibo.cpf}`);
     };
 
 

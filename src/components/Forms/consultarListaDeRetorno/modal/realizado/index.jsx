@@ -10,18 +10,24 @@ export const RealizadoModal = ({ setModalRealizado, listaId, profissionais, moda
 
    const { register, handleSubmit, formState: { errors } } = useForm();
 
-   const navigate = useNavigate();
-
-   const onSubmit = async (payload) => {
+   const onSubmit = async (formData) => {
       const token = JSON.parse(localStorage.getItem("@token"));
 
+      const currentTime = new Date();
+      const currentHour = currentTime.getHours();
+      const currentMinutes = currentTime.getMinutes();
+      const dateTime = new Date(`${formData.realizado}T${String(currentHour).padStart(2, '0')}:${String(currentMinutes).padStart(2, '0')}`);
+
+
+      const payloand = {nomeProfissional:formData.nomeProfissional, realizado: dateTime}
+
       try {
-         const { data } = await api.patch(`/lista/${listaId}`, payload, {
+         const { data } = await api.patch(`/retorno/${listaId}`, payloand, {
             headers: {
                Authorization: `Bearer ${token}`
             }
          });
-         navigate("/dashboard");
+         window.location.reload();
          toast.success("Atualizado!");
       } catch (error) {
          toast.error("Não foi possivel atualizar!");
