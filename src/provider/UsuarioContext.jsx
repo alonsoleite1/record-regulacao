@@ -32,7 +32,7 @@ export const UsuarioContextProvider = ({ children }) => {
 
             } catch (error) {
 
-                navigate("/");
+                navigate("");
                 setUser(null);
                 localStorage.removeItem("@token");
                 localStorage.removeItem("@nome");
@@ -71,7 +71,7 @@ export const UsuarioContextProvider = ({ children }) => {
     };
 
     const logout = () => {
-        navigate("/");
+        navigate("");
         setUser(null);
         localStorage.removeItem("@token");
         localStorage.removeItem("@nome");
