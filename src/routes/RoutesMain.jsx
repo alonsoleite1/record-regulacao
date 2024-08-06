@@ -22,7 +22,7 @@ import { DashboardNasf } from "../pages/Dashboard/Nasf/espera";
 export const RoutesMain = () => {
     return (
         <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="" element={<Login />} />
             <Route path="/inicio" element={<Inicio/>}/>
             <Route path="/usuario" element={<CadastroUsuario />} />
             <Route path="/profissional" element={<Profissionais />} />
