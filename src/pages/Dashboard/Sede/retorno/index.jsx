@@ -68,7 +68,7 @@ export const DashboardSedeRetorno = () => {
     };
     
     listaMunicipio();
-    listaPoliclinica()
+    listaPoliclinica();
    
 
   }, [especialidade]);

@@ -42,7 +42,7 @@ export const Especialidades = () => {
         <DefaultTemplate>
             <section className={style.container}>
                 <div className={style.header}>
-                    <h1 className={style.title}>Especialistas</h1>
+                    <h1 className={style.title}>Especialidades</h1>
                     <div className={style.div_button}>
                         <button className={style.button_cadastrar} onClick={() => cadastrar()}>+ Cadastrar</button>
                     </div>

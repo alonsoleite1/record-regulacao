@@ -106,14 +106,14 @@
     justify-content: center;
     gap: 1rem;
 }
-.title{
-    width: 100%;
-    padding-block: .6rem;
+.title {
+    width: 50%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-header);
-    font-weight: 600;
+    justify-content: flex-end;
+    padding-block: .8rem;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bolder;
 }
 .card{
     display: flex;

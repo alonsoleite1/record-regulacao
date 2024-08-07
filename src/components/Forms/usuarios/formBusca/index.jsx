@@ -74,8 +74,7 @@ export const FormPesquisaUsuario = ({ buscarCadastro, atualizar, setAtualizar, s
 
       {buscarCadastro ? <ul className={style.ul}>
         <li className={style.card}>
-          <input className={style.input_user} type="text"
-            value={usuario.nome} />
+          <p className={style.name}>{usuario.nome.toUpperCase()}</p>
           <div className={style.div_button}>
             <button className={style.button_atualizar} onClick={() => updateUsuario()}>Atualizar</button>
             <button className={style.button_deletar} onClick={() => deletarUsuario()}><FaRegTrashAlt /></button>

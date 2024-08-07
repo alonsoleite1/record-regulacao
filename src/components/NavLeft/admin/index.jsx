@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 import style from "./style.module.scss";
+import { FaHouse,FaUsers,FaTableList } from "react-icons/fa6";
+import { FaUser,FaUserMd,FaHospital,FaList } from "react-icons/fa";
+import { MdFormatListBulletedAdd,MdDashboard } from "react-icons/md";
+import { TbListSearch } from "react-icons/tb";
 
 export const Admin = () => {
 
@@ -8,53 +12,53 @@ export const Admin = () => {
         <nav className={style.container}>
 
             <Link to="/inicio" className={style.link}>
-                <span>Inicio</span>
+                <span><FaHouse /> Inicio</span>
             </Link>
             <Link to="/usuario" className={style.link}>
-                <span>Usuários</span>
+                <span><FaUser /> Usuários</span>
             </Link>
             <Link to="/profissional" className={style.link}>
-                <span>Profissionais</span>
+                <span><FaUserMd /> Profissionais</span>
             </Link>
             <Link to="/unidade" className={style.link}>
-                <span>Unidades </span>
+                <span><FaHospital /> Unidades </span>
             </Link>
             <Link to="/especialidade" className={style.link}>
-                <span>Especialidades</span>
+                <span><FaList /> Especialidades</span>
             </Link>
             <Link to="/exame" className={style.link}>
-                <span>Exames e Procedimentos</span>
+                <span><FaList /> Exames e Procedimentos</span>
             </Link>
             <Link to="/cirugia" className={style.link}>
-                <span>Cirurgias</span>
+                <span><FaList /> Cirurgias</span>
             </Link>
             <Link to="/paciente" className={style.link}>
-                <span>Pacientes</span>
+                <span><FaUsers /> Pacientes</span>
             </Link>
             <Link to="/listaDeEspera" className={style.link}>
-                <span>Adicionar Espera</span>
+                <span><MdFormatListBulletedAdd /> Adicionar Espera</span>
             </Link>
             <Link to="/consultarListaDeEspera" className={style.link}>
-                <span>Consultar Lista de Espera</span>
+                <span><TbListSearch /> Consultar Lista de Espera</span>
             </Link>
             <Link to="/gerarListaDeEspera" className={style.link}>
-                <span>Gerar Lista de Espera</span>
+                <span><FaTableList /> Gerar Lista de Espera</span>
             </Link>
 
             <Link to="/listaDeRetorno" className={style.link}>
-                <span>Adicionar Retorno</span>
+                <span><MdFormatListBulletedAdd /> Adicionar Retorno</span>
             </Link>
             <Link to="/consultarListaDeRetorno" className={style.link}>
-                <span>Consultar Lista de Retorno</span>
+                <span><TbListSearch /> Consultar Lista de Retorno</span>
             </Link>
             <Link to="/gerarListaDeRetorno" className={style.link}>
-                <span>Gerar Lista de Retorno</span>
+                <span><FaTableList /> Gerar Lista de Retorno</span>
             </Link>
             <Link to="/dashboardSede" className={style.link}>
-                <span>Dashboard Sede</span>
+                <span><MdDashboard /> Dashboard Sede</span>
             </Link>
             <Link to="/dashboardNasf" className={style.link}>
-                <span>Dashboard Nasf</span>
+                <span><MdDashboard /> Dashboard Nasf</span>
             </Link>
 
         </nav>

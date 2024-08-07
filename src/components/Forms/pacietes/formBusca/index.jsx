@@ -83,8 +83,7 @@ export const FormPesquisaPaciente = ({ buscarCadastro, atualizar, informacoes, s
 
       {buscarCadastro ? <ul className={style.ul}>
         <li className={style.card}>
-          <input className={style.input_user} type="text"
-            value={paciente.nome} />
+        <p className={style.name}>{paciente.nome.toUpperCase()}</p>
           <div className={style.div_button}>
             <button className={style.button_info} onClick={() => abrirInformacoes()}>Informações</button>
             <button className={style.button_atualizar} onClick={() => updatePaciente()}>Atualizar</button>
