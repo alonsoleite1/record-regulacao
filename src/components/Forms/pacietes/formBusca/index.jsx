@@ -5,9 +5,10 @@ import { toast } from "react-toastify";
 import { api } from '../../../../services/api';
 import style from "./style.module.scss";
 import { AtualizarCadastro } from '../formAtualizar';
+import { InformaçõesPaciente } from '../informacoes';
 
 
-export const FormPesquisaPaciente = ({ buscarCadastro,atualizar, setAtualizar, setBuscarCadastro, setAbrirCadastro }) => {
+export const FormPesquisaPaciente = ({ buscarCadastro, atualizar, informacoes, setInformacoes, setAtualizar, setBuscarCadastro, setAbrirCadastro }) => {
 
   const [paciente, setPaciente] = useState("");
 
@@ -28,6 +29,7 @@ export const FormPesquisaPaciente = ({ buscarCadastro,atualizar, setAtualizar, s
       setPaciente(response.data);
       setAbrirCadastro(false);
       setAtualizar(false);
+      setInformacoes(false);
 
     } catch (error) {
       toast.error(error.response.data.message);
@@ -59,7 +61,16 @@ export const FormPesquisaPaciente = ({ buscarCadastro,atualizar, setAtualizar, s
     setAtualizar(true);
     setBuscarCadastro(false);
     setAbrirCadastro(false);
+    setInformacoes(false);
   };
+
+  const abrirInformacoes = async () => {
+    setBuscarCadastro(false);
+    setAbrirCadastro(false);
+    setInformacoes(true);
+  };
+
+  
 
 
   return (
@@ -75,12 +86,14 @@ export const FormPesquisaPaciente = ({ buscarCadastro,atualizar, setAtualizar, s
           <input className={style.input_user} type="text"
             value={paciente.nome} />
           <div className={style.div_button}>
+            <button className={style.button_info} onClick={() => abrirInformacoes()}>Informações</button>
             <button className={style.button_atualizar} onClick={() => updatePaciente()}>Atualizar</button>
             <button className={style.button_deletar} onClick={() => deletarPaciente()}><FaRegTrashAlt /></button>
           </div>
         </li>
       </ul> : null}
       {atualizar ? <AtualizarCadastro paciente={paciente} /> : null}
+      {informacoes ? <InformaçõesPaciente paciente={paciente} /> : null}
     </>
   )
 };

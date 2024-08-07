@@ -99,3 +99,17 @@
 .button_atualizar:hover {
     background-color: var(--color-button-hover-save);
 }
+
+.button_info {
+    padding: .4rem;
+    border: none;
+    border-radius: .25rem;
+    background-color: var(--color-button-register);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.button_info:hover {
+    background-color: var(--color-hover);
+}
