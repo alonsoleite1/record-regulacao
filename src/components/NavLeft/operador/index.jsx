@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import { FaHouse,FaUsers } from "react-icons/fa6";
+import { MdFormatListBulletedAdd } from "react-icons/md";
+import { TbListSearch } from "react-icons/tb";
 import style from "./style.module.scss";
 
 export const Operador = () => {
@@ -8,22 +11,22 @@ export const Operador = () => {
         <nav className={style.container}>
 
             <Link to="/inicio" className={style.link}>
-                <span>Inicio</span>
+                <span><FaHouse /> Inicio</span>
             </Link>
             <Link to="/paciente" className={style.link}>
-                <span>Pacientes</span>
+                <span><FaUsers /> Pacientes</span>
             </Link>
             <Link to="/listaDeEspera" className={style.link}>
-                <span>Adicionar Espera</span>
+                <span><MdFormatListBulletedAdd /> Adicionar Espera</span>
             </Link>
             <Link to="/consultarListaDeEspera" className={style.link}>
-                <span>Consultar Lista de Espera</span>
+                <span><TbListSearch /> Consultar Lista de Espera</span>
             </Link>
             <Link to="/listaDeRetorno" className={style.link}>
-                <span>Adicionar Retorno</span>
+                <span><MdFormatListBulletedAdd /> Adicionar Retorno</span>
             </Link>
             <Link to="/consultarListaDeRetorno" className={style.link}>
-                <span>Consultar Lista de Retorno</span>
+                <span><TbListSearch /> Consultar Lista de Retorno</span>
             </Link>
 
         </nav>

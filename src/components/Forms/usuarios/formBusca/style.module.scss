@@ -22,16 +22,9 @@
     font-size: 1rem;
 }
 
-.input_user{
-    border: none;
-    outline: none;
-    appearance: none;
-    font-size: 1rem;
-    font-weight: 600;
-}
-.input_user:focus{
-    caret-color: transparent;
-    outline: none;
+.name{
+    font-size: .9rem;
+    font-weight: 700;
 }
 
 .button_buscar {
@@ -55,9 +48,9 @@
 
 .card {
     background-color: white;
-    width: 50%;
+    width: 70%;
     margin: auto;
-    border: .0625rem solid;
+    border: .0625rem solid gray;
     border-radius: .25rem;
     display: flex;
     justify-content: space-between;
@@ -71,6 +64,7 @@
     width: 50%;
     margin-right: .5rem;
     gap: 1rem;
+    flex-grow: 1;
 }
 
 .button_deletar {

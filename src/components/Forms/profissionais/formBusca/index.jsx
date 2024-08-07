@@ -95,7 +95,7 @@ export const FormPesquisaProfissional = ({ buscarCadastro, atualizar, setAtualiz
       {buscarCadastro ? <ul className={style.ul}>
         <li className={style.card}>
           <input className={style.input_user} type="text"
-            value={profissional.nome} />
+            value={profissional.nome.toUpperCase()} />
           <div className={style.div_button}>
             <button className={style.button_atualizar} onClick={() => updateProfissional()}>Atualizar</button>
             <button className={style.button_deletar} onClick={() => deletarProfissional()}><FaRegTrashAlt /></button>

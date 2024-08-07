@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import { FaHouse,FaUsers,FaTableList } from "react-icons/fa6";
+import { MdFormatListBulletedAdd,MdDashboard } from "react-icons/md";
+import { TbListSearch } from "react-icons/tb";
 import style from "./style.module.scss";
 
 export const Gerencia = () => {
@@ -8,35 +11,35 @@ export const Gerencia = () => {
         <nav className={style.container}>
 
             <Link to="/inicio" className={style.link}>
-                <span>Inicio</span>
+                <span><FaHouse /> Inicio</span>
             </Link>
             <Link to="/paciente" className={style.link}>
-                <span>Pacientes</span>
+                <span><FaUsers /> Pacientes</span>
             </Link>
             <Link to="/listaDeEspera" className={style.link}>
-                <span>Adicionar Espera</span>
+                <span><MdFormatListBulletedAdd /> Adicionar Espera</span>
             </Link>
             <Link to="/consultarListaDeEspera" className={style.link}>
-                <span>Consultar Lista de Espera</span>
+                <span><TbListSearch /> Consultar Lista de Espera</span>
             </Link>
             <Link to="/gerarListaDeEspera" className={style.link}>
-                <span>Gerar Lista de Espera</span>
+                <span><FaTableList /> Gerar Lista de Espera</span>
             </Link>
 
             <Link to="/listaDeRetorno" className={style.link}>
-                <span>Adicionar Retorno</span>
+                <span><MdFormatListBulletedAdd /> Adicionar Retorno</span>
             </Link>
             <Link to="/consultarListaDeRetorno" className={style.link}>
-                <span>Consultar Lista de Retorno</span>
+                <span><TbListSearch /> Consultar Lista de Retorno</span>
             </Link>
             <Link to="/gerarListaDeRetorno" className={style.link}>
-                <span>Gerar Lista de Retorno</span>
+                <span><FaTableList /> Gerar Lista de Retorno</span>
             </Link>
             <Link to="/dashboardSede" className={style.link}>
-                <span>Dashboard Lista de Espera</span>
+                <span><MdDashboard /> Dashboard Lista de Espera</span>
             </Link>
             <Link to="/dashboardNasf" className={style.link}>
-                <span>Dashboard Lista de Retorno</span>
+                <span><MdDashboard /> Dashboard Lista de Retorno</span>
             </Link>
 
         </nav>
