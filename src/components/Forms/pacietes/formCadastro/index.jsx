@@ -14,6 +14,7 @@ export const Pacientes = () => {
   const [atualizar, setAtualizar] = useState(false);
   const [abrirCadastro, setAbrirCadastro] = useState(false);
   const [buscarCadastro, setBuscarCadastro] = useState(false);
+  const [informacoes, setInformacoes] = useState(false);
 
   const fetchAddress = async (cep) => {
     try {
@@ -43,6 +44,7 @@ export const Pacientes = () => {
     setAbrirCadastro(true);
     setBuscarCadastro(false);
     setAtualizar(false);
+    setInformacoes(false);
 
   };
 
@@ -80,7 +82,7 @@ export const Pacientes = () => {
             <button className={style.button_cadastrar} onClick={() => cadastrar()}>+ Cadastrar</button>
           </div>
         </div>
-        <FormPesquisaPaciente buscarCadastro={buscarCadastro} atualizar={atualizar} setAtualizar={setAtualizar} setBuscarCadastro={setBuscarCadastro} setAbrirCadastro={setAbrirCadastro} />
+        <FormPesquisaPaciente buscarCadastro={buscarCadastro} atualizar={atualizar} informacoes={informacoes} setInformacoes={setInformacoes} setAtualizar={setAtualizar} setBuscarCadastro={setBuscarCadastro} setAbrirCadastro={setAbrirCadastro} />
 
         {abrirCadastro ? <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={style.container}>

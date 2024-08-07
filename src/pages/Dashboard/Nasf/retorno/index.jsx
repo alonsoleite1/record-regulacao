@@ -4,7 +4,8 @@ import style from "./style.module.scss";
 
 export const DashboardNasfRetorno = () => {
   const [especialidade, setEspecialidade] = useState([]);
-  const [listEspecialidade, setListEspecialidade] = useState([]);
+  const [listEspecialidadeMuni, setListEspecialidadeMuni] = useState([]);
+  const [listEspecialidadePoli, setListEspecialidadePoli] = useState([]);
 
 
   useEffect(() => {
@@ -34,11 +35,11 @@ export const DashboardNasfRetorno = () => {
   useEffect(() => {
 
     // Função que será executada automaticamente com os dados obtidos
-    const processEspecialista = async () => {
+    const listaMunicipio = async () => {
       // Mapeia os dados para um novo array com os resultados do processamento
       const processedData = await Promise.all(especialidade.map(async item => {
                
-        const { data } = await api.get(`/retorno/nasf/${item.nome}`);
+        const { data } = await api.get(`/retorno/nasf/municipio/${item.nome}`);
    
         
         return {
@@ -46,11 +47,28 @@ export const DashboardNasfRetorno = () => {
         };
       }));
 
-      setListEspecialidade(processedData);
+      setListEspecialidadeMuni(processedData);
+
+    };
+
+    const listaPoliclinica = async () => {
+      // Mapeia os dados para um novo array com os resultados do processamento
+      const processedData = await Promise.all(especialidade.map(async item => {
+               
+        const { data } = await api.get(`/retorno/nasf/policlinica/${item.nome}`);
+   
+        
+        return {
+          nome: item.nome, quantidade: data,
+        };
+      }));
+
+      setListEspecialidadePoli(processedData);
 
     };
     
-    processEspecialista();
+    listaMunicipio();
+    listaPoliclinica()
    
 
   }, [especialidade]);
@@ -58,11 +76,23 @@ export const DashboardNasfRetorno = () => {
 
   return (
       <section className={style.container}>
-        <h1 className={style.header}>FILA DE RETORNO NASF</h1>
+        <h1 className={style.header}>FILA DE RETORNO SEDE</h1>
         <ul className={style.especialidade}>
-          <h1 className={style.title}>Especialidade</h1>
+          <h1 className={style.title}>MUNICIPIO</h1>
 
-          {listEspecialidade.map(element => (
+          {listEspecialidadeMuni.map(element => (
+            <li key={element.id} className={style.card}>
+              <h3 className={style.label}>{element.nome}</h3>
+              <p className={style.quantidade}>{element.quantidade}</p>
+            </li>
+          ))}
+
+        </ul>
+
+        <ul className={style.especialidade}>
+          <h1 className={style.title}>POLICLINICA</h1>
+
+          {listEspecialidadePoli.map(element => (
             <li key={element.id} className={style.card}>
               <h3 className={style.label}>{element.nome}</h3>
               <p className={style.quantidade}>{element.quantidade}</p>
