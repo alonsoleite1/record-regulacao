@@ -76,7 +76,7 @@ export const DashboardNasfRetorno = () => {
 
   return (
       <section className={style.container}>
-        <h1 className={style.header}>FILA DE RETORNO SEDE</h1>
+        <h1 className={style.header}>FILA DE RETORNO NASF</h1>
         <ul className={style.especialidade}>
           <h1 className={style.title}>MUNICIPIO</h1>
 

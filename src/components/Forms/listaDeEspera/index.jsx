@@ -1,5 +1,5 @@
 import { DefaultTemplate } from "../../DefaultTemplate";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import InputMask from 'react-input-mask';
 import { useForm, Controller } from 'react-hook-form';
 import { RiSave3Fill } from "react-icons/ri";
@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import jsPDF from "jspdf";
 import autoTable from 'jspdf-autotable';
+import logo from "../../../assets/logo.png"
 import style from "./style.module.scss";
 
 
@@ -79,7 +80,6 @@ export const ListaDeEspera = () => {
         const x = (pageWidth - textWidth) / 2.1;
         pdf.text(title, x, 15);
 
-
         autoTable(pdf, {
             startY: 20,
             head: [["CPF", "ESPERA", "POSIÇÃO", "INSERIDO"]],
@@ -98,6 +98,7 @@ export const ListaDeEspera = () => {
                 fillColor: [31, 145, 220]
             }
         })
+
 
         pdf.save(`RECIBO ${recibo.cpf}`);
     };
