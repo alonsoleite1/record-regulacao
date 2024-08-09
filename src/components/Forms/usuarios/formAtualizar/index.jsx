@@ -4,28 +4,26 @@ import { RiSave3Fill } from "react-icons/ri";
 import style from "./style.module.scss";
 import { api } from '../../../../services/api';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 
 
-export const AtualizarCadastro = ({ unidades, usuario }) => {
+export const AtualizarCadastro = ({ unidades, usuario, setAtualizar }) => {
 
-    const navigate = useNavigate();
 
-    const { register, handleSubmit, setValue,reset, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm();
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        const carregaDados = ()=>{
-         setValue('nome', usuario.nome);
-         setValue('login', usuario.login);
-         setValue('unidade', usuario.unidade);
-         setValue('perfil', usuario.perfil);
-        
+        const carregaDados = () => {
+            setValue('nome', usuario.nome);
+            setValue('login', usuario.login);
+            setValue('unidade', usuario.unidade);
+            setValue('perfil', usuario.perfil);
+
         };
-       
+
         carregaDados();;
-       
-       },[setValue]);
+
+    }, [setValue]);
 
     const onSubmit = async (payload) => {
         const token = JSON.parse(localStorage.getItem("@token"));
@@ -36,7 +34,7 @@ export const AtualizarCadastro = ({ unidades, usuario }) => {
                     Authorization: `Bearer ${token}`
                 }
             });
-            window.location.reload();
+            setAtualizar(false)
             toast.success("Cadastro atualizado!");
         } catch (error) {
             toast.error("Não foi possivel atualizar!");

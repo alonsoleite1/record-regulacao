@@ -4,13 +4,11 @@ import { RiSave3Fill } from "react-icons/ri";
 import InputMask from 'react-input-mask';
 import { api } from '../../../../services/api';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 import style from "./style.module.scss";
 
 
-export const AtualizarCadastro = ({ paciente }) => {
+export const AtualizarCadastro = ({ paciente,setAtualizar }) => {
 
-  const navigate = useNavigate();
 
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
 
@@ -44,15 +42,16 @@ useEffect(()=>{
 
   const onSubmit = async (payload) => {
     const token = JSON.parse(localStorage.getItem("@token"));
-console.log(payload.cpf);
+
     try {
       const { data } = await api.patch(`paciente/${payload.cpf}`, payload, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-      window.location.reload();
       toast.success("Cadastro atualizado!");
+      setAtualizar(false);
+
     } catch (error) {
       toast.error("Não foi possivel atualizar!");
     }

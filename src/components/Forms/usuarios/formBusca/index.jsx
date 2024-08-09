@@ -81,7 +81,7 @@ export const FormPesquisaUsuario = ({ buscarCadastro, atualizar, setAtualizar, s
           </div>
         </li>
       </ul> : null}
-      {atualizar ? <AtualizarCadastro unidades={unidades} usuario={usuario} /> : null}
+      {atualizar ? <AtualizarCadastro unidades={unidades} usuario={usuario} setAtualizar={setAtualizar} /> : null}
     </>
   )
 };

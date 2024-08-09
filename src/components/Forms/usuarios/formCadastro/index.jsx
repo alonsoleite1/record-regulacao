@@ -46,7 +46,6 @@ export const CadastroUsuario = () => {
       });
       toast.success("Usuário criado com sucesso!");
       setAbrirCadastro(false);
-      window.location.reload();
     } catch (error) {
       toast.error(error.response.data.message);
     }

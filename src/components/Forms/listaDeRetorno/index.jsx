@@ -12,7 +12,7 @@ import style from "./style.module.scss";
 
 export const ListaDeRetorno = () => {
 
-    const { register, handleSubmit, setValue, control, formState: { errors } } = useForm();
+    const { register, handleSubmit, setValue, control,reset, formState: { errors } } = useForm();
 
     const [especialidade, setEspecialidade] = useState([]);
 
@@ -51,7 +51,7 @@ export const ListaDeRetorno = () => {
                 }
             });
             generatePDF(data);
-            window.location.reload();
+            reset();
             toast.success("Adicionado a lista com sucesso!");
 
         } catch (error) {
