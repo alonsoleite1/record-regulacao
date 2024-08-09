@@ -97,7 +97,7 @@ export const GerarListaDeEspera = () => {
         <DefaultTemplate>
             <section className={style.container}>
                 <div className={style.header}>
-                    <h1 className={style.title}>Gerar lista de espera</h1>
+                    <h1 className={style.title}>Gerar lista de esperaz</h1>
                 </div>
 
                 <form className={style.form} onSubmit={handleSubmit(onSubmit)}>

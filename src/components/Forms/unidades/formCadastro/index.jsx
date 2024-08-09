@@ -48,7 +48,7 @@ export const CadastroUnidade = () => {
       <section className={style.section}>
 
         <div className={style.header}>
-          <h1 className={style.title}>Unidades</h1>
+          <h1 className={style.title}>UNIDADES</h1>
           <div className={style.div_button}>
             <button className={style.button_cadastrar} onClick={() => cadastrar()}>+ Cadastrar</button>
           </div>

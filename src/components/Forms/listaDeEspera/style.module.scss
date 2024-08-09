@@ -9,18 +9,13 @@
 .header {
     display: flex;
     align-items: center;
-    background-color: var(--color-header);
+    justify-content: center;
+    background-color: var(--color-secudary);
     width: 100%;
-}
-
-.title {
-    width: 50%;
-    display: flex;
-    justify-content: flex-end;
-    padding-block: .8rem;
-    text-align: center;
     font-size: 1rem;
     font-weight: bolder;
+    color: white;
+    padding-block: .8rem;
 }
 
 

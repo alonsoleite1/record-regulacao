@@ -106,7 +106,7 @@ export const ListaDeRetorno = () => {
         <DefaultTemplate>
             <section className={style.container}>
                 <div className={style.header}>
-                    <h1 className={style.title}>Lista de retorno</h1>
+                    <h1 className={style.title}>LISTA DE RETORNO</h1>
                 </div>
 
                 <form className={style.form} onSubmit={handleSubmit(onSubmit)}>

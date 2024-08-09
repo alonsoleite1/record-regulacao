@@ -95,7 +95,7 @@ export const AtualizarProfissional = ({ profissional, especialidades }) => {
               ))}
             </select>
           </div>
-          <button className={style.button_cadastrar} type="button" onClick={addSpecialty}>
+          <button className={style.button_adicionar} type="button" onClick={addSpecialty}>
             Adicionar
           </button>
 

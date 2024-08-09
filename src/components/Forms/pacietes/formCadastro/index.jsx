@@ -77,7 +77,7 @@ export const Pacientes = () => {
       <section className={style.section}>
 
         <div className={style.header}>
-          <h1 className={style.title}>Pacientes</h1>
+          <h1 className={style.title}>PACIENTES</h1>
           <div className={style.div_button}>
             <button className={style.button_cadastrar} onClick={() => cadastrar()}>+ Cadastrar</button>
           </div>
@@ -87,12 +87,12 @@ export const Pacientes = () => {
         {abrirCadastro ? <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={style.container}>
             <div className={style.box_input}>
-              <label className={style.label}>Nome</label>
+              <label className={style.label}>Nome:</label>
               <input className={style.input} {...register('nome', { required: 'Nome é obrigatório' })} />
               {errors.nome && <span className={style.aviso}>{errors.nome.message}</span>}
             </div>
             <div className={style.box_input}>
-              <label className={style.label}>Data de Nascimento</label>
+              <label className={style.label}>Data de Nascimento:</label>
               <InputMask className={style.input}
                 mask="99/99/9999"
                 {...register('dataDeNascimento', { required: 'Data de Nascimento é obrigatória' })}
@@ -100,7 +100,7 @@ export const Pacientes = () => {
               {errors.dataDeNascimento && <span className={style.aviso}>{errors.dataDeNascimento.message}</span>}
             </div>
             <div className={style.box_input}>
-              <label className={style.label}>Nome da Mãe</label>
+              <label className={style.label}>Nome da Mãe:</label>
               <input className={style.input} {...register('nomeDaMae', { required: 'Nome da Mãe é obrigatório' })} />
               {errors.nomeDaMae && <span className={style.aviso}>{errors.nomeDaMae.message}</span>}
             </div>
@@ -123,7 +123,7 @@ export const Pacientes = () => {
               {errors.cpf && <span className={style.aviso}>{errors.cpf.message}</span>}
             </div>
             <div className={style.box_input}>
-              <label className={style.label}>CNS</label>
+              <label className={style.label}>CNS:</label>
               <InputMask className={style.input}
                 mask="999 9999 9999 9999"
                 {...register('cns', { required: 'CNS é obrigatório' })}
@@ -188,7 +188,7 @@ export const Pacientes = () => {
               {errors.acs && <span className={style.aviso}>{errors.acs.message}</span>}
             </div>
             <div className={style.box_input}>
-              <label className={style.label}>Contato 1</label>
+              <label className={style.label}>Contato 1:</label>
               <InputMask className={style.input}
                 mask="(99) 99999-9999"
                 {...register('contatoUm', { required: 'Contato 1 é obrigatório' })}
@@ -196,7 +196,7 @@ export const Pacientes = () => {
               {errors.contatoUm && <span className={style.aviso}>{errors.contatoUm.message}</span>}
             </div>
             <div className={style.box_input}>
-              <label className={style.label}>Contato 2</label>
+              <label className={style.label}>Contato 2:</label>
               <InputMask className={style.input}
                 mask="(99) 99999-9999"
                 {...register('contatoDois', { required: 'Contato 2 é obrigatório' })}

@@ -109,7 +109,7 @@ export const ListaDeEspera = () => {
         <DefaultTemplate>
             <section className={style.container}>
                 <div className={style.header}>
-                    <h1 className={style.title}>Lista de espera</h1>
+                    <h1 className={style.title}>LISTA DE ESPERA</h1>
                 </div>
 
                 <form className={style.form} onSubmit={handleSubmit(onSubmit)}>

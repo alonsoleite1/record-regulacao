@@ -42,7 +42,7 @@ export const Exames = () => {
         <DefaultTemplate>
             <section className={style.container}>
                 <div className={style.header}>
-                    <h1 className={style.title}>Exames & Procedimentos</h1>
+                    <h1 className={style.title}>EXAMES & PROCEDIMENTOS</h1>
                     <div className={style.div_button}>
                         <button className={style.button_cadastrar} onClick={() => cadastrar()}>+ Cadastrar</button>
                     </div>

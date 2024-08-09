@@ -61,7 +61,7 @@
 .button {
     width: 40%;
     padding: .625rem;
-    background-color: #007bff;
+    background-color: var(--color-secudary);
     color: white;
     font-weight: 600;
     border: none;
@@ -70,7 +70,7 @@
 }
 
 .button:hover {
-    background-color: #0056b3;
+    background-color: var(--color-primary);
 }
 
 .version {

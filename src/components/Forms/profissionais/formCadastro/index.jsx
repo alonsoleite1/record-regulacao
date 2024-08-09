@@ -17,9 +17,6 @@ export const Profissionais = () => {
     const [atualizar, setAtualizar] = useState(false);
     const [especialidades, setEspecialidades] = useState([]);
 
-
-    const navigate = useNavigate();
-
     const handleChange = (e) => {
         const valor = e.target.value.replace(/[.-]/g, '');
         setValue('cpf', valor);
@@ -95,7 +92,7 @@ export const Profissionais = () => {
         <DefaultTemplate>
             <section className={style.container}>
                 <div className={style.header}>
-                    <h1 className={style.title}>Profissionais</h1>
+                    <h1 className={style.title}>PROFISSIONAIS</h1>
                     <div className={style.div_button}>
                         <button className={style.button_cadastrar} onClick={() => cadastrar()}>+ Cadastrar</button>
                     </div>
@@ -145,7 +142,7 @@ export const Profissionais = () => {
                                     ))}
                                 </select>
                             </div>
-                            <button className={style.button_cadastrar} type="button" onClick={addSpecialty}>
+                            <button className={style.button_adicionar} type="button" onClick={addSpecialty}>
                                 Adicionar
                             </button>
 
