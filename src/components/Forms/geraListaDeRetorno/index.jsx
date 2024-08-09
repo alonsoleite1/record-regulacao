@@ -97,7 +97,7 @@ buscarEspecialidades();
         <DefaultTemplate>
             <section className={style.container}>
                 <div className={style.header}>
-                    <h1 className={style.title}>Gerar lista de retorno</h1>
+                    <h1 className={style.title}>GERAR LISTA DE RETORNO</h1>
                 </div>
 
                 <form className={style.form} onSubmit={handleSubmit(onSubmit)}>

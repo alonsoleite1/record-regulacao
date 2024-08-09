@@ -130,7 +130,7 @@ export const ConsultarListaDeEspera = () => {
         <DefaultTemplate>
             <section className={style.container}>
                 <div className={style.header}>
-                    <h1 className={style.title}>Consultar Lista de Espera</h1>
+                    <h1 className={style.title}>CONSULTAR LISTA DE ESPERA</h1>
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)} className={style.form_buscar}>
                     <input className={style.input} type="text" {...register("cpf")} />

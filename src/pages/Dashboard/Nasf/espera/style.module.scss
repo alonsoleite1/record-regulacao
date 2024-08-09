@@ -8,7 +8,7 @@
 }
 .header{
     width: 100%;
-    background-color: #01678f;
+    background-color:var(--color-secudary);
     color: white;
     text-align: center;
     padding-block: .6rem;
@@ -29,7 +29,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-header);
+    background-color: gold;
+    
     font-weight: 700;
 }
 .card{
@@ -38,9 +39,8 @@
     align-items: center;
     border: .0625rem solid;
     padding: .8rem;
-    border-radius: .5rem;
     gap: .5rem;
-    background-color: green;
+    background-color: #006e92;
     color: white;
 }
 .label {

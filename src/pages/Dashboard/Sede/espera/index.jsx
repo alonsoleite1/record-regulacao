@@ -113,7 +113,7 @@ export const DashboardSede = () => {
       <section className={style.container}>
         <h1 className={style.header}>FILA DE ESPERA SEDE</h1>
         <ul className={style.especialidade}>
-          <h1 className={style.title}>Especialidade</h1>
+          <h1 className={style.title}>ESPECIALIDADES</h1>
 
           {listEspecialidade.map(element => (
             <li key={element.id} className={style.card}>
@@ -125,7 +125,7 @@ export const DashboardSede = () => {
         </ul>
 
         <ul className={style.especialidade}>
-          <h1 className={style.title}>Exames e Procedimentos</h1>
+          <h1 className={style.title}>EXAMES E PROCEDIMENTOS</h1>
 
           {listExame.map(element => (
             <li key={element.id} className={style.card}>
@@ -137,7 +137,7 @@ export const DashboardSede = () => {
         </ul>
 
         <ul className={style.especialidade}>
-          <h1 className={style.title}>Cirurgias</h1>
+          <h1 className={style.title}>CIRURGIAS</h1>
 
           {listCirurgia.map(element => (
             <li key={element.id} className={style.card}>
