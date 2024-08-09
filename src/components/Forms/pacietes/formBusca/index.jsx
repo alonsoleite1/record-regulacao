@@ -91,8 +91,8 @@ export const FormPesquisaPaciente = ({ buscarCadastro, atualizar, informacoes, s
           </div>
         </li>
       </ul> : null}
-      {atualizar ? <AtualizarCadastro paciente={paciente} /> : null}
-      {informacoes ? <InformaçõesPaciente paciente={paciente} /> : null}
+      {atualizar ? <AtualizarCadastro paciente={paciente} setAtualizar={setAtualizar} /> : null}
+      {informacoes ? <InformaçõesPaciente paciente={paciente} setInformacoes={setInformacoes} /> : null}
     </>
   )
 };

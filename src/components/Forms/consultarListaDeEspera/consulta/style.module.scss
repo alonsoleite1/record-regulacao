@@ -117,14 +117,14 @@
     padding: .4rem;
     border: none;
     border-radius: .25rem;
-    background-color: var(--color-button-register);
+    background-color: var(--color-hover);
     color: white;
     font-weight: 600;
     cursor: pointer;
 }
 
 .button_realizado:hover {
-    background-color: var(--color-hover);
+    background-color: var(--color-secudary);
 }
 
 .button_observacao {

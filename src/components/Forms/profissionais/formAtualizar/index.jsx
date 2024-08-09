@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import style from "./style.module.scss";
 
 
-export const AtualizarProfissional = ({ profissional, especialidades }) => {
+export const AtualizarProfissional = ({ profissional, especialidades,setAtualizar }) => {
 
   const navigate = useNavigate();
 
@@ -54,8 +54,9 @@ export const AtualizarProfissional = ({ profissional, especialidades }) => {
           Authorization: `Bearer ${token}`
         }
       });
-      window.location.reload();
       toast.success("Cadastro atualizado!");
+      setAtualizar(false);
+      
     } catch (error) {
       toast.error("Não foi possivel atualizar!");
     }

@@ -11,6 +11,7 @@ export const UsuarioContextProvider = ({ children }) => {
     const [nome, setNome] = useState("");
     const [unidade, setUnidade] = useState("");
     const [perfil, setPerfil] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -22,6 +23,7 @@ export const UsuarioContextProvider = ({ children }) => {
 
         const loadUser = async () => {
             try {
+                setLoading(true);
 
                 const { data } = await api.get('/usuario/autentificacao/login', {
                     headers: {
@@ -38,7 +40,10 @@ export const UsuarioContextProvider = ({ children }) => {
                 localStorage.removeItem("@nome");
                 localStorage.removeItem("@unidade");
                 localStorage.removeItem("@perfil");
-            };
+            }
+            finally{
+                setLoading(false)
+            }
         }
         if (token) {
             loadUser();
@@ -81,7 +86,7 @@ export const UsuarioContextProvider = ({ children }) => {
 
 
     return (
-        <UsuarioContext.Provider value={{ user, nome, unidade,perfil, login, logout, }}>
+        <UsuarioContext.Provider value={{loading, user, nome, unidade,perfil, login, logout, }}>
             {children}
         </UsuarioContext.Provider>
     )

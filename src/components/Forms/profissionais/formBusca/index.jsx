@@ -102,7 +102,7 @@ export const FormPesquisaProfissional = ({ buscarCadastro, atualizar, setAtualiz
           </div>
         </li>
       </ul> : null}
-      {atualizar ? <AtualizarProfissional profissional={profissional} especialidades={especialidades}/> : null}
+      {atualizar ? <AtualizarProfissional profissional={profissional} especialidades={especialidades} setAtualizar={setAtualizar}/> : null}
     </>
   )
 };

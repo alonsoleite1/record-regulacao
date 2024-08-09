@@ -15,7 +15,6 @@ export const CadastroUnidade = () => {
   const [buscarCadastro, setBuscarCadastro] = useState(false);
   const [atualizar, setAtualizar] = useState(false);
 
-  const navigate = useNavigate();
 
   const cadastrar = async () => {
     setBuscarCadastro(false);
@@ -35,7 +34,7 @@ export const CadastroUnidade = () => {
       });
       toast.success("Unidade criada com sucesso!");
       setAbrirCadastro(false);
-      navigate("/inicio");
+
     } catch (error) {
       toast.error(error.response.data.message);
     }

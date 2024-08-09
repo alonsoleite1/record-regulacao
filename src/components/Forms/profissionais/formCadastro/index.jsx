@@ -17,6 +17,8 @@ export const Profissionais = () => {
     const [atualizar, setAtualizar] = useState(false);
     const [especialidades, setEspecialidades] = useState([]);
 
+    const { register, control, handleSubmit, setValue, getValues, formState: { errors } } = useForm();
+
     const handleChange = (e) => {
         const valor = e.target.value.replace(/[.-]/g, '');
         setValue('cpf', valor);
@@ -50,7 +52,6 @@ export const Profissionais = () => {
 
     };
 
-    const { register, control, handleSubmit, setValue, getValues, formState: { errors } } = useForm();
 
     const { fields, append, remove } = useFieldArray({
         control,
@@ -81,7 +82,6 @@ export const Profissionais = () => {
             });
             toast.success("Profissional criado com sucesso!");
             setAbrirCadastro(false);
-            window.location.reload();
         } catch (error) {
             toast.error(error.response.data.message);
         }

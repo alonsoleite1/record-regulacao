@@ -65,7 +65,7 @@ export const Pacientes = () => {
       });
       toast.success("Paciente criado com sucesso!");
       setAbrirCadastro(false);
-      window.location.reload();
+      
     } catch (error) {
       toast.error(error.response.data.message);
     }

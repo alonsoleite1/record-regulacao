@@ -17,12 +17,16 @@ import { ListaDeRetorno } from "../components/Forms/listaDeRetorno";
 import { ConsultarListaDeRetorno } from "../components/Forms/consultarListaDeRetorno/consulta";
 import { GerarListaDeRetorno } from "../components/Forms/geraListaDeRetorno";
 import { DashboardNasf } from "../pages/Dashboard/Nasf/espera";
+import { ProtectedRoutes } from "../protectedRoutes";
+
 
 
 export const RoutesMain = () => {
     return (
         <Routes>
             <Route path="" element={<Login />} />
+            <Route element={<ProtectedRoutes/>}>
+            
             <Route path="/inicio" element={<Inicio/>}/>
             <Route path="/usuario" element={<CadastroUsuario />} />
             <Route path="/profissional" element={<Profissionais />} />
@@ -31,8 +35,6 @@ export const RoutesMain = () => {
             <Route path="/exame" element={<Exames />} />
             <Route path="/cirugia" element={<Cirugias />} />
             <Route path="/paciente" element={<Pacientes />} />
-         
-
             <Route path="/listaDeEspera" element={<ListaDeEspera/>} />
             <Route path="/consultarListaDeEspera" element={<ConsultarListaDeEspera/>} />
             <Route path="/gerarListaDeEspera" element={<GerarListaDeEspera/>} />
@@ -44,6 +46,8 @@ export const RoutesMain = () => {
             <Route path="/dashboardSede" element={<DashboardSede />} />
             <Route path="/dashboardNasf" element={<DashboardNasf />} />
             <Route path="/dashboardRealizada" element={<DashboardRealizadas/>} />
+
+            </Route> 
         </Routes>
     )
 };

@@ -4,16 +4,19 @@ import { ToastContainer } from 'react-toastify';
 import "./style/index.scss";
 import { useContext } from "react";
 import { UsuarioContext } from "./provider/UsuarioContext";
-
+import { Spinner } from "react-loading-io";
 function App() {
-  const { user } = useContext(UsuarioContext);
+  const { loading } = useContext(UsuarioContext);
+  const spinnerCfg = { left: "50%", transform: "translateY(150%)" };
+  
   return (
     <>
       <ToastContainer
         position="top-center"
         autoClose={2000}
         />
-      <RoutesMain />
+        {loading ? <Spinner style={spinnerCfg}/> : <RoutesMain/>}
+      
     </>
   )
 }

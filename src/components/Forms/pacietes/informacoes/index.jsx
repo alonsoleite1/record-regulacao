@@ -3,10 +3,10 @@ import { GiFastBackwardButton } from "react-icons/gi";
 import style from "./style.module.scss";
 
 
-export const InformaçõesPaciente = ({ paciente }) => {
+export const InformaçõesPaciente = ({ paciente,setInformacoes }) => {
 
   const handleClick = () => {
-    window.location.reload();
+    setInformacoes(false);
   };
 
   return (

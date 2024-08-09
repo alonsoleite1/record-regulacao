@@ -8,7 +8,6 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import jsPDF from "jspdf";
 import autoTable from 'jspdf-autotable';
-import logo from "../../../assets/logo.png"
 import style from "./style.module.scss";
 
 
