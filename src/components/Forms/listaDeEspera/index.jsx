@@ -5,7 +5,6 @@ import { useForm, Controller } from 'react-hook-form';
 import { RiSave3Fill } from "react-icons/ri";
 import { api } from "../../../services/api";
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 import jsPDF from "jspdf";
 import autoTable from 'jspdf-autotable';
 import style from "./style.module.scss";
@@ -18,11 +17,12 @@ export const ListaDeEspera = () => {
 
     const [especialidade, setEspecialidade] = useState([]);
 
-    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const valor = e.target.value.replace(/[.-]/g, '');
         setValue('cpf', valor);
+
+       
     };
 
     const onSubmit = async (payloand) => {
@@ -34,8 +34,8 @@ export const ListaDeEspera = () => {
                     Authorization: `Bearer ${token}`
                 }
             });
-            generatePDF(data)
-            reset();
+            generatePDF(data);
+            reset({cpf:'',servico:'',especialidade:'',classificacao:'',regulacao:''});
             toast.success("Adicionado a lista com sucesso!");
 
         } catch (error) {

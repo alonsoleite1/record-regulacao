@@ -51,7 +51,7 @@ export const ListaDeRetorno = () => {
                 }
             });
             generatePDF(data);
-            reset();
+            reset({cpf:'',servico:'',especialidade:'',classificacao:'',regulacao:'',local:'',dataRetorno:''});
             toast.success("Adicionado a lista com sucesso!");
 
         } catch (error) {

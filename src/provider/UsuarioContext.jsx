@@ -31,9 +31,9 @@ export const UsuarioContextProvider = ({ children }) => {
                     }
                 });
                 setUser(data);
+                navigate("/inicio")
 
             } catch (error) {
-
                 navigate("");
                 setUser(null);
                 localStorage.removeItem("@token");
